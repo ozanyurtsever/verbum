@@ -1,0 +1,97 @@
+{
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "format": "prettier --write 'src/**/*.{ts,tsx,scss,css,json}'",
+    "isready": "npm run format && npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=16",
+    "react-dom": "^18.1.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "verbum",
+  "author": "Ozan Yurtsever",
+  "module": "dist/verbum.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/verbum.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/verbum.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.18.0",
+    "@size-limit/preset-small-lib": "^7.0.8",
+    "@storybook/addon-essentials": "^6.5.4",
+    "@storybook/addon-info": "^5.3.21",
+    "@storybook/addon-links": "^6.5.4",
+    "@storybook/addons": "^6.5.4",
+    "@storybook/react": "^6.5.4",
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.4",
+    "babel-loader": "^8.2.5",
+    "husky": "^8.0.1",
+    "prettier": "^2.6.2",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-is": "^18.1.0",
+    "size-limit": "^7.0.8",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.4.0",
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "@excalidraw/excalidraw": "0.11.0",
+    "@lexical/clipboard": "0.2.9",
+    "@lexical/code": "0.2.9",
+    "@lexical/file": "0.2.9",
+    "@lexical/hashtag": "0.2.9",
+    "@lexical/link": "0.2.9",
+    "@lexical/list": "0.2.9",
+    "@lexical/mark": "0.2.9",
+    "@lexical/overflow": "0.2.9",
+    "@lexical/plain-text": "0.2.9",
+    "@lexical/react": "0.2.9",
+    "@lexical/rich-text": "0.2.9",
+    "@lexical/selection": "0.2.9",
+    "@lexical/table": "0.2.9",
+    "@lexical/utils": "0.2.9",
+    "katex": "^0.15.2",
+    "lexical": "^0.2.9",
+    "utility-types": "^3.10.0",
+    "y-websocket": ">=1.3.x",
+    "yjs": ">=13.5.22"
+  }
+}
