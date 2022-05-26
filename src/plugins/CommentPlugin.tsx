@@ -460,7 +460,7 @@ function CommentsPanelListComment({
     // eslint-disable-next-line no-shadow
     thread?: Thread
   ) => void;
-  rtf: Intl.RelativeTimeFormat;
+  rtf;
   thread?: Thread;
 }): JSX.Element {
   const seconds = Math.round((comment.timeStamp - performance.now()) / 1000);
@@ -519,15 +519,16 @@ function CommentsPanelList({
 }): JSX.Element {
   const [editor] = useLexicalComposerContext();
   const [counter, setCounter] = useState(0);
-  const rtf = useMemo(
-    () =>
-      new Intl.RelativeTimeFormat('en', {
-        localeMatcher: 'best fit',
-        numeric: 'auto',
-        style: 'short',
-      }),
-    []
-  );
+  // const rtf = useMemo(
+  //   () =>
+  //     new Intl.RelativeTimeFormat('en', {
+  //       localeMatcher: 'best fit',
+  //       numeric: 'auto',
+  //       style: 'short',
+  //     }),
+  //   []
+  // ); //FIXME: it is closed to fix a build error
+  const rtf = null;
 
   useEffect(() => {
     // Used to keep the time stamp up to date

@@ -10,7 +10,8 @@
 import { CAN_USE_DOM } from './canUseDOM';
 
 const documentMode =
-  CAN_USE_DOM && 'documentMode' in document ? document.DOCUMENT_NODE : null;
+  // @ts-ignore
+  CAN_USE_DOM && 'documentMode' in document ? document.documentMode : null;
 
 export const IS_APPLE: boolean =
   CAN_USE_DOM && /Mac|iPod|iPhone|iPad/.test(navigator.platform);

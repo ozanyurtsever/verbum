@@ -13,7 +13,7 @@ import * as React from 'react';
 import { createContext, useContext, useMemo } from 'react';
 
 type ContextShape = {
-  historyState?: HistoryState;
+  historyState: HistoryState;
 };
 
 const Context: React.Context<ContextShape> = createContext({
