@@ -22,7 +22,7 @@ import KatexEquationAlterer from '../../../ui/KatexEquationAlterer';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import useModal from '../../../hooks/useModal';
 import TableCellResizer from '../../TableCellResizer';
-import TablePlugin from '@lexical/react/LexicalTablePlugin';
+import { TablePlugin } from '@lexical/react/LexicalTablePlugin';
 import TableCellActionMenuPlugin from '../../TableActionMenuPlugin';
 import HorizontalRulePlugin from '../../HorizontalRulePlugin';
 

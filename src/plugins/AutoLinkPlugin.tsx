@@ -6,7 +6,7 @@
  *
  */
 
-import AutoLinkPlugin from '@lexical/react/LexicalAutoLinkPlugin';
+import { AutoLinkPlugin } from '@lexical/react/LexicalAutoLinkPlugin';
 import * as React from 'react';
 
 const URL_MATCHER =

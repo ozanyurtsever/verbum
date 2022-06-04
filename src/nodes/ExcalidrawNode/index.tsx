@@ -8,18 +8,19 @@
 
 import type { ExcalidrawElementFragment } from './ExcalidrawModal';
 import type {
+  DOMConversionMap,
+  DOMConversionOutput,
+  DOMExportOutput,
   EditorConfig,
   LexicalEditor,
   LexicalNode,
   NodeKey,
+  SerializedLexicalNode,
 } from 'lexical';
 
-import SerializedLexicalNode from 'lexical';
-
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
-import useLexicalNodeSelection from '@lexical/react/useLexicalNodeSelection';
+import { useLexicalNodeSelection } from '@lexical/react/useLexicalNodeSelection';
 import { mergeRegister } from '@lexical/utils';
-import { Spread } from 'globals';
 import {
   $getNodeByKey,
   $getSelection,
@@ -30,6 +31,7 @@ import {
   KEY_BACKSPACE_COMMAND,
   KEY_DELETE_COMMAND,
 } from 'lexical';
+import { Spread } from 'libdefs/globals';
 import * as React from 'react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
@@ -208,8 +210,20 @@ export type SerializedExcalidrawNode = Spread<
     type: 'excalidraw';
     version: 1;
   },
-  typeof SerializedLexicalNode
+  SerializedLexicalNode
 >;
+
+function convertExcalidrawElement(domNode: HTMLElement): DOMConversionOutput {
+  const excalidrawData = domNode.getAttribute('data-lexical-excalidraw-json');
+  if (excalidrawData) {
+    const node = $createExcalidrawNode();
+    node.__data = excalidrawData;
+    return {
+      node,
+    };
+  }
+  return null;
+}
 
 export class ExcalidrawNode extends DecoratorNode<JSX.Element> {
   __data: string;
@@ -254,8 +268,32 @@ export class ExcalidrawNode extends DecoratorNode<JSX.Element> {
     return false;
   }
 
+  static importDOM(): DOMConversionMap | null {
+    return {
+      span: (domNode: HTMLElement) => {
+        if (!domNode.hasAttribute('data-lexical-excalidraw-json')) {
+          return null;
+        }
+        return {
+          conversion: convertExcalidrawElement,
+          priority: 1,
+        };
+      },
+    };
+  }
+
+  exportDOM(editor: LexicalEditor): DOMExportOutput {
+    const element = document.createElement('span');
+    const content = editor.getElementByKey(this.getKey());
+    if (content !== null) {
+      element.innerHTML = content.querySelector('svg').outerHTML;
+    }
+    element.setAttribute('data-lexical-excalidraw-json', this.__data);
+    return { element };
+  }
+
   setData(data: string): void {
-    const self = this.getWritable<ExcalidrawNode>();
+    const self = this.getWritable();
     self.__data = data;
   }
 

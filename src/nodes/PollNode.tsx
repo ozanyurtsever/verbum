@@ -6,16 +6,21 @@
  *
  */
 
-import type { LexicalNode, NodeKey } from 'lexical';
-
-import SerializedLexicalNode from 'lexical';
+import type {
+  DOMConversionMap,
+  DOMConversionOutput,
+  DOMExportOutput,
+  LexicalNode,
+  NodeKey,
+  SerializedLexicalNode,
+} from 'lexical';
 
 import './PollNode.css';
 
 import { useCollaborationContext } from '@lexical/react/LexicalCollaborationPlugin';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
-import { Spread } from 'globals';
 import { $getNodeByKey, DecoratorNode } from 'lexical';
+import { Spread } from 'libdefs/globals';
 import * as React from 'react';
 import { useMemo, useRef } from 'react';
 
@@ -200,8 +205,14 @@ export type SerializedPollNode = Spread<
     type: 'poll';
     version: 1;
   },
-  typeof SerializedLexicalNode
+  SerializedLexicalNode
 >;
+
+function convertPollElement(domNode: HTMLElement): DOMConversionOutput {
+  const question = domNode.getAttribute('data-lexical-poll-question');
+  const node = $createPollNode(question);
+  return { node };
+}
 
 export class PollNode extends DecoratorNode<JSX.Element> {
   __question: string;
@@ -237,14 +248,14 @@ export class PollNode extends DecoratorNode<JSX.Element> {
   }
 
   addOption(option: Option): void {
-    const self = this.getWritable<PollNode>();
+    const self = this.getWritable();
     const options = Array.from(self.__options);
     options.push(option);
     self.__options = options;
   }
 
   deleteOption(option: Option): void {
-    const self = this.getWritable<PollNode>();
+    const self = this.getWritable();
     const options = Array.from(self.__options);
     const index = options.indexOf(option);
     options.splice(index, 1);
@@ -252,7 +263,7 @@ export class PollNode extends DecoratorNode<JSX.Element> {
   }
 
   setOptionText(option: Option, text: string): void {
-    const self = this.getWritable<PollNode>();
+    const self = this.getWritable();
     const clonedOption = cloneOption(option, text);
     const options = Array.from(self.__options);
     const index = options.indexOf(option);
@@ -261,7 +272,7 @@ export class PollNode extends DecoratorNode<JSX.Element> {
   }
 
   toggleVote(option: Option, clientID: number): void {
-    const self = this.getWritable<PollNode>();
+    const self = this.getWritable();
     const votes = option.votes;
     const votesClone = Array.from(votes);
     const voteIndex = votes.indexOf(clientID);
@@ -275,6 +286,26 @@ export class PollNode extends DecoratorNode<JSX.Element> {
     const index = options.indexOf(option);
     options[index] = clonedOption;
     self.__options = options;
+  }
+
+  static importDOM(): DOMConversionMap | null {
+    return {
+      span: (domNode: HTMLElement) => {
+        if (!domNode.hasAttribute('data-lexical-poll-question')) {
+          return null;
+        }
+        return {
+          conversion: convertPollElement,
+          priority: 2,
+        };
+      },
+    };
+  }
+
+  exportDOM(): DOMExportOutput {
+    const element = document.createElement('span');
+    element.setAttribute('data-lexical-poll-question', this.__question);
+    return { element };
   }
 
   createDOM(): HTMLElement {

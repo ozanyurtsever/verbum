@@ -7,16 +7,14 @@
  */
 
 import type {
-  DOMExportOutput,
   EditorConfig,
   LexicalNode,
   NodeKey,
+  SerializedLexicalNode,
 } from 'lexical';
 
-import SerializedLexicalNode from 'lexical';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { mergeRegister } from '@lexical/utils';
-import { Spread } from 'globals';
 import {
   $getNodeByKey,
   COMMAND_PRIORITY_HIGH,
@@ -24,6 +22,7 @@ import {
   KEY_ESCAPE_COMMAND,
   SELECTION_CHANGE_COMMAND,
 } from 'lexical';
+import { Spread } from 'libdefs/globals';
 import * as React from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -122,7 +121,7 @@ export type SerializedEquationNode = Spread<
     equation: string;
     inline: boolean;
   },
-  typeof SerializedLexicalNode
+  SerializedLexicalNode
 >;
 
 export class EquationNode extends DecoratorNode<JSX.Element> {
@@ -160,13 +159,7 @@ export class EquationNode extends DecoratorNode<JSX.Element> {
     };
   }
 
-  exportDOM(): DOMExportOutput {
-    const element = document.createElement(this.__inline ? 'span' : 'div');
-    element.innerText = this.__equation;
-    return { element };
-  }
-
-  createDOM(config: EditorConfig): HTMLElement {
+  createDOM(_config: EditorConfig): HTMLElement {
     return document.createElement(this.__inline ? 'span' : 'div');
   }
 
@@ -180,7 +173,7 @@ export class EquationNode extends DecoratorNode<JSX.Element> {
   }
 
   setEquation(equation: string): void {
-    const writable = this.getWritable<EquationNode>();
+    const writable = this.getWritable();
     writable.__equation = equation;
   }
 

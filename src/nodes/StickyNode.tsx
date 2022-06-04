@@ -11,9 +11,8 @@ import type {
   LexicalEditor,
   LexicalNode,
   NodeKey,
+  SerializedLexicalNode,
 } from 'lexical';
-
-import SerializedLexicalNode from 'lexical';
 
 import './StickyNode.css';
 
@@ -23,15 +22,15 @@ import {
 } from '@lexical/react/LexicalCollaborationPlugin';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
-import LexicalNestedComposer from '@lexical/react/LexicalNestedComposer';
-import PlainTextPlugin from '@lexical/react/LexicalPlainTextPlugin';
-import { Spread } from 'globals';
+import { LexicalNestedComposer } from '@lexical/react/LexicalNestedComposer';
+import { PlainTextPlugin } from '@lexical/react/LexicalPlainTextPlugin';
 import {
   $getNodeByKey,
   $setSelection,
   createEditor,
   DecoratorNode,
 } from 'lexical';
+import { Spread } from 'libdefs/globals';
 import * as React from 'react';
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
@@ -289,7 +288,7 @@ export type SerializedStickyNode = Spread<
     type: 'sticky';
     version: 1;
   },
-  typeof SerializedLexicalNode
+  SerializedLexicalNode
 >;
 
 export class StickyNode extends DecoratorNode<JSX.Element> {
@@ -356,14 +355,14 @@ export class StickyNode extends DecoratorNode<JSX.Element> {
   }
 
   setPosition(x: number, y: number): void {
-    const writable = this.getWritable<StickyNode>();
+    const writable = this.getWritable();
     writable.__x = x;
     writable.__y = y;
     $setSelection(null);
   }
 
   toggleColor(): void {
-    const writable = this.getWritable<StickyNode>();
+    const writable = this.getWritable();
     writable.__color = writable.__color === 'pink' ? 'yellow' : 'pink';
   }
 

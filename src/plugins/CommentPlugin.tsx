@@ -24,15 +24,15 @@ import {
   $wrapSelectionInMarkNode,
   MarkNode,
 } from '@lexical/mark';
-import AutoFocusPlugin from '@lexical/react/LexicalAutoFocusPlugin';
-import ClearEditorPlugin from '@lexical/react/LexicalClearEditorPlugin';
-import LexicalComposer from '@lexical/react/LexicalComposer';
+import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin';
+import { ClearEditorPlugin } from '@lexical/react/LexicalClearEditorPlugin';
+import { LexicalComposer } from '@lexical/react/LexicalComposer';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
-import OnChangePlugin from '@lexical/react/LexicalOnChangePlugin';
-import PlainTextPlugin from '@lexical/react/LexicalPlainTextPlugin';
+import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
+import { PlainTextPlugin } from '@lexical/react/LexicalPlainTextPlugin';
 import { createDOMRange, createRectsFromDOMRange } from '@lexical/selection';
-import { $isRootTextContentEmpty, $rootTextContentCurry } from '@lexical/text';
+import { $isRootTextContentEmpty, $rootTextContent } from '@lexical/text';
 import { mergeRegister, registerNestedElementResolver } from '@lexical/utils';
 import {
   $getNodeByKey,
@@ -159,7 +159,6 @@ function PlainTextEditor({
   placeholder?: string;
 }) {
   const initialConfig = {
-    namespace: 'CommentEditor',
     nodes: [],
     onError: (error) => {
       throw error;
@@ -189,7 +188,7 @@ function useOnChange(setContent, setCanSubmit) {
   return useCallback(
     (editorState: EditorState, _editor: LexicalEditor) => {
       editorState.read(() => {
-        setContent($rootTextContentCurry());
+        setContent($rootTextContent());
         setCanSubmit(!$isRootTextContentEmpty(_editor.isComposing(), true));
       });
     },
@@ -460,7 +459,7 @@ function CommentsPanelListComment({
     // eslint-disable-next-line no-shadow
     thread?: Thread
   ) => void;
-  rtf;
+  rtf: null; //Intl.RelativeTimeFormat; //FIXME: build error
   thread?: Thread;
 }): JSX.Element {
   const seconds = Math.round((comment.timeStamp - performance.now()) / 1000);
@@ -473,9 +472,7 @@ function CommentsPanelListComment({
         <span className="CommentPlugin_CommentsPanel_List_Comment_Author">
           {comment.author}
         </span>
-        <span className="CommentPlugin_CommentsPanel_List_Comment_Time">
-          · {seconds > -10 ? 'Just now' : rtf.format(minutes, 'minute')}
-        </span>
+        <span className="CommentPlugin_CommentsPanel_List_Comment_Time"></span>
       </div>
       <p>{comment.content}</p>
       <Button
@@ -576,6 +573,7 @@ function CommentsPanelList({
           };
 
           return (
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
             <li
               key={id}
               onClick={handleClickThread}
@@ -852,39 +850,41 @@ export default function CommentPlugin({
         }
       ),
       editor.registerMutationListener(MarkNode, (mutations) => {
-        for (const [key, mutation] of mutations) {
-          const node: null | MarkNode = $getNodeByKey(key);
-          let ids = [];
-
-          if (mutation === 'destroyed') {
-            ids = markNodeKeysToIDs.get(key) || [];
-          } else if ($isMarkNode(node)) {
-            ids = node.getIDs();
-          }
-
-          for (let i = 0; i < ids.length; i++) {
-            const id = ids[i];
-            let markNodeKeys = markNodeMap.get(id);
-            markNodeKeysToIDs.set(key, ids);
+        editor.getEditorState().read(() => {
+          for (const [key, mutation] of mutations) {
+            const node: null | MarkNode = $getNodeByKey(key);
+            let ids = [];
 
             if (mutation === 'destroyed') {
-              if (markNodeKeys !== undefined) {
-                markNodeKeys.delete(key);
-                if (markNodeKeys.size === 0) {
-                  markNodeMap.delete(id);
+              ids = markNodeKeysToIDs.get(key) || [];
+            } else if ($isMarkNode(node)) {
+              ids = node.getIDs();
+            }
+
+            for (let i = 0; i < ids.length; i++) {
+              const id = ids[i];
+              let markNodeKeys = markNodeMap.get(id);
+              markNodeKeysToIDs.set(key, ids);
+
+              if (mutation === 'destroyed') {
+                if (markNodeKeys !== undefined) {
+                  markNodeKeys.delete(key);
+                  if (markNodeKeys.size === 0) {
+                    markNodeMap.delete(id);
+                  }
                 }
-              }
-            } else {
-              if (markNodeKeys === undefined) {
-                markNodeKeys = new Set();
-                markNodeMap.set(id, markNodeKeys);
-              }
-              if (!markNodeKeys.has(key)) {
-                markNodeKeys.add(key);
+              } else {
+                if (markNodeKeys === undefined) {
+                  markNodeKeys = new Set();
+                  markNodeMap.set(id, markNodeKeys);
+                }
+                if (!markNodeKeys.has(key)) {
+                  markNodeKeys.add(key);
+                }
               }
             }
           }
-        }
+        });
       }),
       editor.registerUpdateListener(({ editorState, tags }) => {
         editorState.read(() => {
