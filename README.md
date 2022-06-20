@@ -64,9 +64,9 @@ Coming soon... -->
 
 `<ToolbarPlugin />`
 
-| Property          | Type                |                       | description                                                                                      |
-| ----------------- | ------------------- | --------------------- | ------------------------------------------------------------------------------------------------ | --------------------------------------------------- |
-| children          | `React.ReactElement | React.ReactElement[]` | optional                                                                                         | Nested child components, like the `InsertDropdown`. |
+| Property        | Type        |          | description                                                                         |
+| --------------- | ----------- | -------- | ----------------------------------------------------------------------------------- |
+| children          | `React.ReactElement[]` | optional                                                                                         | Nested child components, like the `InsertDropdown`. |
 | defaultFontSize   | `string`            | optional              | The default font size selected when the editor first loaded, default value is `15px`             |
 | defaultFontColor  | `string`            | optional              | The default font color selected when the editor first loaded, default value is `#000`            |
 | defaultBgColor    | `string`            | optional              | The default text background color selected when the editor first loaded, default value is `#fff` |
