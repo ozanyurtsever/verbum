@@ -1,5 +1,5 @@
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
-import React from 'react';
+import React, { useState } from 'react';
 import PlaygroundNodes from './nodes/PlaygroundNodes';
 import PlaygroundEditorTheme from './themes/PlaygroundEditorTheme';
 import './EditorComposer.css';

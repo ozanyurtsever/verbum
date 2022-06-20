@@ -35,6 +35,8 @@ import ToolbarPlugin from './plugins/ToolbarPlugin/ToolbarPlugin';
 import ContentEditable from './ui/ContentEditable';
 import Placeholder from './ui/Placeholder';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
+import EditorContext from './context/EditorContext';
 
 interface IEditorProps {
   children?: ReactNode;
@@ -53,6 +55,9 @@ const Editor = ({
   listMaxIndent = 7,
   placeholder = '',
 }: IEditorProps) => {
+  const [editor] = useLexicalComposerContext();
+  const [activeEditor, setActiveEditor] = useState(editor);
+
   const editorStateRef = useRef(null);
   const { historyState } = useSharedHistoryContext();
   const {
@@ -62,8 +67,9 @@ const Editor = ({
   const scrollRef = useRef(null);
 
   return (
-    <>
-      {/* <ToolbarPlugin /> */}
+    <EditorContext.Provider
+      value={{ initialEditor: editor, activeEditor, setActiveEditor }}
+    >
       {children}
       <div className={`editor-container`} ref={scrollRef}>
         <AutoFocusPlugin />
@@ -100,7 +106,7 @@ const Editor = ({
         <HistoryPlugin externalHistoryState={historyState} />
         <ActionsPlugin isRichText={isRichText} />
       </div>
-    </>
+    </EditorContext.Provider>
   );
 };
 

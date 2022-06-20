@@ -51,7 +51,7 @@ import {
   UNDO_COMMAND,
 } from 'lexical';
 import * as React from 'react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { IS_APPLE } from '../../shared/src/environment';
 
@@ -64,7 +64,9 @@ import LinkPreview from '../../ui/LinkPreview';
 
 import InsertDropdown from './components/InsertDropdown';
 import AlignDropdown from './components/AlignDropdown';
-import { IInsertDropdownProps } from './components/InsertDropdown';
+import useChild from 'use-child';
+import EditorContext from '../../context/EditorContext';
+import ToolbarContext from '../../context/ToolbarContext';
 
 const supportedBlockTypes = new Set([
   'paragraph',
@@ -476,6 +478,7 @@ function Select({
 interface IToolbarProps {
   enableInsertDropdown?: boolean;
   enableAlignDropdown?: boolean;
+  children?: React.ReactElement | React.ReactElement[];
   defaultFontSize?: string /** The default selected font size in the toolbar */;
   defaultFontColor?: string /** The default selected font color in the toolbar */;
   defaultBgColor?: string /** The default selected background color in the toolbar */;
@@ -485,13 +488,19 @@ interface IToolbarProps {
 const ToolbarPlugin = ({
   enableInsertDropdown = true,
   enableAlignDropdown = true,
+  children,
   defaultFontSize = '15px',
   defaultFontColor = '#000',
   defaultBgColor = '#fff',
   defaultFontFamily = 'Arial',
 }: IToolbarProps) => {
-  const [editor] = useLexicalComposerContext();
-  const [activeEditor, setActiveEditor] = useState(editor);
+  // const [initialEditor] = useLexicalComposerContext();
+  const [insertExists, InsertComponent] = useChild(children, InsertDropdown);
+  const [alignExists, AlignComponent] = useChild(children, AlignDropdown);
+
+  // const [activeEditor, setActiveEditor] = useState(editor);
+  const { initialEditor, activeEditor, setActiveEditor } =
+    useContext(EditorContext);
   const [blockType, setBlockType] = useState('paragraph');
   const [selectedElementKey, setSelectedElementKey] = useState(null);
   const [fontSize, setFontSize] = useState<string>(defaultFontSize);
@@ -595,7 +604,7 @@ const ToolbarPlugin = ({
   }, [activeEditor]);
 
   useEffect(() => {
-    return editor.registerCommand(
+    return initialEditor.registerCommand(
       SELECTION_CHANGE_COMMAND,
       (_payload, newEditor) => {
         updateToolbar();
@@ -604,7 +613,7 @@ const ToolbarPlugin = ({
       },
       COMMAND_PRIORITY_CRITICAL
     );
-  }, [editor, updateToolbar]);
+  }, [initialEditor, updateToolbar]);
 
   useEffect(() => {
     return mergeRegister(
@@ -674,11 +683,11 @@ const ToolbarPlugin = ({
 
   const insertLink = useCallback(() => {
     if (!isLink) {
-      editor.dispatchCommand(TOGGLE_LINK_COMMAND, 'https://');
+      initialEditor.dispatchCommand(TOGGLE_LINK_COMMAND, 'https://');
     } else {
-      editor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
+      initialEditor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
     }
-  }, [editor, isLink]);
+  }, [initialEditor, isLink]);
 
   const onCodeLanguageSelect = useCallback(
     (e) => {
@@ -696,224 +705,226 @@ const ToolbarPlugin = ({
   );
 
   return (
-    <div className="toolbar">
-      <button
-        disabled={!canUndo}
-        onClick={() => {
-          activeEditor.dispatchCommand(UNDO_COMMAND, undefined);
-        }}
-        title={IS_APPLE ? 'Undo (⌘Z)' : 'Undo (Ctrl+Z)'}
-        className="toolbar-item spaced"
-        aria-label="Undo"
-      >
-        <i className="format undo" />
-      </button>
-      <button
-        disabled={!canRedo}
-        onClick={() => {
-          activeEditor.dispatchCommand(REDO_COMMAND, undefined);
-        }}
-        title={IS_APPLE ? 'Redo (⌘Y)' : 'Undo (Ctrl+Y)'}
-        className="toolbar-item"
-        aria-label="Redo"
-      >
-        <i className="format redo" />
-      </button>
-      <Divider />
-      {supportedBlockTypes.has(blockType) && activeEditor === editor && (
-        <>
-          <BlockFormatDropDown blockType={blockType} editor={editor} />
-          <Divider />
-        </>
-      )}
-      {blockType === 'code' ? (
-        <>
-          <Select
-            className="toolbar-item code-language"
-            onChange={onCodeLanguageSelect}
-            options={CODE_LANGUAGE_OPTIONS}
-            value={codeLanguage}
-          />
-          <i className="chevron-down inside" />
-        </>
-      ) : (
-        <>
+    <ToolbarContext.Provider value={{ isRTL }}>
+      <div className="toolbar">
+        <button
+          disabled={!canUndo}
+          onClick={() => {
+            activeEditor.dispatchCommand(UNDO_COMMAND, undefined);
+          }}
+          title={IS_APPLE ? 'Undo (⌘Z)' : 'Undo (Ctrl+Z)'}
+          className="toolbar-item spaced"
+          aria-label="Undo"
+        >
+          <i className="format undo" />
+        </button>
+        <button
+          disabled={!canRedo}
+          onClick={() => {
+            activeEditor.dispatchCommand(REDO_COMMAND, undefined);
+          }}
+          title={IS_APPLE ? 'Redo (⌘Y)' : 'Undo (Ctrl+Y)'}
+          className="toolbar-item"
+          aria-label="Redo"
+        >
+          <i className="format redo" />
+        </button>
+        <Divider />
+        {supportedBlockTypes.has(blockType) && activeEditor === initialEditor && (
+          <>
+            <BlockFormatDropDown blockType={blockType} editor={initialEditor} />
+            <Divider />
+          </>
+        )}
+        {blockType === 'code' ? (
           <>
             <Select
-              className="toolbar-item font-family"
-              onChange={onFontFamilySelect}
-              options={[
-                ['Arial', 'Arial'],
-                ['Courier New', 'Courier New'],
-                ['Georgia', 'Georgia'],
-                ['Times New Roman', 'Times New Roman'],
-                ['Trebuchet MS', 'Trebuchet MS'],
-                ['Verdana', 'Verdana'],
-              ]}
-              value={fontFamily}
+              className="toolbar-item code-language"
+              onChange={onCodeLanguageSelect}
+              options={CODE_LANGUAGE_OPTIONS}
+              value={codeLanguage}
             />
             <i className="chevron-down inside" />
           </>
+        ) : (
           <>
-            <Select
-              className="toolbar-item font-size"
-              onChange={onFontSizeSelect}
-              options={[
-                ['10px', '10px'],
-                ['11px', '11px'],
-                ['12px', '12px'],
-                ['13px', '13px'],
-                ['14px', '14px'],
-                ['15px', '15px'],
-                ['16px', '16px'],
-                ['17px', '17px'],
-                ['18px', '18px'],
-                ['19px', '19px'],
-                ['20px', '20px'],
-              ]}
-              value={fontSize}
+            <>
+              <Select
+                className="toolbar-item font-family"
+                onChange={onFontFamilySelect}
+                options={[
+                  ['Arial', 'Arial'],
+                  ['Courier New', 'Courier New'],
+                  ['Georgia', 'Georgia'],
+                  ['Times New Roman', 'Times New Roman'],
+                  ['Trebuchet MS', 'Trebuchet MS'],
+                  ['Verdana', 'Verdana'],
+                ]}
+                value={fontFamily}
+              />
+              <i className="chevron-down inside" />
+            </>
+            <>
+              <Select
+                className="toolbar-item font-size"
+                onChange={onFontSizeSelect}
+                options={[
+                  ['10px', '10px'],
+                  ['11px', '11px'],
+                  ['12px', '12px'],
+                  ['13px', '13px'],
+                  ['14px', '14px'],
+                  ['15px', '15px'],
+                  ['16px', '16px'],
+                  ['17px', '17px'],
+                  ['18px', '18px'],
+                  ['19px', '19px'],
+                  ['20px', '20px'],
+                ]}
+                value={fontSize}
+              />
+              <i className="chevron-down inside" />
+            </>
+            <Divider />
+            <button
+              onClick={() => {
+                activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold');
+              }}
+              className={'toolbar-item spaced ' + (isBold ? 'active' : '')}
+              title={IS_APPLE ? 'Bold (⌘B)' : 'Bold (Ctrl+B)'}
+              aria-label={`Format text as bold. Shortcut: ${
+                IS_APPLE ? '⌘B' : 'Ctrl+B'
+              }`}
+            >
+              <i className="format bold" />
+            </button>
+            <button
+              onClick={() => {
+                activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic');
+              }}
+              className={'toolbar-item spaced ' + (isItalic ? 'active' : '')}
+              title={IS_APPLE ? 'Italic (⌘I)' : 'Italic (Ctrl+I)'}
+              aria-label={`Format text as italics. Shortcut: ${
+                IS_APPLE ? '⌘I' : 'Ctrl+I'
+              }`}
+            >
+              <i className="format italic" />
+            </button>
+            <button
+              onClick={() => {
+                activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline');
+              }}
+              className={'toolbar-item spaced ' + (isUnderline ? 'active' : '')}
+              title={IS_APPLE ? 'Underline (⌘U)' : 'Underline (Ctrl+U)'}
+              aria-label={`Format text to underlined. Shortcut: ${
+                IS_APPLE ? '⌘U' : 'Ctrl+U'
+              }`}
+            >
+              <i className="format underline" />
+            </button>
+            <button
+              onClick={() => {
+                activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'code');
+              }}
+              className={'toolbar-item spaced ' + (isCode ? 'active' : '')}
+              title="Insert code block"
+              aria-label="Insert code block"
+            >
+              <i className="format code" />
+            </button>
+            <button
+              onClick={insertLink}
+              className={'toolbar-item spaced ' + (isLink ? 'active' : '')}
+              aria-label="Insert link"
+              title="Insert link"
+            >
+              <i className="format link" />
+            </button>
+            {isLink &&
+              createPortal(
+                <FloatingLinkEditor editor={activeEditor} />,
+                document.body
+              )}
+            <ColorPicker
+              buttonClassName="toolbar-item color-picker"
+              buttonAriaLabel="Formatting text color"
+              buttonIconClassName="icon font-color"
+              color={fontColor}
+              onChange={onFontColorSelect}
+              title="text color"
             />
-            <i className="chevron-down inside" />
+            <ColorPicker
+              buttonClassName="toolbar-item color-picker"
+              buttonAriaLabel="Formatting background color"
+              buttonIconClassName="icon bg-color"
+              color={bgColor}
+              onChange={onBgColorSelect}
+              title="bg color"
+            />
+            <DropDown
+              buttonClassName="toolbar-item spaced"
+              buttonLabel=""
+              buttonAriaLabel="Formatting options for additional text styles"
+              buttonIconClassName="icon dropdown-more"
+            >
+              <button
+                onClick={() => {
+                  activeEditor.dispatchCommand(
+                    FORMAT_TEXT_COMMAND,
+                    'strikethrough'
+                  );
+                }}
+                className={
+                  'item ' +
+                  (isStrikethrough ? 'active dropdown-item-active' : '')
+                }
+                title="Strikethrough"
+                aria-label="Format text with a strikethrough"
+              >
+                <i className="icon strikethrough" />
+                <span className="text">Strikethrough</span>
+              </button>
+              <button
+                onClick={() => {
+                  activeEditor.dispatchCommand(
+                    FORMAT_TEXT_COMMAND,
+                    'subscript'
+                  );
+                }}
+                className={
+                  'item ' + (isSubscript ? 'active dropdown-item-active' : '')
+                }
+                title="Subscript"
+                aria-label="Format text with a subscript"
+              >
+                <i className="icon subscript" />
+                <span className="text">Subscript</span>
+              </button>
+              <button
+                onClick={() => {
+                  activeEditor.dispatchCommand(
+                    FORMAT_TEXT_COMMAND,
+                    'superscript'
+                  );
+                }}
+                className={
+                  'item ' + (isSuperscript ? 'active dropdown-item-active' : '')
+                }
+                title="Superscript"
+                aria-label="Format text with a superscript"
+              >
+                <i className="icon superscript" />
+                <span className="text">Superscript</span>
+              </button>
+            </DropDown>
+            <Divider />
+            {insertExists && InsertComponent}
           </>
-          <Divider />
-          <button
-            onClick={() => {
-              activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold');
-            }}
-            className={'toolbar-item spaced ' + (isBold ? 'active' : '')}
-            title={IS_APPLE ? 'Bold (⌘B)' : 'Bold (Ctrl+B)'}
-            aria-label={`Format text as bold. Shortcut: ${
-              IS_APPLE ? '⌘B' : 'Ctrl+B'
-            }`}
-          >
-            <i className="format bold" />
-          </button>
-          <button
-            onClick={() => {
-              activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic');
-            }}
-            className={'toolbar-item spaced ' + (isItalic ? 'active' : '')}
-            title={IS_APPLE ? 'Italic (⌘I)' : 'Italic (Ctrl+I)'}
-            aria-label={`Format text as italics. Shortcut: ${
-              IS_APPLE ? '⌘I' : 'Ctrl+I'
-            }`}
-          >
-            <i className="format italic" />
-          </button>
-          <button
-            onClick={() => {
-              activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline');
-            }}
-            className={'toolbar-item spaced ' + (isUnderline ? 'active' : '')}
-            title={IS_APPLE ? 'Underline (⌘U)' : 'Underline (Ctrl+U)'}
-            aria-label={`Format text to underlined. Shortcut: ${
-              IS_APPLE ? '⌘U' : 'Ctrl+U'
-            }`}
-          >
-            <i className="format underline" />
-          </button>
-          <button
-            onClick={() => {
-              activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'code');
-            }}
-            className={'toolbar-item spaced ' + (isCode ? 'active' : '')}
-            title="Insert code block"
-            aria-label="Insert code block"
-          >
-            <i className="format code" />
-          </button>
-          <button
-            onClick={insertLink}
-            className={'toolbar-item spaced ' + (isLink ? 'active' : '')}
-            aria-label="Insert link"
-            title="Insert link"
-          >
-            <i className="format link" />
-          </button>
-          {isLink &&
-            createPortal(
-              <FloatingLinkEditor editor={activeEditor} />,
-              document.body
-            )}
-          <ColorPicker
-            buttonClassName="toolbar-item color-picker"
-            buttonAriaLabel="Formatting text color"
-            buttonIconClassName="icon font-color"
-            color={fontColor}
-            onChange={onFontColorSelect}
-            title="text color"
-          />
-          <ColorPicker
-            buttonClassName="toolbar-item color-picker"
-            buttonAriaLabel="Formatting background color"
-            buttonIconClassName="icon bg-color"
-            color={bgColor}
-            onChange={onBgColorSelect}
-            title="bg color"
-          />
-          <DropDown
-            buttonClassName="toolbar-item spaced"
-            buttonLabel=""
-            buttonAriaLabel="Formatting options for additional text styles"
-            buttonIconClassName="icon dropdown-more"
-          >
-            <button
-              onClick={() => {
-                activeEditor.dispatchCommand(
-                  FORMAT_TEXT_COMMAND,
-                  'strikethrough'
-                );
-              }}
-              className={
-                'item ' + (isStrikethrough ? 'active dropdown-item-active' : '')
-              }
-              title="Strikethrough"
-              aria-label="Format text with a strikethrough"
-            >
-              <i className="icon strikethrough" />
-              <span className="text">Strikethrough</span>
-            </button>
-            <button
-              onClick={() => {
-                activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'subscript');
-              }}
-              className={
-                'item ' + (isSubscript ? 'active dropdown-item-active' : '')
-              }
-              title="Subscript"
-              aria-label="Format text with a subscript"
-            >
-              <i className="icon subscript" />
-              <span className="text">Subscript</span>
-            </button>
-            <button
-              onClick={() => {
-                activeEditor.dispatchCommand(
-                  FORMAT_TEXT_COMMAND,
-                  'superscript'
-                );
-              }}
-              className={
-                'item ' + (isSuperscript ? 'active dropdown-item-active' : '')
-              }
-              title="Superscript"
-              aria-label="Format text with a superscript"
-            >
-              <i className="icon superscript" />
-              <span className="text">Superscript</span>
-            </button>
-          </DropDown>
-          <Divider />
-          {enableInsertDropdown && (
-            <InsertDropdown activeEditor={activeEditor} />
-          )}
-        </>
-      )}
-      <Divider />
-      {enableAlignDropdown && (
-        <AlignDropdown activeEditor={activeEditor} isRTL={isRTL} />
-      )}
-    </div>
+        )}
+        <Divider />
+        {alignExists && AlignComponent}
+      </div>
+    </ToolbarContext.Provider>
   );
 };
 

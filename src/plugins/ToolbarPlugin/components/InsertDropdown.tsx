@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
 import { $getRoot, LexicalEditor, RangeSelection } from 'lexical';
 import DropDown from '../../../ui/DropDown';
 import Button from '../../../ui/Button';
@@ -25,6 +25,7 @@ import TableCellResizer from '../../TableCellResizer';
 import { TablePlugin } from '@lexical/react/LexicalTablePlugin';
 import TableCellActionMenuPlugin from '../../TableActionMenuPlugin';
 import HorizontalRulePlugin from '../../HorizontalRulePlugin';
+import EditorContext from '../../../context/EditorContext';
 
 // Taken from https://stackoverflow.com/a/9102270
 const YOUTUBE_ID_PARSER =
@@ -330,7 +331,6 @@ function InsertEquationDialog({
 //#endregion Inserting different modules
 
 export interface IInsertDropdownProps {
-  activeEditor?: LexicalEditor;
   enableTable?: boolean;
   enableYoutube?: boolean;
   enableTwitter?: boolean;
@@ -343,18 +343,17 @@ export interface IInsertDropdownProps {
 }
 
 const InsertDropdown: React.FC<IInsertDropdownProps> = ({
-  activeEditor,
   enableTable = true,
   enableImage = true,
-  enableYoutube = true,
-  enableTwitter = true,
-  enablePoll = true,
-  enableEquations = true,
-  enableExcalidraw = true,
-  enableHorizontalRule = true,
-  enableStickyNote = true,
+  enableYoutube = false,
+  enableTwitter = false,
+  enablePoll = false,
+  enableEquations = false,
+  enableExcalidraw = false,
+  enableHorizontalRule = false,
+  enableStickyNote = false,
 }: IInsertDropdownProps) => {
-  const [editor] = useLexicalComposerContext();
+  const { initialEditor, activeEditor } = useContext(EditorContext);
   const [modal, showModal] = useModal();
 
   return (
@@ -509,7 +508,7 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
         {enableStickyNote && (
           <button
             onClick={() => {
-              editor.update(() => {
+              initialEditor.update(() => {
                 const root = $getRoot();
                 const stickyNode = $createStickyNode(0, 0);
                 root.append(stickyNode);

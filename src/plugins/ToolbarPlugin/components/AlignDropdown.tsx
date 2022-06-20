@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import DropDown from '../../../ui/DropDown';
 
 import {
@@ -7,17 +7,16 @@ import {
   LexicalEditor,
   OUTDENT_CONTENT_COMMAND,
 } from 'lexical';
+import EditorContext from '../../../context/EditorContext';
+import ToolbarContext from '../../../context/ToolbarContext';
 
 function Divider(): JSX.Element {
   return <div className="divider" />;
 }
 
-interface IAlignDropdown {
-  activeEditor: LexicalEditor;
-  isRTL: boolean;
-}
-
-const AlignDropdown = ({ activeEditor, isRTL }: IAlignDropdown) => {
+const AlignDropdown = () => {
+  const { activeEditor } = useContext(EditorContext);
+  const { isRTL } = useContext(ToolbarContext);
   return (
     <DropDown
       buttonLabel="Align"
