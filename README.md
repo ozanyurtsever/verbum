@@ -14,7 +14,8 @@ npm install verbum --save
 
 ## Demo
 
-Coming soon...
+![Demo](verbum-demo.gif)
+Live demo is coming soon...
 
 ## Usage
 
@@ -64,13 +65,13 @@ Coming soon... -->
 
 `<ToolbarPlugin />`
 
-| Property        | Type        |          | description                                                                         |
-| --------------- | ----------- | -------- | ----------------------------------------------------------------------------------- |
-| children          | `React.ReactElement[]` | optional                                                                                         | Nested child components, like the `InsertDropdown`. |
-| defaultFontSize   | `string`            | optional              | The default font size selected when the editor first loaded, default value is `15px`             |
-| defaultFontColor  | `string`            | optional              | The default font color selected when the editor first loaded, default value is `#000`            |
-| defaultBgColor    | `string`            | optional              | The default text background color selected when the editor first loaded, default value is `#fff` |
-| defaultFontFamily | `string`            | optional              | The default font family selected when the editor first loaded, default value is `Arial`          |
+| Property          | Type                   |          | description                                                                                      |
+| ----------------- | ---------------------- | -------- | ------------------------------------------------------------------------------------------------ |
+| children          | `React.ReactElement[]` | optional | Nested child components, like the `InsertDropdown`.                                              |
+| defaultFontSize   | `string`               | optional | The default font size selected when the editor first loaded, default value is `15px`             |
+| defaultFontColor  | `string`               | optional | The default font color selected when the editor first loaded, default value is `#000`            |
+| defaultBgColor    | `string`               | optional | The default text background color selected when the editor first loaded, default value is `#fff` |
+| defaultFontFamily | `string`               | optional | The default font family selected when the editor first loaded, default value is `Arial`          |
 
 <br />
 
