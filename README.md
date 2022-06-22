@@ -19,7 +19,7 @@ Live demo is coming soon...
 
 ## Usage
 
-```typescript
+```js
 import { FC } from 'react';
 import { EditorComposer, Editor, ToolbarPlugin } from 'verbum';
 
