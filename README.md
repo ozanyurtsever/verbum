@@ -54,10 +54,10 @@ Coming soon... -->
 
 | Property        | Type        |          | description                                                                         |
 | --------------- | ----------- | -------- | ----------------------------------------------------------------------------------- |
-| children        | `ReactNode` | optional | Nested child components, like the `ToolbarPlugin`.                                  |
-| hashtagsEnabled | `boolean`   | optional | Enables the automatic hashtag highlighting, default is `false`.                     |
-| autoLinkEnabled | `boolean`   | optional | Enables the automatic link highlighting, default is `false`.                        |
-| emojisEnabled   | `boolean`   | optional | Replaces the emoji combiniations with its corresponding symbol, default is `false`. |
+| children        | `ReactNode` | optional | Nested child components, like the `ToolbarPlugin`                                   |
+| hashtagsEnabled | `boolean`   | optional | Enables the automatic hashtag highlighting, default is `false`                      |
+| autoLinkEnabled | `boolean`   | optional | Enables the automatic link highlighting, default is `false`                         |
+| emojisEnabled   | `boolean`   | optional | Replaces the emoji combiniations with its corresponding symbol, default is `false`  |
 | placeholder     | `string`    | optional | The default content of the editor when it is first loaded                           |
 | listMaxIndent   | `number`    | optional | The maximum indent capacity of any listed element, the default is `7`               |
 
@@ -67,7 +67,7 @@ Coming soon... -->
 
 | Property          | Type                   |          | description                                                                                      |
 | ----------------- | ---------------------- | -------- | ------------------------------------------------------------------------------------------------ |
-| children          | `React.ReactElement[]` | optional | Nested child components, like the `InsertDropdown`.                                              |
+| children          | `React.ReactElement[]` | optional | Nested child components, like the `InsertDropdown`                                               |
 | defaultFontSize   | `string`               | optional | The default font size selected when the editor first loaded, default value is `15px`             |
 | defaultFontColor  | `string`               | optional | The default font color selected when the editor first loaded, default value is `#000`            |
 | defaultBgColor    | `string`               | optional | The default text background color selected when the editor first loaded, default value is `#fff` |
@@ -89,13 +89,13 @@ Coming soon... -->
 
 | Property             | Type      |          | description                                      |
 | -------------------- | --------- | -------- | ------------------------------------------------ |
-| enableTable          | `boolean` | optional | Enables table inserting feature.                 |
-| enableYoutube        | `boolean` | optional | Enables youtube video inserting feature.         |
-| enableTwitter        | `boolean` | optional | Enables tweet inserting feature.                 |
-| enablePool           | `boolean` | optional | Enables poll inserting feature.                  |
-| enableImage          | `boolean` | optional | Enables image inserting feature.                 |
-| enableEquations      | `boolean` | optional | Enables equation inserting feature.`             |
-| enableExcalidraw     | `boolean` | optional | Enables diagram inserting feature.               |
+| enableTable          | `boolean` | optional | Enables table inserting feature                  |
+| enableYoutube        | `boolean` | optional | Enables youtube video inserting feature          |
+| enableTwitter        | `boolean` | optional | Enables tweet inserting feature                  |
+| enablePool           | `boolean` | optional | Enables poll inserting feature                   |
+| enableImage          | `boolean` | optional | Enables image inserting feature                  |
+| enableEquations      | `boolean` | optional | Enables equation inserting feature               |
+| enableExcalidraw     | `boolean` | optional | Enables diagram inserting feature                |
 | enableHorizontalRule | `boolean` | optional | Enables the horizontal rule inserting for layout |
 | enableStickyNote     | `boolean` | optional | Enables stick note inserting for layout          |
 
@@ -117,8 +117,8 @@ $ npm run storybook
 - Ready templates with different options (MUI, Bootstrap, etc...)
 - Dark/Light modes
 - Custom styling flexibility
-- Disassembling all of the toolbar to enable using them as nested components, increasing the flexibility.
-- Enabling adjusting editor settings such read-only mode and etc. programmatically.
+- Disassembling all of the toolbar to enable using them as nested components, increasing the flexibility
+- Enabling adjusting editor settings such read-only mode and etc. programmatically
 
 ## License
 
