@@ -2,7 +2,7 @@
 
 Verbum - Flexible Text Editor for React
 
-**Verbum** is a fully flexible text editor based on `lexical` framework.
+**Verbum** is a fully flexible text editor fully based on [`lexical-playground`](https://github.com/facebook/lexical/tree/main/packages/lexical-playground) and [`lexical`](https://github.com/facebook/lexical) framework.
 
 **⚠️ As the Lexical framework is currently in early development, this component library is also likely to change quite often**
 
