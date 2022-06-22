@@ -705,7 +705,7 @@ const ToolbarPlugin = ({
   );
 
   return (
-    <ToolbarContext.Provider value={{ isRTL }}>
+    <ToolbarContext.Provider value={{ isRTL, canUndo, canRedo }}>
       <div className="toolbar">
         <button
           disabled={!canUndo}

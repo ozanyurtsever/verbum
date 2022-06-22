@@ -125,12 +125,13 @@ function ExcalidrawComponent({
 
   const deleteNode = useCallback(() => {
     setModalOpen(false);
-    return editor.update(() => {
+    editor.update(() => {
       const node = $getNodeByKey(nodeKey);
       if ($isExcalidrawNode(node)) {
         node.remove();
       }
     });
+    return true;
   }, [editor, nodeKey]);
 
   const setData = (newData: ReadonlyArray<ExcalidrawElementFragment>) => {

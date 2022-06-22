@@ -24,8 +24,3 @@ export const FullEditor = () => (
     </Editor>
   </EditorComposer>
 );
-export const Toolbar = () => (
-  <EditorComposer>
-    <ToolbarPlugin />
-  </EditorComposer>
-);
