@@ -459,7 +459,7 @@ function CommentsPanelListComment({
     // eslint-disable-next-line no-shadow
     thread?: Thread
   ) => void;
-  rtf: null; //Intl.RelativeTimeFormat; //FIXME: build error
+  rtf: null; //FIXME: Intl.RelativeTimeFormat gives build error;
   thread?: Thread;
 }): JSX.Element {
   const seconds = Math.round((comment.timeStamp - performance.now()) / 1000);

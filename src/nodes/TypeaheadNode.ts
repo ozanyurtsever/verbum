@@ -32,19 +32,19 @@ export class TypeaheadNode extends TextNode {
   static importJSON(serializedNode: SerializedTypeaheadNode): TypeaheadNode {
     const node = $createTypeaheadNode(serializedNode.text);
     node.setFormat(serializedNode.format);
-    // node.setDetail(serializedNode.detail);
+    node.setDetail(serializedNode.detail);
     node.setMode(serializedNode.mode);
     node.setStyle(serializedNode.style);
     return node;
   }
 
-  // exportJSON(): SerializedTypeaheadNode {
-  //   return {
-  //     // ...super.exportJSON(), //FIXME: açılacak
-  //     type: 'typeahead',
-  //     version: 1,
-  //   };
-  // } //FIXME: açılacak
+  exportJSON(): SerializedTypeaheadNode {
+    return {
+      ...super.exportJSON(),
+      type: 'typeahead',
+      version: 1,
+    };
+  }
 
   createDOM(config: EditorConfig): HTMLElement {
     const dom = super.createDOM(config);

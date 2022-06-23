@@ -66,24 +66,24 @@ export class EmojiNode extends TextNode {
       serializedNode.text
     );
     node.setFormat(serializedNode.format);
-    // node.setDetail(serializedNode.detail); //FIXME: açılacak
+    node.setDetail(serializedNode.detail);
     node.setMode(serializedNode.mode);
     node.setStyle(serializedNode.style);
     return node;
   }
 
-  // exportJSON(): SerializedEmojiNode {
-  //   return {
-  //     // ...super.exportJSON(), //FIXME: açılacak
-  //     className: this.getClassName(),
-  //     type: "emoji",
-  //   };
-  // }
+  exportJSON(): SerializedEmojiNode {
+    return {
+      ...super.exportJSON(),
+      className: this.getClassName(),
+      type: 'emoji',
+    };
+  }
 
-  // getClassName(): string {
-  //   const self = this.getLatest<EmojiNode>();
-  //   return self.__className;
-  // } //FIXME: açılacak
+  getClassName(): string {
+    const self = this.getLatest();
+    return self.__className;
+  }
 }
 
 export function $isEmojiNode(
@@ -97,4 +97,4 @@ export function $createEmojiNode(
   emojiText: string
 ): EmojiNode {
   return new EmojiNode(className, emojiText).setMode('token');
-} //FIXME: açılacak
+}

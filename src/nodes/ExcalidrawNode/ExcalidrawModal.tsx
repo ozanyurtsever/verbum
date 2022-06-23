@@ -16,6 +16,7 @@ import { createPortal } from 'react-dom';
 
 import Button from '../../ui/Button';
 import Modal from '../../ui/Modal';
+import { ExcalidrawElement } from '@excalidraw/excalidraw/types/element/types';
 
 export type ExcalidrawElementFragment = {
   isDeleted?: boolean;
@@ -177,7 +178,7 @@ export default function ExcalidrawModal({
             onChange={onChange}
             initialData={{
               appState: { isLoading: false },
-              // elements: initialElements, //FIXME: açılacak
+              elements: initialElements as ExcalidrawElement[],
             }}
           />
           <div className="ExcalidrawModal__actions">

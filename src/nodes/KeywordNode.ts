@@ -33,7 +33,7 @@ export class KeywordNode extends TextNode {
   static importJSON(serializedNode: SerializedKeywordNode): KeywordNode {
     const node = $createKeywordNode(serializedNode.text);
     node.setFormat(serializedNode.format);
-    // node.setDetail(serializedNode.detail); //FIXME: açılacak
+    node.setDetail(serializedNode.detail);
     node.setMode(serializedNode.mode);
     node.setStyle(serializedNode.style);
     return node;
@@ -41,7 +41,7 @@ export class KeywordNode extends TextNode {
 
   exportJSON(): SerializedKeywordNode {
     return {
-      // ...super.exportJSON(), //FIXME: açılacak
+      ...super.exportJSON(),
       type: 'keyword',
       version: 1,
     };

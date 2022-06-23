@@ -37,7 +37,7 @@ export class MentionNode extends TextNode {
     const node = $createMentionNode(serializedNode.mentionName);
     node.setTextContent(serializedNode.text);
     node.setFormat(serializedNode.format);
-    // node.setDetail(serializedNode.detail); //FIXME: burası normalde açık
+    node.setDetail(serializedNode.detail);
     node.setMode(serializedNode.mode);
     node.setStyle(serializedNode.style);
     return node;
@@ -50,7 +50,7 @@ export class MentionNode extends TextNode {
 
   exportJSON(): SerializedMentionNode {
     return {
-      // ...super.exportJSON(), //FIXME: burası açılacak
+      ...super.exportJSON(),
       mentionName: this.__mention,
       type: 'mention',
       version: 1,

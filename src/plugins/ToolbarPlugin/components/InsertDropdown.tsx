@@ -61,7 +61,7 @@ function InsertImageDialog({
             onClick={() =>
               onClick({
                 altText: 'Yellow flower in tilt shift lens',
-                src: null, //yellowFlowerImage, //FIXME: aç burayı
+                src: null, //yellowFlowerImage,
               })
             }
           >

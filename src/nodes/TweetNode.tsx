@@ -121,7 +121,7 @@ export class TweetNode extends DecoratorBlockNode<JSX.Element> {
 
   exportJSON(): SerializedTweetNode {
     return {
-      // ...super.exportJSON(), //FIXME: açılacak
+      ...super.exportJSON(),
       id: this.getId(),
       type: 'tweet',
       version: 1,
