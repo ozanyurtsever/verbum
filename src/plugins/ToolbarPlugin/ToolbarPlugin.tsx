@@ -6,10 +6,6 @@
  *
  */
 
-import type { LexicalEditor, RangeSelection } from 'lexical';
-
-import './ToolbarPlugin.css';
-
 import { $createCodeNode, $isCodeNode } from '@lexical/code';
 import { $isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
 import {
@@ -20,7 +16,6 @@ import {
   ListNode,
   REMOVE_LIST_COMMAND,
 } from '@lexical/list';
-import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import {
   $createHeadingNode,
   $createQuoteNode,
@@ -34,6 +29,7 @@ import {
   $wrapLeafNodesInElements,
 } from '@lexical/selection';
 import { $getNearestNodeOfType, mergeRegister } from '@lexical/utils';
+import type { LexicalEditor, RangeSelection } from 'lexical';
 import {
   $createParagraphNode,
   $getNodeByKey,
@@ -53,20 +49,18 @@ import {
 import * as React from 'react';
 import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { IS_APPLE } from '../../shared/src/environment';
-
-import useModal from '../../hooks/useModal';
-// import catTypingGif from "../images/cat-typing.gif";
-// import yellowFlowerImage from "../images/yellow-flower.jpg";
-import ColorPicker from '../../ui/ColorPicker';
-import DropDown from '../../ui/DropDown';
-import LinkPreview from '../../ui/LinkPreview';
-
-import InsertDropdown from './components/InsertDropdown';
-import AlignDropdown from './components/AlignDropdown';
 import useChild from 'use-child';
 import EditorContext from '../../context/EditorContext';
 import ToolbarContext from '../../context/ToolbarContext';
+import { IS_APPLE } from '../../shared/src/environment';
+import ColorPicker from '../../ui/ColorPicker';
+import DropDown from '../../ui/DropDown';
+import LinkPreview from '../../ui/LinkPreview';
+import AlignDropdown from './components/AlignDropdown';
+import FontFamilyDropdown from './components/FontFamilyDropdown';
+import FontSizeDropdown from './components/FontSizeDropdown';
+import InsertDropdown from './components/InsertDropdown';
+import './ToolbarPlugin.css';
 
 const supportedBlockTypes = new Set([
   'paragraph',
@@ -476,8 +470,6 @@ function Select({
 }
 
 interface IToolbarProps {
-  enableInsertDropdown?: boolean;
-  enableAlignDropdown?: boolean;
   children?: React.ReactElement | React.ReactElement[];
   defaultFontSize?: string /** The default selected font size in the toolbar */;
   defaultFontColor?: string /** The default selected font color in the toolbar */;
@@ -486,19 +478,15 @@ interface IToolbarProps {
 }
 
 const ToolbarPlugin = ({
-  enableInsertDropdown = true,
-  enableAlignDropdown = true,
   children,
   defaultFontSize = '15px',
   defaultFontColor = '#000',
   defaultBgColor = '#fff',
   defaultFontFamily = 'Arial',
 }: IToolbarProps) => {
-  // const [initialEditor] = useLexicalComposerContext();
   const [insertExists, InsertComponent] = useChild(children, InsertDropdown);
   const [alignExists, AlignComponent] = useChild(children, AlignDropdown);
 
-  // const [activeEditor, setActiveEditor] = useState(editor);
   const { initialEditor, activeEditor, setActiveEditor } =
     useContext(EditorContext);
   const [blockType, setBlockType] = useState('paragraph');
@@ -593,6 +581,7 @@ const ToolbarPlugin = ({
           defaultBgColor
         )
       );
+
       setFontFamily(
         $getSelectionStyleValueForProperty(
           selection,
@@ -653,13 +642,6 @@ const ToolbarPlugin = ({
     [activeEditor]
   );
 
-  const onFontSizeSelect = useCallback(
-    (e) => {
-      applyStyleText({ 'font-size': e.target.value });
-    },
-    [applyStyleText]
-  );
-
   const onFontColorSelect = useCallback(
     (value: string) => {
       applyStyleText({ color: value });
@@ -670,13 +652,6 @@ const ToolbarPlugin = ({
   const onBgColorSelect = useCallback(
     (value: string) => {
       applyStyleText({ 'background-color': value });
-    },
-    [applyStyleText]
-  );
-
-  const onFontFamilySelect = useCallback(
-    (e) => {
-      applyStyleText({ 'font-family': e.target.value });
     },
     [applyStyleText]
   );
@@ -705,7 +680,9 @@ const ToolbarPlugin = ({
   );
 
   return (
-    <ToolbarContext.Provider value={{ isRTL, canUndo, canRedo }}>
+    <ToolbarContext.Provider
+      value={{ isRTL, canUndo, canRedo, fontFamily, fontSize, applyStyleText }}
+    >
       <div className="toolbar">
         <button
           disabled={!canUndo}
@@ -748,43 +725,8 @@ const ToolbarPlugin = ({
           </>
         ) : (
           <>
-            <>
-              <Select
-                className="toolbar-item font-family"
-                onChange={onFontFamilySelect}
-                options={[
-                  ['Arial', 'Arial'],
-                  ['Courier New', 'Courier New'],
-                  ['Georgia', 'Georgia'],
-                  ['Times New Roman', 'Times New Roman'],
-                  ['Trebuchet MS', 'Trebuchet MS'],
-                  ['Verdana', 'Verdana'],
-                ]}
-                value={fontFamily}
-              />
-              <i className="chevron-down inside" />
-            </>
-            <>
-              <Select
-                className="toolbar-item font-size"
-                onChange={onFontSizeSelect}
-                options={[
-                  ['10px', '10px'],
-                  ['11px', '11px'],
-                  ['12px', '12px'],
-                  ['13px', '13px'],
-                  ['14px', '14px'],
-                  ['15px', '15px'],
-                  ['16px', '16px'],
-                  ['17px', '17px'],
-                  ['18px', '18px'],
-                  ['19px', '19px'],
-                  ['20px', '20px'],
-                ]}
-                value={fontSize}
-              />
-              <i className="chevron-down inside" />
-            </>
+            <FontFamilyDropdown />
+            <FontSizeDropdown />
             <Divider />
             <button
               onClick={() => {
