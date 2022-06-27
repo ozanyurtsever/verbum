@@ -23,13 +23,12 @@ import {
 } from '@lexical/rich-text';
 import {
   $getSelectionStyleValueForProperty,
-  $isAtNodeEnd,
   $isParentElementRTL,
   $patchStyleText,
   $wrapLeafNodesInElements,
 } from '@lexical/selection';
 import { $getNearestNodeOfType, mergeRegister } from '@lexical/utils';
-import type { LexicalEditor, RangeSelection } from 'lexical';
+import type { LexicalEditor } from 'lexical';
 import {
   $createParagraphNode,
   $getNodeByKey,
@@ -38,29 +37,35 @@ import {
   CAN_REDO_COMMAND,
   CAN_UNDO_COMMAND,
   COMMAND_PRIORITY_CRITICAL,
-  COMMAND_PRIORITY_LOW,
-  ElementNode,
   FORMAT_TEXT_COMMAND,
   REDO_COMMAND,
   SELECTION_CHANGE_COMMAND,
-  TextNode,
   UNDO_COMMAND,
 } from 'lexical';
 import * as React from 'react';
 import { useCallback, useContext, useEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
 import useChild from 'use-child';
+import { getSelectedNode } from '../../utils/node.util';
 import EditorContext from '../../context/EditorContext';
 import ToolbarContext from '../../context/ToolbarContext';
 import { IS_APPLE } from '../../shared/src/environment';
-import ColorPicker from '../../ui/ColorPicker';
 import DropDown from '../../ui/DropDown';
-import LinkPreview from '../../ui/LinkPreview';
 import AlignDropdown from './components/AlignDropdown';
+import BoldButton from './components/BoldButton';
+import CodeFormatButton from './components/CodeFormatButton';
 import FontFamilyDropdown from './components/FontFamilyDropdown';
 import FontSizeDropdown from './components/FontSizeDropdown';
 import InsertDropdown from './components/InsertDropdown';
+import ItalicButton from './components/ItalicButton';
+import UnderlineButton from './components/UnderlineButton';
 import './ToolbarPlugin.css';
+import InsertLinkButton from './components/InsertLinkButton';
+import TextColorPicker from './components/TextColorPicker';
+import BackgroundColorPicker from './components/BackgroundColorPicker';
+import TextFormatDropdown from './components/TextFormatDropdown';
+import UndoButton from './components/UndoButton';
+import RedoButton from './components/RedoButton';
+import CodeLanguageDropdown from './components/CodeLanguageDropdown';
 
 const supportedBlockTypes = new Set([
   'paragraph',
@@ -88,23 +93,6 @@ const blockTypeToBlockName = {
   quote: 'Quote',
 };
 
-const CODE_LANGUAGE_OPTIONS: [string, string][] = [
-  ['', '- Select language -'],
-  ['c', 'C'],
-  ['clike', 'C-like'],
-  ['css', 'CSS'],
-  ['html', 'HTML'],
-  ['js', 'JavaScript'],
-  ['markdown', 'Markdown'],
-  ['objc', 'Objective-C'],
-  ['plain', 'Plain Text'],
-  ['py', 'Python'],
-  ['rust', 'Rust'],
-  ['sql', 'SQL'],
-  ['swift', 'Swift'],
-  ['xml', 'XML'],
-];
-
 const CODE_LANGUAGE_MAP = {
   javascript: 'js',
   md: 'markdown',
@@ -112,191 +100,6 @@ const CODE_LANGUAGE_MAP = {
   python: 'py',
   text: 'plain',
 };
-
-function getSelectedNode(selection: RangeSelection): TextNode | ElementNode {
-  const anchor = selection.anchor;
-  const focus = selection.focus;
-  const anchorNode = selection.anchor.getNode();
-  const focusNode = selection.focus.getNode();
-  if (anchorNode === focusNode) {
-    return anchorNode;
-  }
-  const isBackward = selection.isBackward();
-  if (isBackward) {
-    return $isAtNodeEnd(focus) ? anchorNode : focusNode;
-  } else {
-    return $isAtNodeEnd(anchor) ? focusNode : anchorNode;
-  }
-}
-
-function positionEditorElement(editor, rect) {
-  if (rect === null) {
-    editor.style.opacity = '0';
-    editor.style.top = '-1000px';
-    editor.style.left = '-1000px';
-  } else {
-    editor.style.opacity = '1';
-    editor.style.top = `${rect.top + rect.height + window.pageYOffset + 10}px`;
-    editor.style.left = `${
-      rect.left + window.pageXOffset - editor.offsetWidth / 2 + rect.width / 2
-    }px`;
-  }
-}
-
-function FloatingLinkEditor({
-  editor,
-}: {
-  editor: LexicalEditor;
-}): JSX.Element {
-  const editorRef = useRef<HTMLDivElement | null>(null);
-  const inputRef = useRef(null);
-  const [linkUrl, setLinkUrl] = useState('');
-  const [isEditMode, setEditMode] = useState(false);
-  const [lastSelection, setLastSelection] = useState(null);
-
-  const updateLinkEditor = useCallback(() => {
-    const selection = $getSelection();
-    if ($isRangeSelection(selection)) {
-      const node = getSelectedNode(selection);
-      const parent = node.getParent();
-      if ($isLinkNode(parent)) {
-        setLinkUrl(parent.getURL());
-      } else if ($isLinkNode(node)) {
-        setLinkUrl(node.getURL());
-      } else {
-        setLinkUrl('');
-      }
-    }
-    const editorElem = editorRef.current;
-    const nativeSelection = window.getSelection();
-    const activeElement = document.activeElement;
-
-    if (editorElem === null) {
-      return;
-    }
-
-    const rootElement = editor.getRootElement();
-    if (
-      selection !== null &&
-      !nativeSelection.isCollapsed &&
-      rootElement !== null &&
-      rootElement.contains(nativeSelection.anchorNode)
-    ) {
-      const domRange = nativeSelection.getRangeAt(0);
-      let rect;
-      if (nativeSelection.anchorNode === rootElement) {
-        let inner = rootElement;
-        while (inner.firstElementChild != null) {
-          inner = inner.firstElementChild as HTMLElement;
-        }
-        rect = inner.getBoundingClientRect();
-      } else {
-        rect = domRange.getBoundingClientRect();
-      }
-
-      positionEditorElement(editorElem, rect);
-      setLastSelection(selection);
-    } else if (!activeElement || activeElement.className !== 'link-input') {
-      positionEditorElement(editorElem, null);
-      setLastSelection(null);
-      setEditMode(false);
-      setLinkUrl('');
-    }
-
-    return true;
-  }, [editor]);
-
-  useEffect(() => {
-    const onResize = () => {
-      editor.getEditorState().read(() => {
-        updateLinkEditor();
-      });
-    };
-    window.addEventListener('resize', onResize);
-
-    return () => {
-      window.removeEventListener('resize', onResize);
-    };
-  }, [editor, updateLinkEditor]);
-
-  useEffect(() => {
-    return mergeRegister(
-      editor.registerUpdateListener(({ editorState }) => {
-        editorState.read(() => {
-          updateLinkEditor();
-        });
-      }),
-
-      editor.registerCommand(
-        SELECTION_CHANGE_COMMAND,
-        () => {
-          updateLinkEditor();
-          return true;
-        },
-        COMMAND_PRIORITY_LOW
-      )
-    );
-  }, [editor, updateLinkEditor]);
-
-  useEffect(() => {
-    editor.getEditorState().read(() => {
-      updateLinkEditor();
-    });
-  }, [editor, updateLinkEditor]);
-
-  useEffect(() => {
-    if (isEditMode && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [isEditMode]);
-
-  return (
-    <div ref={editorRef} className="link-editor">
-      {isEditMode ? (
-        <input
-          ref={inputRef}
-          className="link-input"
-          value={linkUrl}
-          onChange={(event) => {
-            setLinkUrl(event.target.value);
-          }}
-          onKeyDown={(event) => {
-            if (event.key === 'Enter') {
-              event.preventDefault();
-              if (lastSelection !== null) {
-                if (linkUrl !== '') {
-                  editor.dispatchCommand(TOGGLE_LINK_COMMAND, linkUrl);
-                }
-                setEditMode(false);
-              }
-            } else if (event.key === 'Escape') {
-              event.preventDefault();
-              setEditMode(false);
-            }
-          }}
-        />
-      ) : (
-        <>
-          <div className="link-input">
-            <a href={linkUrl} target="_blank" rel="noopener noreferrer">
-              {linkUrl}
-            </a>
-            <div
-              className="link-edit"
-              role="button"
-              tabIndex={0}
-              onMouseDown={(event) => event.preventDefault()}
-              onClick={() => {
-                setEditMode(true);
-              }}
-            />
-          </div>
-          <LinkPreview url={linkUrl} />
-        </>
-      )}
-    </div>
-  );
-}
 
 function BlockFormatDropDown({
   editor,
@@ -642,20 +445,6 @@ const ToolbarPlugin = ({
     [activeEditor]
   );
 
-  const onFontColorSelect = useCallback(
-    (value: string) => {
-      applyStyleText({ color: value });
-    },
-    [applyStyleText]
-  );
-
-  const onBgColorSelect = useCallback(
-    (value: string) => {
-      applyStyleText({ 'background-color': value });
-    },
-    [applyStyleText]
-  );
-
   const insertLink = useCallback(() => {
     if (!isLink) {
       initialEditor.dispatchCommand(TOGGLE_LINK_COMMAND, 'https://');
@@ -664,48 +453,33 @@ const ToolbarPlugin = ({
     }
   }, [initialEditor, isLink]);
 
-  const onCodeLanguageSelect = useCallback(
-    (e) => {
-      activeEditor.update(() => {
-        if (selectedElementKey !== null) {
-          const node = $getNodeByKey(selectedElementKey);
-          if ($isCodeNode(node)) {
-            console.log(e.target.value);
-            node.setLanguage(e.target.value);
-          }
-        }
-      });
-    },
-    [activeEditor, selectedElementKey]
-  );
-
   return (
     <ToolbarContext.Provider
-      value={{ isRTL, canUndo, canRedo, fontFamily, fontSize, applyStyleText }}
+      value={{
+        isRTL,
+        canUndo,
+        canRedo,
+        fontFamily,
+        fontSize,
+        fontColor,
+        bgColor,
+        isBold,
+        isItalic,
+        isUnderline,
+        isCode,
+        isLink,
+        applyStyleText,
+        insertLink,
+        isStrikethrough,
+        isSubscript,
+        isSuperscript,
+        selectedElementKey,
+        codeLanguage,
+      }}
     >
       <div className="toolbar">
-        <button
-          disabled={!canUndo}
-          onClick={() => {
-            activeEditor.dispatchCommand(UNDO_COMMAND, undefined);
-          }}
-          title={IS_APPLE ? 'Undo (⌘Z)' : 'Undo (Ctrl+Z)'}
-          className="toolbar-item spaced"
-          aria-label="Undo"
-        >
-          <i className="format undo" />
-        </button>
-        <button
-          disabled={!canRedo}
-          onClick={() => {
-            activeEditor.dispatchCommand(REDO_COMMAND, undefined);
-          }}
-          title={IS_APPLE ? 'Redo (⌘Y)' : 'Undo (Ctrl+Y)'}
-          className="toolbar-item"
-          aria-label="Redo"
-        >
-          <i className="format redo" />
-        </button>
+        <UndoButton />
+        <RedoButton />
         <Divider />
         {supportedBlockTypes.has(blockType) && activeEditor === initialEditor && (
           <>
@@ -714,151 +488,21 @@ const ToolbarPlugin = ({
           </>
         )}
         {blockType === 'code' ? (
-          <>
-            <Select
-              className="toolbar-item code-language"
-              onChange={onCodeLanguageSelect}
-              options={CODE_LANGUAGE_OPTIONS}
-              value={codeLanguage}
-            />
-            <i className="chevron-down inside" />
-          </>
+          <CodeLanguageDropdown />
         ) : (
           <>
             <FontFamilyDropdown />
             <FontSizeDropdown />
             <Divider />
-            <button
-              onClick={() => {
-                activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold');
-              }}
-              className={'toolbar-item spaced ' + (isBold ? 'active' : '')}
-              title={IS_APPLE ? 'Bold (⌘B)' : 'Bold (Ctrl+B)'}
-              aria-label={`Format text as bold. Shortcut: ${
-                IS_APPLE ? '⌘B' : 'Ctrl+B'
-              }`}
-            >
-              <i className="format bold" />
-            </button>
-            <button
-              onClick={() => {
-                activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic');
-              }}
-              className={'toolbar-item spaced ' + (isItalic ? 'active' : '')}
-              title={IS_APPLE ? 'Italic (⌘I)' : 'Italic (Ctrl+I)'}
-              aria-label={`Format text as italics. Shortcut: ${
-                IS_APPLE ? '⌘I' : 'Ctrl+I'
-              }`}
-            >
-              <i className="format italic" />
-            </button>
-            <button
-              onClick={() => {
-                activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline');
-              }}
-              className={'toolbar-item spaced ' + (isUnderline ? 'active' : '')}
-              title={IS_APPLE ? 'Underline (⌘U)' : 'Underline (Ctrl+U)'}
-              aria-label={`Format text to underlined. Shortcut: ${
-                IS_APPLE ? '⌘U' : 'Ctrl+U'
-              }`}
-            >
-              <i className="format underline" />
-            </button>
-            <button
-              onClick={() => {
-                activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'code');
-              }}
-              className={'toolbar-item spaced ' + (isCode ? 'active' : '')}
-              title="Insert code block"
-              aria-label="Insert code block"
-            >
-              <i className="format code" />
-            </button>
-            <button
-              onClick={insertLink}
-              className={'toolbar-item spaced ' + (isLink ? 'active' : '')}
-              aria-label="Insert link"
-              title="Insert link"
-            >
-              <i className="format link" />
-            </button>
-            {isLink &&
-              createPortal(
-                <FloatingLinkEditor editor={activeEditor} />,
-                document.body
-              )}
-            <ColorPicker
-              buttonClassName="toolbar-item color-picker"
-              buttonAriaLabel="Formatting text color"
-              buttonIconClassName="icon font-color"
-              color={fontColor}
-              onChange={onFontColorSelect}
-              title="text color"
-            />
-            <ColorPicker
-              buttonClassName="toolbar-item color-picker"
-              buttonAriaLabel="Formatting background color"
-              buttonIconClassName="icon bg-color"
-              color={bgColor}
-              onChange={onBgColorSelect}
-              title="bg color"
-            />
-            <DropDown
-              buttonClassName="toolbar-item spaced"
-              buttonLabel=""
-              buttonAriaLabel="Formatting options for additional text styles"
-              buttonIconClassName="icon dropdown-more"
-            >
-              <button
-                onClick={() => {
-                  activeEditor.dispatchCommand(
-                    FORMAT_TEXT_COMMAND,
-                    'strikethrough'
-                  );
-                }}
-                className={
-                  'item ' +
-                  (isStrikethrough ? 'active dropdown-item-active' : '')
-                }
-                title="Strikethrough"
-                aria-label="Format text with a strikethrough"
-              >
-                <i className="icon strikethrough" />
-                <span className="text">Strikethrough</span>
-              </button>
-              <button
-                onClick={() => {
-                  activeEditor.dispatchCommand(
-                    FORMAT_TEXT_COMMAND,
-                    'subscript'
-                  );
-                }}
-                className={
-                  'item ' + (isSubscript ? 'active dropdown-item-active' : '')
-                }
-                title="Subscript"
-                aria-label="Format text with a subscript"
-              >
-                <i className="icon subscript" />
-                <span className="text">Subscript</span>
-              </button>
-              <button
-                onClick={() => {
-                  activeEditor.dispatchCommand(
-                    FORMAT_TEXT_COMMAND,
-                    'superscript'
-                  );
-                }}
-                className={
-                  'item ' + (isSuperscript ? 'active dropdown-item-active' : '')
-                }
-                title="Superscript"
-                aria-label="Format text with a superscript"
-              >
-                <i className="icon superscript" />
-                <span className="text">Superscript</span>
-              </button>
-            </DropDown>
+            <BoldButton />
+            <ItalicButton />
+            <UnderlineButton />
+            <CodeFormatButton />
+            <InsertLinkButton />
+            <TextColorPicker />
+            <BackgroundColorPicker />
+            <TextFormatDropdown />
+
             <Divider />
             {insertExists && InsertComponent}
           </>
