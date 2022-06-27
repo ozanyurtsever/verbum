@@ -6,41 +6,23 @@
  *
  */
 
-import { $createCodeNode, $isCodeNode } from '@lexical/code';
+import { $isCodeNode } from '@lexical/code';
 import { $isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
-import {
-  $isListNode,
-  INSERT_CHECK_LIST_COMMAND,
-  INSERT_ORDERED_LIST_COMMAND,
-  INSERT_UNORDERED_LIST_COMMAND,
-  ListNode,
-  REMOVE_LIST_COMMAND,
-} from '@lexical/list';
-import {
-  $createHeadingNode,
-  $createQuoteNode,
-  $isHeadingNode,
-} from '@lexical/rich-text';
+import { $isListNode, ListNode } from '@lexical/list';
+import { $isHeadingNode } from '@lexical/rich-text';
 import {
   $getSelectionStyleValueForProperty,
   $isParentElementRTL,
   $patchStyleText,
-  $wrapLeafNodesInElements,
 } from '@lexical/selection';
 import { $getNearestNodeOfType, mergeRegister } from '@lexical/utils';
-import type { LexicalEditor } from 'lexical';
 import {
-  $createParagraphNode,
-  $getNodeByKey,
   $getSelection,
   $isRangeSelection,
   CAN_REDO_COMMAND,
   CAN_UNDO_COMMAND,
   COMMAND_PRIORITY_CRITICAL,
-  FORMAT_TEXT_COMMAND,
-  REDO_COMMAND,
   SELECTION_CHANGE_COMMAND,
-  UNDO_COMMAND,
 } from 'lexical';
 import * as React from 'react';
 import { useCallback, useContext, useEffect, useRef, useState } from 'react';
@@ -48,8 +30,6 @@ import useChild from 'use-child';
 import { getSelectedNode } from '../../utils/node.util';
 import EditorContext from '../../context/EditorContext';
 import ToolbarContext from '../../context/ToolbarContext';
-import { IS_APPLE } from '../../shared/src/environment';
-import DropDown from '../../ui/DropDown';
 import AlignDropdown from './components/AlignDropdown';
 import BoldButton from './components/BoldButton';
 import CodeFormatButton from './components/CodeFormatButton';
@@ -66,6 +46,8 @@ import TextFormatDropdown from './components/TextFormatDropdown';
 import UndoButton from './components/UndoButton';
 import RedoButton from './components/RedoButton';
 import CodeLanguageDropdown from './components/CodeLanguageDropdown';
+import BlockFormatDropdown from './components/BlockFormatDropdown';
+import Divider from '../../ui/Divider';
 
 const supportedBlockTypes = new Set([
   'paragraph',
@@ -79,20 +61,6 @@ const supportedBlockTypes = new Set([
   'check',
 ]);
 
-const blockTypeToBlockName = {
-  bullet: 'Bulleted List',
-  check: 'Check List',
-  code: 'Code Block',
-  h1: 'Heading 1',
-  h2: 'Heading 2',
-  h3: 'Heading 3',
-  h4: 'Heading 4',
-  h5: 'Heading 5',
-  number: 'Numbered List',
-  paragraph: 'Normal',
-  quote: 'Quote',
-};
-
 const CODE_LANGUAGE_MAP = {
   javascript: 'js',
   md: 'markdown',
@@ -100,177 +68,6 @@ const CODE_LANGUAGE_MAP = {
   python: 'py',
   text: 'plain',
 };
-
-function BlockFormatDropDown({
-  editor,
-  blockType,
-}: {
-  blockType: string;
-  editor: LexicalEditor;
-}): JSX.Element {
-  const formatParagraph = () => {
-    if (blockType !== 'paragraph') {
-      editor.update(() => {
-        const selection = $getSelection();
-
-        if ($isRangeSelection(selection)) {
-          $wrapLeafNodesInElements(selection, () => $createParagraphNode());
-        }
-      });
-    }
-  };
-
-  const formatHeading = (headingSize) => {
-    if (blockType !== headingSize) {
-      editor.update(() => {
-        const selection = $getSelection();
-
-        if ($isRangeSelection(selection)) {
-          $wrapLeafNodesInElements(selection, () =>
-            $createHeadingNode(headingSize)
-          );
-        }
-      });
-    }
-  };
-
-  const formatBulletList = () => {
-    if (blockType !== 'bullet') {
-      editor.dispatchCommand(INSERT_UNORDERED_LIST_COMMAND, undefined);
-    } else {
-      editor.dispatchCommand(REMOVE_LIST_COMMAND, undefined);
-    }
-  };
-
-  const formatCheckList = () => {
-    if (blockType !== 'check') {
-      editor.dispatchCommand(INSERT_CHECK_LIST_COMMAND, undefined);
-    } else {
-      editor.dispatchCommand(REMOVE_LIST_COMMAND, undefined);
-    }
-  };
-
-  const formatNumberedList = () => {
-    if (blockType !== 'number') {
-      editor.dispatchCommand(INSERT_ORDERED_LIST_COMMAND, undefined);
-    } else {
-      editor.dispatchCommand(REMOVE_LIST_COMMAND, undefined);
-    }
-  };
-
-  const formatQuote = () => {
-    if (blockType !== 'quote') {
-      editor.update(() => {
-        const selection = $getSelection();
-
-        if ($isRangeSelection(selection)) {
-          $wrapLeafNodesInElements(selection, () => $createQuoteNode());
-        }
-      });
-    }
-  };
-
-  const formatCode = () => {
-    if (blockType !== 'code') {
-      editor.update(() => {
-        const selection = $getSelection();
-
-        if ($isRangeSelection(selection)) {
-          if (selection.isCollapsed()) {
-            $wrapLeafNodesInElements(selection, () => $createCodeNode());
-          } else {
-            const textContent = selection.getTextContent();
-            const codeNode = $createCodeNode();
-            selection.removeText();
-            selection.insertNodes([codeNode]);
-            selection.insertRawText(textContent);
-          }
-        }
-      });
-    }
-  };
-
-  return (
-    <DropDown
-      buttonClassName="toolbar-item block-controls"
-      buttonIconClassName={'icon block-type ' + blockType}
-      buttonLabel={blockTypeToBlockName[blockType]}
-      buttonAriaLabel="Formatting options for text style"
-    >
-      <button className="item" onClick={formatParagraph}>
-        <span className="icon paragraph" />
-        <span className="text">Normal</span>
-        {blockType === 'paragraph' && <span className="active" />}
-      </button>
-      <button className="item" onClick={() => formatHeading('h1')}>
-        <span className="icon h1" />
-        <span className="text">Heading 1</span>
-        {blockType === 'h1' && <span className="active" />}
-      </button>
-      <button className="item" onClick={() => formatHeading('h2')}>
-        <span className="icon h2" />
-        <span className="text">Heading 2</span>
-        {blockType === 'h2' && <span className="active" />}
-      </button>
-      <button className="item" onClick={() => formatHeading('h3')}>
-        <span className="icon h3" />
-        <span className="text">Heading 3</span>
-        {blockType === 'h3' && <span className="active" />}
-      </button>
-      <button className="item" onClick={formatBulletList}>
-        <span className="icon bullet-list" />
-        <span className="text">Bullet List</span>
-        {blockType === 'bullet' && <span className="active" />}
-      </button>
-      <button className="item" onClick={formatNumberedList}>
-        <span className="icon numbered-list" />
-        <span className="text">Numbered List</span>
-        {blockType === 'number' && <span className="active" />}
-      </button>
-      <button className="item" onClick={formatCheckList}>
-        <span className="icon check-list" />
-        <span className="text">Check List</span>
-        {blockType === 'check' && <span className="active" />}
-      </button>
-      <button className="item" onClick={formatQuote}>
-        <span className="icon quote" />
-        <span className="text">Quote</span>
-        {blockType === 'quote' && <span className="active" />}
-      </button>
-      <button className="item" onClick={formatCode}>
-        <span className="icon code" />
-        <span className="text">Code Block</span>
-        {blockType === 'code' && <span className="active" />}
-      </button>
-    </DropDown>
-  );
-}
-
-function Divider(): JSX.Element {
-  return <div className="divider" />;
-}
-
-function Select({
-  onChange,
-  className,
-  options,
-  value,
-}: {
-  className: string;
-  onChange: (event: { target: { value: string } }) => void;
-  options: [string, string][];
-  value: string;
-}): JSX.Element {
-  return (
-    <select className={className} onChange={onChange} value={value}>
-      {options.map(([option, text]) => (
-        <option key={option} value={option}>
-          {text}
-        </option>
-      ))}
-    </select>
-  );
-}
 
 interface IToolbarProps {
   children?: React.ReactElement | React.ReactElement[];
@@ -475,6 +272,7 @@ const ToolbarPlugin = ({
         isSuperscript,
         selectedElementKey,
         codeLanguage,
+        blockType,
       }}
     >
       <div className="toolbar">
@@ -483,32 +281,19 @@ const ToolbarPlugin = ({
         <Divider />
         {supportedBlockTypes.has(blockType) && activeEditor === initialEditor && (
           <>
-            <BlockFormatDropDown blockType={blockType} editor={initialEditor} />
+            <BlockFormatDropdown />
             <Divider />
           </>
         )}
         {blockType === 'code' ? (
-          <CodeLanguageDropdown />
-        ) : (
           <>
-            <FontFamilyDropdown />
-            <FontSizeDropdown />
+            <CodeLanguageDropdown />
             <Divider />
-            <BoldButton />
-            <ItalicButton />
-            <UnderlineButton />
-            <CodeFormatButton />
-            <InsertLinkButton />
-            <TextColorPicker />
-            <BackgroundColorPicker />
-            <TextFormatDropdown />
-
-            <Divider />
-            {insertExists && InsertComponent}
+            {alignExists && AlignComponent}
           </>
+        ) : (
+          <>{children}</>
         )}
-        <Divider />
-        {alignExists && AlignComponent}
       </div>
     </ToolbarContext.Provider>
   );

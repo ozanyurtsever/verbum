@@ -17,6 +17,7 @@ interface IToolbarContext {
   fontSize: string;
   fontColor: string;
   bgColor: string;
+  blockType: string;
   codeLanguage: string;
   selectedElementKey: string;
   applyStyleText: (styles: Record<string, string>) => void;
