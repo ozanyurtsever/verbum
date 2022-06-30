@@ -44,7 +44,7 @@ import {
 const NoteViewer: FC = () => {
   return (
     <EditorComposer>
-      <Editor hashtagsEnables={true}>
+      <Editor hashtagsEnabled={true}>
         <ToolbarPlugin defaultFontSize="20px">
           <FontFamilyDropdown />
           <FontSizeDropdown />
@@ -58,10 +58,10 @@ const NoteViewer: FC = () => {
           <BackgroundColorPicker />
           <TextFormatDropdown />
           <Divider />
-          <InsertDropdown enablePool={true} />
+          <InsertDropdown enablePoll={true} />
           <Divider />
           <AlignDropdown />
-        <ToolbarPlugin />
+        </ToolbarPlugin>
       </Editor>
     </EditorComposer>
   );
@@ -123,7 +123,7 @@ Coming soon... -->
 | enableTable          | `boolean` | optional | Enables table inserting feature                  |
 | enableYoutube        | `boolean` | optional | Enables youtube video inserting feature          |
 | enableTwitter        | `boolean` | optional | Enables tweet inserting feature                  |
-| enablePool           | `boolean` | optional | Enables poll inserting feature                   |
+| enablePoll           | `boolean` | optional | Enables poll inserting feature                   |
 | enableImage          | `boolean` | optional | Enables image inserting feature                  |
 | enableEquations      | `boolean` | optional | Enables equation inserting feature               |
 | enableExcalidraw     | `boolean` | optional | Enables diagram inserting feature                |
