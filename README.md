@@ -38,7 +38,7 @@ import {
   TextColorPicker,
   TextFormatDropdown,
   UnderlineButton,
-  Divider
+  Divider,
 } from 'verbum';
 
 const NoteViewer: FC = () => {
@@ -83,14 +83,16 @@ Coming soon... -->
 
 `<Editor />`
 
-| Property        | Type        |          | description                                                                        |
-| --------------- | ----------- | -------- | ---------------------------------------------------------------------------------- |
-| children        | `ReactNode` | optional | Nested child components, like the `ToolbarPlugin`                                  |
-| hashtagsEnabled | `boolean`   | optional | Enables the automatic hashtag highlighting, default is `false`                     |
-| autoLinkEnabled | `boolean`   | optional | Enables the automatic link highlighting, default is `false`                        |
-| emojisEnabled   | `boolean`   | optional | Replaces the emoji combiniations with its corresponding symbol, default is `false` |
-| placeholder     | `string`    | optional | The default content of the editor when it is first loaded                          |
-| listMaxIndent   | `number`    | optional | The maximum indent capacity of any listed element, the default is `7`              |
+| Property           | Type            |          | description                                                                        |
+| ------------------ | --------------- | -------- | ---------------------------------------------------------------------------------- |
+| children           | `ReactNode`     | optional | Nested child components, like the `ToolbarPlugin`                                  |
+| hashtagsEnabled    | `boolean`       | optional | Enables the automatic hashtag highlighting, default is `false`                     |
+| autoLinkEnabled    | `boolean`       | optional | Enables the automatic link highlighting, default is `false`                        |
+| emojisEnabled      | `boolean`       | optional | Replaces the emoji combiniations with its corresponding symbol, default is `false` |
+| placeholder        | `string`        | optional | The default content of the editor when it is first loaded                          |
+| listMaxIndent      | `number`        | optional | The maximum indent capacity of any listed element, the default is `7`              |
+| initialEditorState | `string`        | optional | JSON string to initialize the initial content of the editor.                       |
+| onChange           | (state) => void | optional | Accessing the current editor state                                                 |
 
 <br />
 
