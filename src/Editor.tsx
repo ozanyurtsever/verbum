@@ -36,6 +36,8 @@ import Placeholder from './ui/Placeholder';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import EditorContext from './context/EditorContext';
+import { $generateNodesFromDOM } from '@lexical/html';
+import { $getRoot, $getSelection } from 'lexical';
 
 interface IEditorProps {
   children?: ReactNode;
@@ -44,6 +46,8 @@ interface IEditorProps {
   emojisEnabled?: boolean;
   placeholder?: string;
   listMaxIndent?: number;
+  initialEditorState?: string;
+  onChange?: (editorState) => void;
 }
 
 const Editor = ({
@@ -53,6 +57,8 @@ const Editor = ({
   emojisEnabled = false,
   listMaxIndent = 7,
   placeholder = '',
+  initialEditorState,
+  onChange,
 }: IEditorProps) => {
   const [editor] = useLexicalComposerContext();
   const [activeEditor, setActiveEditor] = useState(editor);
@@ -84,12 +90,13 @@ const Editor = ({
           <RichTextPlugin
             contentEditable={<ContentEditable />}
             placeholder={placeholderComponent}
-            initialEditorState={
-              isCollab ? null : emptyEditor ? undefined : 'Type something...'
-            }
+            initialEditorState={initialEditorState}
           />
           <OnChangePlugin
-            onChange={(editorState) => (editorStateRef.current = editorState)}
+            onChange={(editorState) => {
+              onChange?.(JSON.stringify(editorState));
+              return (editorStateRef.current = editorState);
+            }}
           />
           <MarkdownShortcutPlugin />
           <CodeHighlightPlugin />
