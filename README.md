@@ -89,8 +89,10 @@ Coming soon... -->
 | hashtagsEnabled    | `boolean`         | optional | Enables the automatic hashtag highlighting, default is `false`                     |
 | autoLinkEnabled    | `boolean`         | optional | Enables the automatic link highlighting, default is `false`                        |
 | emojisEnabled      | `boolean`         | optional | Replaces the emoji combiniations with its corresponding symbol, default is `false` |
+| actionsEnabled     | `boolean`         | optional | Enables the actions toolbar, default is `false`                                    |
 | placeholder        | `string`          | optional | The default content of the editor when it is first loaded                          |
 | listMaxIndent      | `number`          | optional | The maximum indent capacity of any listed element, the default is `7`              |
+| isReadOnly         | `boolean`         | optional | Enables read-only mode for the editor, default is `false`                          |
 | initialEditorState | `string`          | optional | JSON string to initialize the initial content of the editor.                       |
 | onChange           | `(state) => void` | optional | Accessing the current editor state                                                 |
 
