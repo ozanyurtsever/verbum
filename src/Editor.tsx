@@ -15,7 +15,7 @@ import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin';
 import { ListPlugin } from '@lexical/react/LexicalListPlugin';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { useRef } from 'react';
 
 import { useSettings } from './context/SettingsContext';
@@ -36,17 +36,17 @@ import Placeholder from './ui/Placeholder';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import EditorContext from './context/EditorContext';
-import { $generateNodesFromDOM } from '@lexical/html';
-import { $getRoot, $getSelection } from 'lexical';
 
 interface IEditorProps {
   children?: ReactNode;
   hashtagsEnabled?: boolean;
   autoLinkEnabled?: boolean;
   emojisEnabled?: boolean;
+  actionsEnabled?: boolean;
   placeholder?: string;
   listMaxIndent?: number;
   initialEditorState?: string;
+  isReadOnly?: boolean;
   onChange?: (editorState) => void;
 }
 
@@ -55,9 +55,11 @@ const Editor = ({
   hashtagsEnabled = false,
   autoLinkEnabled = false,
   emojisEnabled = false,
+  actionsEnabled = false,
   listMaxIndent = 7,
   placeholder = '',
   initialEditorState,
+  isReadOnly = false,
   onChange,
 }: IEditorProps) => {
   const [editor] = useLexicalComposerContext();
@@ -66,10 +68,14 @@ const Editor = ({
   const editorStateRef = useRef(null);
   const { historyState } = useSharedHistoryContext();
   const {
-    settings: { isCollab, isRichText, emptyEditor },
+    settings: { isRichText },
   } = useSettings();
   const placeholderComponent = <Placeholder>{placeholder}</Placeholder>;
   const scrollRef = useRef(null);
+
+  useEffect(() => {
+    editor.setReadOnly(isReadOnly);
+  }, []);
 
   return (
     <EditorContext.Provider
@@ -110,7 +116,7 @@ const Editor = ({
         </>
 
         <HistoryPlugin externalHistoryState={historyState} />
-        <ActionsPlugin isRichText={isRichText} />
+        {actionsEnabled && <ActionsPlugin isRichText={isRichText} />}
       </div>
     </EditorContext.Provider>
   );
