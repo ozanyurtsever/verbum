@@ -6,24 +6,44 @@
  *
  */
 
-import type { ElementFormatType, LexicalNode, NodeKey } from 'lexical';
+import type {
+  EditorConfig,
+  ElementFormatType,
+  LexicalEditor,
+  LexicalNode,
+  NodeKey,
+  Spread,
+} from 'lexical';
 
 import { BlockWithAlignableContents } from '@lexical/react/LexicalBlockWithAlignableContents';
-import { DecoratorBlockNode } from '@lexical/react/LexicalDecoratorBlockNode';
-
-import SerializedDecoratorBlockNode from '@lexical/react/LexicalDecoratorBlockNode';
-import { Spread } from 'globals';
+import {
+  DecoratorBlockNode,
+  SerializedDecoratorBlockNode,
+} from '@lexical/react/LexicalDecoratorBlockNode';
 import * as React from 'react';
 
 type YouTubeComponentProps = Readonly<{
+  className: Readonly<{
+    base: string;
+    focus: string;
+  }>;
   format: ElementFormatType | null;
   nodeKey: NodeKey;
   videoID: string;
 }>;
 
-function YouTubeComponent({ format, nodeKey, videoID }: YouTubeComponentProps) {
+function YouTubeComponent({
+  className,
+  format,
+  nodeKey,
+  videoID,
+}: YouTubeComponentProps) {
   return (
-    <BlockWithAlignableContents format={format} nodeKey={nodeKey}>
+    <BlockWithAlignableContents
+      className={className}
+      format={format}
+      nodeKey={nodeKey}
+    >
       <iframe
         width="560"
         height="315"
@@ -43,10 +63,10 @@ export type SerializedYouTubeNode = Spread<
     type: 'youtube';
     version: 1;
   },
-  typeof SerializedDecoratorBlockNode
+  SerializedDecoratorBlockNode
 >;
 
-export class YouTubeNode extends DecoratorBlockNode<JSX.Element> {
+export class YouTubeNode extends DecoratorBlockNode {
   __id: string;
 
   static getType(): string {
@@ -72,7 +92,7 @@ export class YouTubeNode extends DecoratorBlockNode<JSX.Element> {
     };
   }
 
-  constructor(id: string, format?: ElementFormatType | null, key?: NodeKey) {
+  constructor(id: string, format?: ElementFormatType, key?: NodeKey) {
     super(format, key);
     this.__id = id;
   }
@@ -81,9 +101,19 @@ export class YouTubeNode extends DecoratorBlockNode<JSX.Element> {
     return false;
   }
 
-  decorate(): JSX.Element {
+  getId(): string {
+    return this.__id;
+  }
+
+  decorate(_editor: LexicalEditor, config: EditorConfig): JSX.Element {
+    const embedBlockTheme = config.theme.embedBlock || {};
+    const className = {
+      base: embedBlockTheme.base || '',
+      focus: embedBlockTheme.focus || '',
+    };
     return (
       <YouTubeComponent
+        className={className}
         format={this.__format}
         nodeKey={this.getKey()}
         videoID={this.__id}

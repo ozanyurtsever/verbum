@@ -6,23 +6,33 @@
  *
  */
 
-import type { ElementFormatType, LexicalNode, NodeKey } from 'lexical';
+import type {
+  DOMConversionMap,
+  DOMConversionOutput,
+  DOMExportOutput,
+  EditorConfig,
+  ElementFormatType,
+  LexicalEditor,
+  LexicalNode,
+  NodeKey,
+  Spread,
+} from 'lexical';
 
 import { BlockWithAlignableContents } from '@lexical/react/LexicalBlockWithAlignableContents';
-import { DecoratorBlockNode } from '@lexical/react/LexicalDecoratorBlockNode';
-
-import SerializedDecoratorBlockNode from '@lexical/react/LexicalDecoratorBlockNode';
-
-import { Spread } from 'globals';
+import {
+  DecoratorBlockNode,
+  SerializedDecoratorBlockNode,
+} from '@lexical/react/LexicalDecoratorBlockNode';
 import * as React from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 const WIDGET_SCRIPT_URL = 'https://platform.twitter.com/widgets.js';
 
-const getHasScriptCached = () =>
-  document.querySelector(`script[src="${WIDGET_SCRIPT_URL}"]`);
-
 type TweetComponentProps = Readonly<{
+  className: Readonly<{
+    base: string;
+    focus: string;
+  }>;
   format: ElementFormatType | null;
   loadingComponent?: JSX.Element | string;
   nodeKey: NodeKey;
@@ -31,7 +41,21 @@ type TweetComponentProps = Readonly<{
   tweetID: string;
 }>;
 
+function convertTweetElement(
+  domNode: HTMLDivElement
+): DOMConversionOutput | null {
+  const id = domNode.getAttribute('data-lexical-tweet-id');
+  if (id) {
+    const node = $createTweetNode(id);
+    return { node };
+  }
+  return null;
+}
+
+let isTwitterScriptLoading = true;
+
 function TweetComponent({
+  className,
   format,
   loadingComponent,
   nodeKey,
@@ -42,14 +66,15 @@ function TweetComponent({
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const previousTweetIDRef = useRef<string>('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [isTweetLoading, setIsTweetLoading] = useState(false);
 
   const createTweet = useCallback(async () => {
     try {
       // @ts-expect-error Twitter is attached to the window.
       await window.twttr.widgets.createTweet(tweetID, containerRef.current);
 
-      setIsLoading(false);
+      setIsTweetLoading(false);
+      isTwitterScriptLoading = false;
 
       if (onLoad) {
         onLoad();
@@ -63,15 +88,17 @@ function TweetComponent({
 
   useEffect(() => {
     if (tweetID !== previousTweetIDRef.current) {
-      setIsLoading(true);
+      setIsTweetLoading(true);
 
-      if (!getHasScriptCached()) {
+      if (isTwitterScriptLoading) {
         const script = document.createElement('script');
         script.src = WIDGET_SCRIPT_URL;
         script.async = true;
         document.body?.appendChild(script);
         script.onload = createTweet;
-        script.onerror = onError;
+        if (onError) {
+          script.onerror = onError as OnErrorEventHandler;
+        }
       } else {
         createTweet();
       }
@@ -83,8 +110,12 @@ function TweetComponent({
   }, [createTweet, onError, tweetID]);
 
   return (
-    <BlockWithAlignableContents format={format} nodeKey={nodeKey}>
-      {isLoading ? loadingComponent : null}
+    <BlockWithAlignableContents
+      className={className}
+      format={format}
+      nodeKey={nodeKey}
+    >
+      {isTweetLoading ? loadingComponent : null}
       <div
         style={{ display: 'inline-block', width: '550px' }}
         ref={containerRef}
@@ -99,10 +130,10 @@ export type SerializedTweetNode = Spread<
     type: 'tweet';
     version: 1;
   },
-  typeof SerializedDecoratorBlockNode
+  SerializedDecoratorBlockNode
 >;
 
-export class TweetNode extends DecoratorBlockNode<JSX.Element> {
+export class TweetNode extends DecoratorBlockNode {
   __id: string;
 
   static getType(): string {
@@ -128,7 +159,27 @@ export class TweetNode extends DecoratorBlockNode<JSX.Element> {
     };
   }
 
-  constructor(id: string, format?: ElementFormatType | null, key?: NodeKey) {
+  static importDOM(): DOMConversionMap<HTMLDivElement> | null {
+    return {
+      div: (domNode: HTMLDivElement) => {
+        if (!domNode.hasAttribute('data-lexical-tweet-id')) {
+          return null;
+        }
+        return {
+          conversion: convertTweetElement,
+          priority: 2,
+        };
+      },
+    };
+  }
+
+  exportDOM(): DOMExportOutput {
+    const element = document.createElement('div');
+    element.setAttribute('data-lexical-tweet-id', this.__id);
+    return { element };
+  }
+
+  constructor(id: string, format?: ElementFormatType, key?: NodeKey) {
     super(format, key);
     this.__id = id;
   }
@@ -137,9 +188,15 @@ export class TweetNode extends DecoratorBlockNode<JSX.Element> {
     return this.__id;
   }
 
-  decorate(): JSX.Element {
+  decorate(editor: LexicalEditor, config: EditorConfig): JSX.Element {
+    const embedBlockTheme = config.theme.embedBlock || {};
+    const className = {
+      base: embedBlockTheme.base || '',
+      focus: embedBlockTheme.focus || '',
+    };
     return (
       <TweetComponent
+        className={className}
         format={this.__format}
         loadingComponent="Loading..."
         nodeKey={this.getKey()}
