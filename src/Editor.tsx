@@ -36,6 +36,7 @@ import Placeholder from './ui/Placeholder';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import EditorContext from './context/EditorContext';
+import { LexicalEditor } from 'lexical';
 
 interface IEditorProps {
   children?: ReactNode;
@@ -47,7 +48,7 @@ interface IEditorProps {
   listMaxIndent?: number;
   initialEditorState?: string;
   isReadOnly?: boolean;
-  onChange?: (editorState) => void;
+  onChange?: (editorState: string, editorInstance?: LexicalEditor) => void;
 }
 
 const Editor = ({
@@ -99,8 +100,9 @@ const Editor = ({
             initialEditorState={initialEditorState}
           />
           <OnChangePlugin
+            ignoreInitialChange={false}
             onChange={(editorState) => {
-              onChange?.(JSON.stringify(editorState));
+              onChange?.(JSON.stringify(editorState), activeEditor);
               return (editorStateRef.current = editorState);
             }}
           />
