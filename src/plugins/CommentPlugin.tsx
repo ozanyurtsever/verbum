@@ -109,6 +109,7 @@ function AddCommentBox({
       <button
         className="CommentPlugin_AddCommentBox_button"
         onClick={onAddComment}
+        type="button"
       >
         <i className="icon add-comment" />
       </button>

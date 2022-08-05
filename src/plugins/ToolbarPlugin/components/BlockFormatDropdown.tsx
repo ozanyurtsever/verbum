@@ -124,47 +124,47 @@ const BlockFormatDropdown = () => {
       buttonLabel={blockTypeToBlockName[blockType]}
       buttonAriaLabel="Formatting options for text style"
     >
-      <button className="item" onClick={formatParagraph}>
+      <button className="item" onClick={formatParagraph} type="button">
         <span className="icon paragraph" />
         <span className="text">Normal</span>
         {blockType === 'paragraph' && <span className="active" />}
       </button>
-      <button className="item" onClick={() => formatHeading('h1')}>
+      <button className="item" onClick={() => formatHeading('h1')} type="button">
         <span className="icon h1" />
         <span className="text">Heading 1</span>
         {blockType === 'h1' && <span className="active" />}
       </button>
-      <button className="item" onClick={() => formatHeading('h2')}>
+      <button className="item" onClick={() => formatHeading('h2')} type="button">
         <span className="icon h2" />
         <span className="text">Heading 2</span>
         {blockType === 'h2' && <span className="active" />}
       </button>
-      <button className="item" onClick={() => formatHeading('h3')}>
+      <button className="item" onClick={() => formatHeading('h3')} type="button">
         <span className="icon h3" />
         <span className="text">Heading 3</span>
         {blockType === 'h3' && <span className="active" />}
       </button>
-      <button className="item" onClick={formatBulletList}>
+      <button className="item" onClick={formatBulletList} type="button">
         <span className="icon bullet-list" />
         <span className="text">Bullet List</span>
         {blockType === 'bullet' && <span className="active" />}
       </button>
-      <button className="item" onClick={formatNumberedList}>
+      <button className="item" onClick={formatNumberedList} type="button">
         <span className="icon numbered-list" />
         <span className="text">Numbered List</span>
         {blockType === 'number' && <span className="active" />}
       </button>
-      <button className="item" onClick={formatCheckList}>
+      <button className="item" onClick={formatCheckList} type="button">
         <span className="icon check-list" />
         <span className="text">Check List</span>
         {blockType === 'check' && <span className="active" />}
       </button>
-      <button className="item" onClick={formatQuote}>
+      <button className="item" onClick={formatQuote} type="button">
         <span className="icon quote" />
         <span className="text">Quote</span>
         {blockType === 'quote' && <span className="active" />}
       </button>
-      <button className="item" onClick={formatCode}>
+      <button className="item" onClick={formatCode} type="button">
         <span className="icon code" />
         <span className="text">Code Block</span>
         {blockType === 'code' && <span className="active" />}
