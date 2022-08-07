@@ -388,6 +388,7 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
               );
             }}
             className="item"
+            type="button"
           >
             <i className="icon horizontal-rule" />
             <span className="text">Horizontal Rule</span>
@@ -404,6 +405,7 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
               ));
             }}
             className="item"
+            type="button"
           >
             <i className="icon image" />
             <span className="text">Image</span>
@@ -418,6 +420,7 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
               );
             }}
             className="item"
+            type="button"
           >
             <i className="icon diagram-2" />
             <span className="text">Excalidraw</span>
@@ -435,6 +438,7 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
                 ));
               }}
               className="item"
+              type="button"
             >
               <i className="icon table" />
               <span className="text">Table</span>
@@ -452,6 +456,7 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
               ));
             }}
             className="item"
+            type="button"
           >
             <i className="icon poll" />
             <span className="text">Poll</span>
@@ -468,6 +473,7 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
               ));
             }}
             className="item"
+            type="button"
           >
             <i className="icon tweet" />
             <span className="text">Tweet</span>
@@ -484,6 +490,7 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
               ));
             }}
             className="item"
+            type="button"
           >
             <i className="icon youtube" />
             <span className="text">YouTube Video</span>
@@ -500,6 +507,7 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
               ));
             }}
             className="item"
+            type="button"
           >
             <i className="icon equation" />
             <span className="text">Equation</span>
@@ -515,6 +523,7 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
               });
             }}
             className="item"
+            type="button"
           >
             <i className="icon sticky" />
             <span className="text">Sticky Note</span>

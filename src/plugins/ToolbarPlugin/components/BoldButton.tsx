@@ -19,6 +19,7 @@ const BoldButton = () => {
       aria-label={`Format text as bold. Shortcut: ${
         IS_APPLE ? '⌘B' : 'Ctrl+B'
       }`}
+      type="button"
     >
       <i className="format bold" />
     </button>

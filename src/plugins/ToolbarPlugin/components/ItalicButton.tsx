@@ -19,6 +19,7 @@ const ItalicButton = () => {
       aria-label={`Format text as italics. Shortcut: ${
         IS_APPLE ? '⌘I' : 'Ctrl+I'
       }`}
+      type="button"
     >
       <i className="format italic" />
     </button>

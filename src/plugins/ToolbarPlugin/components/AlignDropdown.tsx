@@ -29,6 +29,7 @@ const AlignDropdown = () => {
           activeEditor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'left');
         }}
         className="item"
+        type="button"
       >
         <i className="icon left-align" />
         <span className="text">Left Align</span>
@@ -38,6 +39,7 @@ const AlignDropdown = () => {
           activeEditor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'center');
         }}
         className="item"
+        type="button"
       >
         <i className="icon center-align" />
         <span className="text">Center Align</span>
@@ -47,6 +49,7 @@ const AlignDropdown = () => {
           activeEditor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'right');
         }}
         className="item"
+        type="button"
       >
         <i className="icon right-align" />
         <span className="text">Right Align</span>
@@ -56,6 +59,7 @@ const AlignDropdown = () => {
           activeEditor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'justify');
         }}
         className="item"
+        type="button"
       >
         <i className="icon justify-align" />
         <span className="text">Justify Align</span>
@@ -66,6 +70,7 @@ const AlignDropdown = () => {
           activeEditor.dispatchCommand(OUTDENT_CONTENT_COMMAND, undefined);
         }}
         className="item"
+        type="button"
       >
         <i className={'icon ' + (isRTL ? 'indent' : 'outdent')} />
         <span className="text">Outdent</span>
@@ -75,6 +80,7 @@ const AlignDropdown = () => {
           activeEditor.dispatchCommand(INDENT_CONTENT_COMMAND, undefined);
         }}
         className="item"
+        type="button"
       >
         <i className={'icon ' + (isRTL ? 'outdent' : 'indent')} />
         <span className="text">Indent</span>

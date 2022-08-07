@@ -71,6 +71,7 @@ export default function DropDown({
         className={buttonClassName}
         onClick={() => setShowDropDown(!showDropDown)}
         ref={buttonRef}
+        type="button"
       >
         {buttonIconClassName && <span className={buttonIconClassName} />}
         {buttonLabel && (

@@ -24,6 +24,7 @@ const TextFormatDropdown = () => {
         }
         title="Strikethrough"
         aria-label="Format text with a strikethrough"
+        type="button"
       >
         <i className="icon strikethrough" />
         <span className="text">Strikethrough</span>
@@ -35,6 +36,7 @@ const TextFormatDropdown = () => {
         className={'item ' + (isSubscript ? 'active dropdown-item-active' : '')}
         title="Subscript"
         aria-label="Format text with a subscript"
+        type="button"
       >
         <i className="icon subscript" />
         <span className="text">Subscript</span>
@@ -48,6 +50,7 @@ const TextFormatDropdown = () => {
         }
         title="Superscript"
         aria-label="Format text with a superscript"
+        type="button"
       >
         <i className="icon superscript" />
         <span className="text">Superscript</span>

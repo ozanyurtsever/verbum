@@ -16,6 +16,7 @@ const CodeFormatButton = () => {
       className={'toolbar-item spaced ' + (isCode ? 'active' : '')}
       title="Insert code block"
       aria-label="Insert code block"
+      type="button"
     >
       <i className="format code" />
     </button>

@@ -169,6 +169,7 @@ function FloatingCharacterStylesEditor({
         }}
         className={'popup-item spaced ' + (isBold ? 'active' : '')}
         aria-label="Format text as bold"
+        type="button"
       >
         <i className="format bold" />
       </button>
@@ -178,6 +179,7 @@ function FloatingCharacterStylesEditor({
         }}
         className={'popup-item spaced ' + (isItalic ? 'active' : '')}
         aria-label="Format text as italics"
+        type="button"
       >
         <i className="format italic" />
       </button>
@@ -187,6 +189,7 @@ function FloatingCharacterStylesEditor({
         }}
         className={'popup-item spaced ' + (isUnderline ? 'active' : '')}
         aria-label="Format text to underlined"
+        type="button"
       >
         <i className="format underline" />
       </button>
@@ -196,6 +199,7 @@ function FloatingCharacterStylesEditor({
         }}
         className={'popup-item spaced ' + (isStrikethrough ? 'active' : '')}
         aria-label="Format text with a strikethrough"
+        type="button"
       >
         <i className="format strikethrough" />
       </button>
@@ -206,6 +210,7 @@ function FloatingCharacterStylesEditor({
         className={'popup-item spaced ' + (isSubscript ? 'active' : '')}
         title="Subscript"
         aria-label="Format Subscript"
+        type="button"
       >
         <i className="format subscript" />
       </button>
@@ -216,6 +221,7 @@ function FloatingCharacterStylesEditor({
         className={'popup-item spaced ' + (isSuperscript ? 'active' : '')}
         title="Superscript"
         aria-label="Format Superscript"
+        type="button"
       >
         <i className="format superscript" />
       </button>
@@ -225,6 +231,7 @@ function FloatingCharacterStylesEditor({
         }}
         className={'popup-item spaced ' + (isCode ? 'active' : '')}
         aria-label="Insert code block"
+        type="button"
       >
         <i className="format code" />
       </button>
@@ -232,6 +239,7 @@ function FloatingCharacterStylesEditor({
         onClick={insertLink}
         className={'popup-item spaced ' + (isLink ? 'active' : '')}
         aria-label="Insert link"
+        type="button"
       >
         <i className="format link" />
       </button>
@@ -239,6 +247,7 @@ function FloatingCharacterStylesEditor({
         onClick={insertComment}
         className={'popup-item spaced ' + (isLink ? 'active' : '')}
         aria-label="Insert link"
+        type="button"
       >
         <i className="format add-comment" />
       </button>
