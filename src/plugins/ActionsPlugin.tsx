@@ -122,6 +122,7 @@ export default function ActionsPlugin({
           }
           title="Speech To Text"
           aria-label={`${isSpeechToText ? 'Enable' : 'Disable'} speech to text`}
+          type="button"
         >
           <i className="mic" />
         </button>
@@ -131,6 +132,7 @@ export default function ActionsPlugin({
         onClick={() => importFile(editor)}
         title="Import"
         aria-label="Import editor state from JSON"
+        type="button"
       >
         <i className="import" />
       </button>
@@ -144,6 +146,7 @@ export default function ActionsPlugin({
         }
         title="Export"
         aria-label="Export editor state to JSON"
+        type="button"
       >
         <i className="export" />
       </button>
@@ -157,6 +160,7 @@ export default function ActionsPlugin({
         }}
         title="Clear"
         aria-label="Clear editor contents"
+        type="button"
       >
         <i className="clear" />
       </button>
@@ -167,6 +171,7 @@ export default function ActionsPlugin({
         }}
         title="Read-Only Mode"
         aria-label={`${isReadOnly ? 'Unlock' : 'Lock'} read-only mode`}
+        type="button"
       >
         <i className={isReadOnly ? 'unlock' : 'lock'} />
       </button>
@@ -175,6 +180,7 @@ export default function ActionsPlugin({
         onClick={handleMarkdownToggle}
         title="Convert From Markdown"
         aria-label="Convert from markdown"
+        type="button"
       >
         <i className="markdown" />
       </button>
@@ -190,6 +196,7 @@ export default function ActionsPlugin({
           aria-label={`${
             connected ? 'Disconnect from' : 'Connect to'
           } a collaborative editing server`}
+          type="button"
         >
           <i className={connected ? 'disconnect' : 'connect'} />
         </button>

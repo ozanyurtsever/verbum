@@ -17,6 +17,7 @@ const UndoButton = () => {
       title={IS_APPLE ? 'Undo (⌘Z)' : 'Undo (Ctrl+Z)'}
       className="toolbar-item spaced"
       aria-label="Undo"
+      type="button"
     >
       <i className="format undo" />
     </button>

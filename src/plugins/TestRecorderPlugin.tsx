@@ -403,6 +403,7 @@ ${steps.map(formatStep).join(`\n`)}
       className={`editor-dev-button ${isRecording ? 'active' : ''}`}
       onClick={() => toggleEditorSelection(getCurrentEditor())}
       title={isRecording ? 'Disable test recorder' : 'Enable test recorder'}
+      type="button"
     />
   );
   const output = isRecording ? (
@@ -413,18 +414,21 @@ ${steps.map(formatStep).join(`\n`)}
           id="test-recorder-button-snapshot"
           title="Insert snapshot"
           onClick={onSnapshotClick}
+          type="button"
         />
         <button
           className="test-recorder-button"
           id="test-recorder-button-copy"
           title="Copy to clipboard"
           onClick={onCopyClick}
+          type="button"
         />
         <button
           className="test-recorder-button"
           id="test-recorder-button-download"
           title="Download as a file"
           onClick={onDownloadClick}
+          type="button"
         />
       </div>
       <pre id="test-recorder" ref={preRef}>

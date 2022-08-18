@@ -17,6 +17,7 @@ const RedoButton = () => {
       title={IS_APPLE ? 'Redo (⌘Y)' : 'Undo (Ctrl+Y)'}
       className="toolbar-item"
       aria-label="Redo"
+      type="button"
     >
       <i className="format redo" />
     </button>

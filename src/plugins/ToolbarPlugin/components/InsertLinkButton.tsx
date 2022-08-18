@@ -16,6 +16,7 @@ const InsertLinkButton = () => {
         className={'toolbar-item spaced ' + (isLink ? 'active' : '')}
         aria-label="Insert link"
         title="Insert link"
+        type="button"
       >
         <i className="format link" />
       </button>

@@ -104,6 +104,7 @@ export default function ColorPicker({
               key={basicColor}
               style={{ backgroundColor: basicColor }}
               onClick={() => setSelfColor(transformColor('hex', basicColor))}
+              type="button"
             />
           ))}
         </div>

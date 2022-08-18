@@ -19,6 +19,7 @@ const UnderlineButton = () => {
       aria-label={`Format text to underlined. Shortcut: ${
         IS_APPLE ? '⌘U' : 'Ctrl+U'
       }`}
+      type="button"
     >
       <i className="format underline" />
     </button>
