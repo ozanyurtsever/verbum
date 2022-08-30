@@ -63,7 +63,7 @@ import Button from '../ui/Button';
 import ContentEditable from '../ui/ContentEditable';
 import Placeholder from '../ui/Placeholder';
 import type { Doc } from 'yjs';
-import { useCollaborationContext } from '@lexical/react/LexicalCollaborationPlugin';
+import { useCollaborationContext } from '@lexical/react/LexicalCollaborationContext';
 import { WebsocketProvider } from 'y-websocket';
 
 export const INSERT_INLINE_COMMAND: LexicalCommand<void> = createCommand();

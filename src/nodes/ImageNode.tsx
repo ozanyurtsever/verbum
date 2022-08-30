@@ -17,10 +17,8 @@ import type {
 
 import './ImageNode.css';
 
-import {
-  CollaborationPlugin,
-  useCollaborationContext,
-} from '@lexical/react/LexicalCollaborationPlugin';
+import { CollaborationPlugin } from '@lexical/react/LexicalCollaborationPlugin';
+import { useCollaborationContext } from '@lexical/react/LexicalCollaborationContext';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { HashtagPlugin } from '@lexical/react/LexicalHashtagPlugin';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
