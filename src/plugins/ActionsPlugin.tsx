@@ -42,7 +42,7 @@ export default function ActionsPlugin({
   isRichText: boolean;
 }): JSX.Element {
   const [editor] = useLexicalComposerContext();
-  const [isReadOnly, setIsReadyOnly] = useState(() => editor.isReadOnly());
+  const [isEditable, setIsEditable] = useState(() => editor.isEditable());
   const [isSpeechToText, setIsSpeechToText] = useState(false);
   const [connected, setConnected] = useState(false);
   const [isEditorEmpty, setIsEditorEmpty] = useState(true);
@@ -52,8 +52,8 @@ export default function ActionsPlugin({
 
   useEffect(() => {
     return mergeRegister(
-      editor.registerReadOnlyListener((readOnly) => {
-        setIsReadyOnly(readOnly);
+      editor.registerEditableListener((editable) => {
+        setIsEditable(editable);
       }),
       editor.registerCommand<boolean>(
         CONNECTED_COMMAND,
@@ -165,15 +165,15 @@ export default function ActionsPlugin({
         <i className="clear" />
       </button>
       <button
-        className={`action-button ${isReadOnly ? 'unlock' : 'lock'}`}
+        className={`action-button ${isEditable ? 'lock' : 'unlock'}`}
         onClick={() => {
-          editor.setReadOnly(!editor.isReadOnly());
+          editor.setEditable(!editor.isEditable());
         }}
         title="Read-Only Mode"
-        aria-label={`${isReadOnly ? 'Unlock' : 'Lock'} read-only mode`}
+        aria-label={`${isEditable ? 'Lock' : 'Unlock'} read-only mode`}
         type="button"
       >
-        <i className={isReadOnly ? 'unlock' : 'lock'} />
+        <i className={isEditable ? 'lock' : 'unlock'} />
       </button>
       <button
         className="action-button"
