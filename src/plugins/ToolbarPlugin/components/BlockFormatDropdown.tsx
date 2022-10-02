@@ -6,7 +6,7 @@ import {
   REMOVE_LIST_COMMAND,
 } from '@lexical/list';
 import { $createHeadingNode, $createQuoteNode } from '@lexical/rich-text';
-import { $wrapLeafNodesInElements } from '@lexical/selection';
+import { $wrapNodes } from '@lexical/selection';
 import {
   $createParagraphNode,
   $getSelection,
@@ -41,7 +41,7 @@ const BlockFormatDropdown = () => {
         const selection = $getSelection();
 
         if ($isRangeSelection(selection)) {
-          $wrapLeafNodesInElements(selection, () => $createParagraphNode());
+          $wrapNodes(selection, () => $createParagraphNode());
         }
       });
     }
@@ -53,7 +53,7 @@ const BlockFormatDropdown = () => {
         const selection = $getSelection();
 
         if ($isRangeSelection(selection)) {
-          $wrapLeafNodesInElements(selection, () =>
+          $wrapNodes(selection, () =>
             $createHeadingNode(headingSize)
           );
         }
@@ -91,7 +91,7 @@ const BlockFormatDropdown = () => {
         const selection = $getSelection();
 
         if ($isRangeSelection(selection)) {
-          $wrapLeafNodesInElements(selection, () => $createQuoteNode());
+          $wrapNodes(selection, () => $createQuoteNode());
         }
       });
     }
@@ -104,7 +104,7 @@ const BlockFormatDropdown = () => {
 
         if ($isRangeSelection(selection)) {
           if (selection.isCollapsed()) {
-            $wrapLeafNodesInElements(selection, () => $createCodeNode());
+            $wrapNodes(selection, () => $createCodeNode());
           } else {
             const textContent = selection.getTextContent();
             const codeNode = $createCodeNode();

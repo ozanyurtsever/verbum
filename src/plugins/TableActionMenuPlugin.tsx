@@ -26,7 +26,7 @@ import {
 } from '@lexical/table';
 import {
   $getSelection,
-  $isGridSelection,
+  DEPRECATED_$isGridSelection,
   $isRangeSelection,
   $setSelection,
 } from 'lexical';
@@ -72,7 +72,7 @@ function TableActionMenu({
     editor.getEditorState().read(() => {
       const selection = $getSelection();
 
-      if ($isGridSelection(selection)) {
+      if (DEPRECATED_$isGridSelection(selection)) {
         const selectionShape = selection.getShape();
 
         updateSelectionCounts({
@@ -153,7 +153,7 @@ function TableActionMenu({
 
         let tableRowIndex;
 
-        if ($isGridSelection(selection)) {
+        if (DEPRECATED_$isGridSelection(selection)) {
           const selectionShape = selection.getShape();
           tableRowIndex = shouldInsertAfter
             ? selectionShape.toY
@@ -189,7 +189,7 @@ function TableActionMenu({
 
         let tableColumnIndex;
 
-        if ($isGridSelection(selection)) {
+        if (DEPRECATED_$isGridSelection(selection)) {
           const selectionShape = selection.getShape();
           tableColumnIndex = shouldInsertAfter
             ? selectionShape.toX
@@ -199,11 +199,14 @@ function TableActionMenu({
             $getTableColumnIndexFromTableCellNode(tableCellNode);
         }
 
+        const grid = $getElementGridForTableNode(editor, tableNode);
+
         $insertTableColumn(
           tableNode,
           tableColumnIndex,
           shouldInsertAfter,
-          selectionCounts.columns
+          selectionCounts.columns,
+          grid
         );
 
         clearTableSelection();
