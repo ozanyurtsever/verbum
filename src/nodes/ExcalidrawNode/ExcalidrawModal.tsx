@@ -17,6 +17,7 @@ import { createPortal } from 'react-dom';
 import Button from '../../ui/Button';
 import Modal from '../../ui/Modal';
 import { ExcalidrawElement } from '@excalidraw/excalidraw/types/element/types';
+import { useTranslation } from 'react-i18next';
 
 export type ExcalidrawElementFragment = {
   isDeleted?: boolean;
@@ -64,6 +65,7 @@ export default function ExcalidrawModal({
   const [discardModalOpen, setDiscardModalOpen] = useState(false);
   const [elements, setElements] =
     useState<ReadonlyArray<ExcalidrawElementFragment>>(initialElements);
+  const { t } = useTranslation(['action']);
 
   useEffect(() => {
     if (excaliDrawModelRef.current !== null) {
@@ -120,13 +122,13 @@ export default function ExcalidrawModal({
   function ShowDiscardDialog(): JSX.Element {
     return (
       <Modal
-        title="Discard"
+        title={t('action:Discard')}
         onClose={() => {
           setDiscardModalOpen(false);
         }}
         closeOnClickOutside={true}
       >
-        Are you sure you want to discard the changes?
+        {t('action:Confirm_Discard')}
         <div className="ExcalidrawModal__discardModal">
           <Button
             onClick={() => {
@@ -134,14 +136,14 @@ export default function ExcalidrawModal({
               onHide();
             }}
           >
-            Discard
+            {t('action:Discard')}
           </Button>{' '}
           <Button
             onClick={() => {
               setDiscardModalOpen(false);
             }}
           >
-            Cancel
+            {t('action:Cancel')}
           </Button>
         </div>
       </Modal>
@@ -183,10 +185,10 @@ export default function ExcalidrawModal({
           />
           <div className="ExcalidrawModal__actions">
             <button className="action-button" onClick={discard}>
-              Discard
+              {t('action:Discard')}
             </button>
             <button className="action-button" onClick={save}>
-              Save
+              {t('action:Save')}
             </button>
           </div>
         </div>

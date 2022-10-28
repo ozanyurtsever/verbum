@@ -1,0 +1,16 @@
+{
+  "column_header": "en-tête de colonne",
+  "row_header": "en-tête de ligne",
+  "Insert": "Insérer",
+  "above": "au-dessus",
+  "below": "en dessous",
+  "left": "à gauche",
+  "right": "à droite",
+  "Delete_column": "Supprimer la colonne",
+  "Delete_row": "Supprimer une ligne",
+  "Delete_table": "Supprimer la table",
+  "column": "colonne",
+  "row": "ligne",
+  "columns": "colonnes",
+  "rows": "lignes"
+}

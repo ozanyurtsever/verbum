@@ -14,6 +14,7 @@ import * as React from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { IS_APPLE } from '../shared/src/environment';
 import useLayoutEffect from '../shared/src/useLayoutEffect';
+import { useTranslation } from 'react-i18next';
 
 const copy = (text: string | null) => {
   const textArea = document.createElement('textarea');
@@ -69,13 +70,13 @@ const formatStep = (step) => {
       }
       case 'snapshot': {
         return `      await assertHTMLSnapshot(page);
-      await assertSelection(page, {
-        anchorPath: [${value.anchorPath.toString()}],
-        anchorOffset: ${value.anchorOffset},
-        focusPath: [${value.focusPath.toString()}],
-        focusOffset: ${value.focusOffset},
-      });
-`;
+       await assertSelection(page, {
+         anchorPath: [${value.anchorPath.toString()}],
+         anchorOffset: ${value.anchorOffset},
+         focusPath: [${value.focusPath.toString()}],
+         focusOffset: ${value.focusOffset},
+       });
+ `;
       }
       default:
         return ``;
@@ -89,8 +90,8 @@ const formatStep = (step) => {
       return [formattedStep, formattedStep].join(`\n`);
     default:
       return `      await repeat(${step.count}, async () => {
-  ${formattedStep}
-      );`;
+   ${formattedStep}
+       );`;
   }
 };
 
@@ -152,6 +153,7 @@ function useTestRecorder(editor: LexicalEditor): [JSX.Element, JSX.Element] {
   const previousSelectionRef = useRef(null);
   const skipNextSelectionChangeRef = useRef(false);
   const preRef = useRef(null);
+  const { t } = useTranslation(['toolbar']);
 
   const getCurrentEditor = useCallback(() => {
     return editor;
@@ -173,32 +175,32 @@ function useTestRecorder(editor: LexicalEditor): [JSX.Element, JSX.Element] {
     }
 
     return `
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-import {
-  initializeE2E,
-  assertHTMLSnapshot,
-  assertSelection,
-  repeat,
-} from '../utils';
-import {selectAll} from '../keyboardShortcuts';
-
-describe('Test case', () => {
-  initializeE2E((e2e) => {
-    it('Should pass this test', async () => {
-      const {page} = e2e;
-
-      await page.focus('div[contenteditable="true"]');
-${steps.map(formatStep).join(`\n`)}
-    });
-});
-    `;
+ /**
+  * Copyright (c) Meta Platforms, Inc. and affiliates.
+  *
+  * This source code is licensed under the MIT license found in the
+  * LICENSE file in the root directory of this source tree.
+  *
+  */
+ 
+ import {
+   initializeE2E,
+   assertHTMLSnapshot,
+   assertSelection,
+   repeat,
+ } from '../utils';
+ import {selectAll} from '../keyboardShortcuts';
+ 
+ describe('Test case', () => {
+   initializeE2E((e2e) => {
+     it('Should pass this test', async () => {
+       const {page} = e2e;
+ 
+       await page.focus('div[contenteditable="true"]');
+ ${steps.map(formatStep).join(`\n`)}
+     });
+ });
+     `;
   }, [editor, steps]);
 
   // just a wrapper around inserting new actions so that we can
@@ -402,7 +404,7 @@ ${steps.map(formatStep).join(`\n`)}
       id="test-recorder-button"
       className={`editor-dev-button ${isRecording ? 'active' : ''}`}
       onClick={() => toggleEditorSelection(getCurrentEditor())}
-      title={isRecording ? 'Disable test recorder' : 'Enable test recorder'}
+      title={isRecording ? t('toolbar:testRecorderPlugin.Disable_test_recorder') : t('toolbar:testRecorderPlugin.Enable_test_recorder')}
       type="button"
     />
   );
@@ -412,21 +414,21 @@ ${steps.map(formatStep).join(`\n`)}
         <button
           className="test-recorder-button"
           id="test-recorder-button-snapshot"
-          title="Insert snapshot"
+          title={t('toolbar:testRecorderPlugin.Insert_snapshot')}
           onClick={onSnapshotClick}
           type="button"
         />
         <button
           className="test-recorder-button"
           id="test-recorder-button-copy"
-          title="Copy to clipboard"
+          title={t('toolbar:testRecorderPlugin.Copy_to_clipboard')}
           onClick={onCopyClick}
           type="button"
         />
         <button
           className="test-recorder-button"
           id="test-recorder-button-download"
-          title="Download as a file"
+          title={t('toolbar:testRecorderPlugin.Download_as_a_file')}
           onClick={onDownloadClick}
           type="button"
         />

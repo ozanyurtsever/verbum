@@ -28,6 +28,8 @@ import * as React from 'react';
 import { createPortal } from 'react-dom';
 
 import { INSERT_INLINE_COMMAND } from './CommentPlugin';
+import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 
 function setPopupPosition(
   editor: HTMLElement,
@@ -62,6 +64,7 @@ function FloatingCharacterStylesEditor({
   isStrikethrough,
   isSubscript,
   isSuperscript,
+  t
 }: {
   editor: LexicalEditor;
   isBold: boolean;
@@ -72,6 +75,7 @@ function FloatingCharacterStylesEditor({
   isSubscript: boolean;
   isSuperscript: boolean;
   isUnderline: boolean;
+  t: TFunction;
 }): JSX.Element {
   const popupCharStylesEditorRef = useRef<HTMLDivElement | null>(null);
   const mouseDownRef = useRef(false);
@@ -168,7 +172,7 @@ function FloatingCharacterStylesEditor({
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold');
         }}
         className={'popup-item spaced ' + (isBold ? 'active' : '')}
-        aria-label="Format text as bold"
+        aria-label={t('toolbar:characterStylesPopupPlugin.Format_text_as_bold')}
         type="button"
       >
         <i className="format bold" />
@@ -178,7 +182,7 @@ function FloatingCharacterStylesEditor({
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic');
         }}
         className={'popup-item spaced ' + (isItalic ? 'active' : '')}
-        aria-label="Format text as italics"
+        aria-label={t('toolbar:characterStylesPopupPlugin.Format_text_as_italics')}
         type="button"
       >
         <i className="format italic" />
@@ -188,7 +192,7 @@ function FloatingCharacterStylesEditor({
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline');
         }}
         className={'popup-item spaced ' + (isUnderline ? 'active' : '')}
-        aria-label="Format text to underlined"
+        aria-label={t('toolbar:characterStylesPopupPlugin.Format_text_to_underlined')}
         type="button"
       >
         <i className="format underline" />
@@ -198,7 +202,7 @@ function FloatingCharacterStylesEditor({
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'strikethrough');
         }}
         className={'popup-item spaced ' + (isStrikethrough ? 'active' : '')}
-        aria-label="Format text with a strikethrough"
+        aria-label={t('toolbar:characterStylesPopupPlugin.Format_text_with_a_strikethrough')}
         type="button"
       >
         <i className="format strikethrough" />
@@ -209,7 +213,7 @@ function FloatingCharacterStylesEditor({
         }}
         className={'popup-item spaced ' + (isSubscript ? 'active' : '')}
         title="Subscript"
-        aria-label="Format Subscript"
+        aria-label={t('toolbar:characterStylesPopupPlugin.Format_Subscript')}
         type="button"
       >
         <i className="format subscript" />
@@ -220,7 +224,7 @@ function FloatingCharacterStylesEditor({
         }}
         className={'popup-item spaced ' + (isSuperscript ? 'active' : '')}
         title="Superscript"
-        aria-label="Format Superscript"
+        aria-label={t('toolbar:characterStylesPopupPlugin.Format_Superscript')}
         type="button"
       >
         <i className="format superscript" />
@@ -230,7 +234,7 @@ function FloatingCharacterStylesEditor({
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'code');
         }}
         className={'popup-item spaced ' + (isCode ? 'active' : '')}
-        aria-label="Insert code block"
+        aria-label={t('toolbar:characterStylesPopupPlugin.Insert_code_block')}
         type="button"
       >
         <i className="format code" />
@@ -238,7 +242,7 @@ function FloatingCharacterStylesEditor({
       <button
         onClick={insertLink}
         className={'popup-item spaced ' + (isLink ? 'active' : '')}
-        aria-label="Insert link"
+        aria-label={t('toolbar:characterStylesPopupPlugin.Insert_link')}
         type="button"
       >
         <i className="format link" />
@@ -246,7 +250,7 @@ function FloatingCharacterStylesEditor({
       <button
         onClick={insertComment}
         className={'popup-item spaced ' + (isLink ? 'active' : '')}
-        aria-label="Insert link"
+        aria-label={t('toolbar:characterStylesPopupPlugin.Add_comment')}
         type="button"
       >
         <i className="format add-comment" />
@@ -281,6 +285,7 @@ function useCharacterStylesPopup(editor: LexicalEditor): JSX.Element | null {
   const [isSubscript, setIsSubscript] = useState(false);
   const [isSuperscript, setIsSuperscript] = useState(false);
   const [isCode, setIsCode] = useState(false);
+  const { t } = useTranslation(['toolbar']);
 
   const updatePopup = useCallback(() => {
     editor.getEditorState().read(() => {
@@ -360,6 +365,7 @@ function useCharacterStylesPopup(editor: LexicalEditor): JSX.Element | null {
       isSuperscript={isSuperscript}
       isUnderline={isUnderline}
       isCode={isCode}
+      t={t}
     />,
     document.body
   );

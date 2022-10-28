@@ -1,0 +1,17 @@
+{
+  "Description" : "Options de formatage pour les styles de texte supplémentaires",
+  "Options" : {
+    "Strikethrough" : {
+      "Label" : "Barré",
+      "Description" : "Formater le texte avec une barre oblique"
+    },
+    "Subscript" : {
+      "Label" : "Indice",
+      "Description" : "Formater le texte avec un indice"
+    },
+    "Superscript" : {
+      "Label" : "Exposant",
+      "Description" : "Formater le texte avec un exposant"
+    }
+  }
+}

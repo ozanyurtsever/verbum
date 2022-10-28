@@ -1,0 +1,12 @@
+{
+  "Description": "Options de mise en forme pour le style de texte",
+  "Normal": "Normal",
+  "Heading_1": "Titre 1",
+  "Heading_2": "Titre 2",
+  "Heading_3": "Titre 3",
+  "BulletList": "Liste à puces",
+  "NumberedList": "Liste numérotée",
+  "CheckList": "Liste de contrôle",
+  "Quote": "Citation",
+  "CodeBlock": "Bloc de code"
+}

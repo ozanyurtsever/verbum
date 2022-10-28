@@ -17,6 +17,7 @@ import React, { useContext } from 'react';
 import EditorContext from '../../../context/EditorContext';
 import DropDown from '../../../ui/DropDown';
 import ToolbarContext from '../../../context/ToolbarContext';
+import { useTranslation } from 'react-i18next';
 
 const blockTypeToBlockName = {
   bullet: 'Bulleted List',
@@ -35,6 +36,7 @@ const blockTypeToBlockName = {
 const BlockFormatDropdown = () => {
   const { initialEditor } = useContext(EditorContext);
   const { blockType } = useContext(ToolbarContext);
+  const { t } = useTranslation('toolbar');
   const formatParagraph = () => {
     if (blockType !== 'paragraph') {
       initialEditor.update(() => {
@@ -122,51 +124,69 @@ const BlockFormatDropdown = () => {
       buttonClassName="toolbar-item block-controls"
       buttonIconClassName={'icon block-type ' + blockType}
       buttonLabel={blockTypeToBlockName[blockType]}
-      buttonAriaLabel="Formatting options for text style"
+      buttonAriaLabel={t('toolbar:blockFormatDropdown.Description')}
     >
       <button className="item" onClick={formatParagraph} type="button">
         <span className="icon paragraph" />
-        <span className="text">Normal</span>
+        <span className="text">
+          {t('toolbar:blockFormatDropdown.Normal')}
+        </span>
         {blockType === 'paragraph' && <span className="active" />}
       </button>
       <button className="item" onClick={() => formatHeading('h1')} type="button">
         <span className="icon h1" />
-        <span className="text">Heading 1</span>
+        <span className="text">
+          {t('toolbar:blockFormatDropdown.Heading_1')}
+        </span>
         {blockType === 'h1' && <span className="active" />}
       </button>
       <button className="item" onClick={() => formatHeading('h2')} type="button">
         <span className="icon h2" />
-        <span className="text">Heading 2</span>
+        <span className="text">
+          {t('toolbar:blockFormatDropdown.Heading_2')}
+        </span>
         {blockType === 'h2' && <span className="active" />}
       </button>
       <button className="item" onClick={() => formatHeading('h3')} type="button">
         <span className="icon h3" />
-        <span className="text">Heading 3</span>
+        <span className="text">
+          {t('toolbar:blockFormatDropdown.Heading_3')}
+        </span>
         {blockType === 'h3' && <span className="active" />}
       </button>
       <button className="item" onClick={formatBulletList} type="button">
         <span className="icon bullet-list" />
-        <span className="text">Bullet List</span>
+        <span className="text">
+          {t('toolbar:blockFormatDropdown.BulletList')}
+        </span>
         {blockType === 'bullet' && <span className="active" />}
       </button>
       <button className="item" onClick={formatNumberedList} type="button">
         <span className="icon numbered-list" />
-        <span className="text">Numbered List</span>
+        <span className="text">
+          {t('toolbar:blockFormatDropdown.NumberedList')}
+        </span>
         {blockType === 'number' && <span className="active" />}
       </button>
       <button className="item" onClick={formatCheckList} type="button">
         <span className="icon check-list" />
-        <span className="text">Check List</span>
+        <span className="text">
+          {t('toolbar:blockFormatDropdown.CheckList')}
+        </span>
         {blockType === 'check' && <span className="active" />}
       </button>
       <button className="item" onClick={formatQuote} type="button">
         <span className="icon quote" />
-        <span className="text">Quote</span>
+        <span className="text">
+          {t('toolbar:blockFormatDropdown.Quote')}
+        </span>
         {blockType === 'quote' && <span className="active" />}
       </button>
       <button className="item" onClick={formatCode} type="button">
         <span className="icon code" />
-        <span className="text">Code Block</span>
+        <span className="text">
+          {t('toolbar:blockFormatDropdown.CodeBlock')}
+        </span>
         {blockType === 'code' && <span className="active" />}
       </button>
     </DropDown>

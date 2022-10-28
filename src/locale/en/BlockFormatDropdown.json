@@ -1,0 +1,12 @@
+{
+  "Description": "Formatting options for text style",
+  "Normal": "Normal",
+  "Heading_1": "Heading 1",
+  "Heading_2": "Heading 2",
+  "Heading_3": "Heading 3",
+  "BulletList": "Bullet List",
+  "NumberedList": "Numbered List",
+  "CheckList": "Check List",
+  "Quote": "Quote",
+  "CodeBlock": "Code Block"
+}

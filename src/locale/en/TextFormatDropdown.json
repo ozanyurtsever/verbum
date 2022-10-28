@@ -1,0 +1,17 @@
+{
+  "Description": "Formatting options for additional text styles",
+  "Options": {
+    "Strikethrough": {
+      "Label": "Strikethrough",
+      "Description": "Format text with a strikethrough"
+    },
+    "Subscript": {
+      "Label": "Subscript",
+      "Description": "Format text with a subscript"
+    },
+    "Superscript": {
+      "Label": "Superscript",
+      "Description": "Format text with a superscript"
+    }
+  }
+}

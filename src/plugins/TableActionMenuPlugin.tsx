@@ -24,6 +24,7 @@ import {
   TableCellHeaderStates,
   TableCellNode,
 } from '@lexical/table';
+import { TFunction } from 'i18next';
 import {
   $getSelection,
   DEPRECATED_$isGridSelection,
@@ -33,12 +34,14 @@ import {
 import * as React from 'react';
 import { ReactPortal, useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useTranslation } from 'react-i18next';
 
 type TableCellActionMenuProps = Readonly<{
   contextRef: { current: null | HTMLElement };
   onClose: () => void;
   setIsMenuOpen: (isOpen: boolean) => void;
   tableCellNode: TableCellNode;
+  t: TFunction;
 }>;
 
 function TableActionMenu({
@@ -46,6 +49,7 @@ function TableActionMenu({
   tableCellNode: _tableCellNode,
   setIsMenuOpen,
   contextRef,
+  t
 }: TableCellActionMenuProps) {
   const [editor] = useLexicalComposerContext();
   const dropDownRef = useRef<HTMLDivElement | null>(null);
@@ -92,13 +96,11 @@ function TableActionMenu({
 
       dropDownElement.style.opacity = '1';
 
-      dropDownElement.style.left = `${
-        menuButtonRect.left + menuButtonRect.width + window.pageXOffset + 5
-      }px`;
+      dropDownElement.style.left = `${menuButtonRect.left + menuButtonRect.width + window.pageXOffset + 5
+        }px`;
 
-      dropDownElement.style.top = `${
-        menuButtonRect.top + window.pageYOffset
-      }px`;
+      dropDownElement.style.top = `${menuButtonRect.top + window.pageYOffset
+        }px`;
     }
   }, [contextRef, dropDownRef]);
 
@@ -337,16 +339,18 @@ function TableActionMenu({
     >
       <button className="item" onClick={() => insertTableRowAtSelection(false)} type="button">
         <span className="text">
-          Insert{' '}
-          {selectionCounts.rows === 1 ? 'row' : `${selectionCounts.rows} rows`}{' '}
-          above
+          {t('toolbar:tableActionMenuPlugin.Insert')}
+          {' '}
+          {selectionCounts.rows === 1 ? t('toolbar:tableActionMenuPlugin.row') : `${selectionCounts.rows} ${t('toolbar:tableActionMenuPlugin.rows')}`}{' '}
+          {t('toolbar:tableActionMenuPlugin.above')}
         </span>
       </button>
       <button className="item" onClick={() => insertTableRowAtSelection(true)} type="button">
         <span className="text">
-          Insert{' '}
-          {selectionCounts.rows === 1 ? 'row' : `${selectionCounts.rows} rows`}{' '}
-          below
+          {t('toolbar:tableActionMenuPlugin.Insert')}
+          {' '}
+          {selectionCounts.rows === 1 ? t('toolbar:tableActionMenuPlugin.row') : `${selectionCounts.rows} ${t('toolbar:tableActionMenuPlugin.rows')}`}{' '}
+          {t('toolbar:tableActionMenuPlugin.below')}
         </span>
       </button>
       <hr />
@@ -356,11 +360,12 @@ function TableActionMenu({
         type="button"
       >
         <span className="text">
-          Insert{' '}
+          {t('toolbar:tableActionMenuPlugin.Insert')}
+          {' '}
           {selectionCounts.columns === 1
-            ? 'column'
-            : `${selectionCounts.columns} columns`}{' '}
-          left
+            ? t('toolbar:tableActionMenuPlugin.column')
+            : `${selectionCounts.columns} ${t('toolbar:tableActionMenuPlugin.columns')}`}{' '}
+          {t('toolbar:tableActionMenuPlugin.left')}
         </span>
       </button>
       <button
@@ -369,40 +374,49 @@ function TableActionMenu({
         type="button"
       >
         <span className="text">
-          Insert{' '}
+          {t('toolbar:tableActionMenuPlugin.Insert')}
+          {' '}
           {selectionCounts.columns === 1
-            ? 'column'
-            : `${selectionCounts.columns} columns`}{' '}
-          right
+            ? t('toolbar:tableActionMenuPlugin.column')
+            : `${selectionCounts.columns} ${t('toolbar:tableActionMenuPlugin.columns')}`}{' '}
+          {t('toolbar:tableActionMenuPlugin.right')}
         </span>
       </button>
       <hr />
       <button className="item" onClick={() => deleteTableColumnAtSelection()} type="button">
-        <span className="text">Delete column</span>
+        <span className="text">
+          {t('toolbar:tableActionMenuPlugin.Delete_column')}
+
+        </span>
       </button>
       <button className="item" onClick={() => deleteTableRowAtSelection()} type="button">
-        <span className="text">Delete row</span>
+        <span className="text">
+          {t('toolbar:tableActionMenuPlugin.Delete_row')}
+
+        </span>
       </button>
       <button className="item" onClick={() => deleteTableAtSelection()} type="button">
-        <span className="text">Delete table</span>
+        <span className="text">
+          {t('toolbar:tableActionMenuPlugin.Delete_table')}
+        </span>
       </button>
       <hr />
       <button className="item" onClick={() => toggleTableRowIsHeader()} type="button">
         <span className="text">
           {(tableCellNode.__headerState & TableCellHeaderStates.ROW) ===
-          TableCellHeaderStates.ROW
-            ? 'Remove'
-            : 'Add'}{' '}
-          row header
+            TableCellHeaderStates.ROW
+            ? t('action:Remove')
+            : t('action:Add')}{' '}
+          {t('toolbar:tableActionMenuPlugin.row_header')}
         </span>
       </button>
       <button className="item" onClick={() => toggleTableColumnIsHeader()} type="button">
         <span className="text">
           {(tableCellNode.__headerState & TableCellHeaderStates.COLUMN) ===
-          TableCellHeaderStates.COLUMN
-            ? 'Remove'
-            : 'Add'}{' '}
-          column header
+            TableCellHeaderStates.COLUMN
+            ? t('action:Remove')
+            : t('action:Add ')}{' '}
+          {t('toolbar:tableActionMenuPlugin.column_header')}
         </span>
       </button>
     </div>,
@@ -420,6 +434,8 @@ function TableCellActionMenuContainer(): JSX.Element {
   const [tableCellNode, setTableMenuCellNode] = useState<TableCellNode | null>(
     null
   );
+  const { t } = useTranslation(['toolbar', 'action']);
+
 
   const moveMenu = useCallback(() => {
     const menu = menuButtonRef.current;
@@ -484,17 +500,15 @@ function TableCellActionMenuContainer(): JSX.Element {
 
         menuButtonDOM.style.opacity = '1';
 
-        menuButtonDOM.style.left = `${
-          tableCellRect.left +
+        menuButtonDOM.style.left = `${tableCellRect.left +
           window.pageXOffset -
           menuRect.width +
           tableCellRect.width -
           10
-        }px`;
+          }px`;
 
-        menuButtonDOM.style.top = `${
-          tableCellRect.top + window.pageYOffset + 5
-        }px`;
+        menuButtonDOM.style.top = `${tableCellRect.top + window.pageYOffset + 5
+          }px`;
       } else {
         menuButtonDOM.style.opacity = '0';
       }
@@ -532,6 +546,7 @@ function TableCellActionMenuContainer(): JSX.Element {
               setIsMenuOpen={setIsMenuOpen}
               onClose={() => setIsMenuOpen(false)}
               tableCellNode={tableCellNode}
+              t={t}
             />
           )}
         </>

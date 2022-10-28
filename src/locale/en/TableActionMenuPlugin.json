@@ -1,0 +1,16 @@
+{
+  "column_header": "column header",
+  "row_header": "row header",
+  "Insert": "Insert",
+  "above": "above",
+  "below": "below",
+  "left": "left",
+  "right": "right",
+  "Delete_column": "Delete column",
+  "Delete_row": "Delete row",
+  "Delete_table": "Delete table",
+  "column": "column",
+  "row": "row",
+  "columns": "columns",
+  "rows": "rows"
+}

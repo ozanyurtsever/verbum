@@ -33,6 +33,7 @@ import { createPortal } from 'react-dom';
 import useLayoutEffect from '../shared/src/useLayoutEffect';
 
 import { $createMentionNode, MentionNode } from '../nodes/MentionNode';
+import { useTranslation } from 'react-i18next';
 
 type MentionMatch = {
   leadOffset: number;
@@ -80,16 +81,16 @@ const LENGTH_LIMIT = 75;
 
 const AtSignMentionsRegex = new RegExp(
   '(^|\\s|\\()(' +
-    '[' +
-    TRIGGERS +
-    ']' +
-    '((?:' +
-    VALID_CHARS +
-    VALID_JOINS +
-    '){0,' +
-    LENGTH_LIMIT +
-    '})' +
-    ')$'
+  '[' +
+  TRIGGERS +
+  ']' +
+  '((?:' +
+  VALID_CHARS +
+  VALID_JOINS +
+  '){0,' +
+  LENGTH_LIMIT +
+  '})' +
+  ')$'
 );
 
 // 50 is the longest alias length limit.
@@ -98,15 +99,15 @@ const ALIAS_LENGTH_LIMIT = 50;
 // Regex used to match alias.
 const AtSignMentionsRegexAliasRegex = new RegExp(
   '(^|\\s|\\()(' +
-    '[' +
-    TRIGGERS +
-    ']' +
-    '((?:' +
-    VALID_CHARS +
-    '){0,' +
-    ALIAS_LENGTH_LIMIT +
-    '})' +
-    ')$'
+  '[' +
+  TRIGGERS +
+  ']' +
+  '((?:' +
+  VALID_CHARS +
+  '){0,' +
+  ALIAS_LENGTH_LIMIT +
+  '})' +
+  ')$'
 );
 
 // At most, 5 suggestions are shown in the popup.
@@ -611,6 +612,7 @@ function MentionsTypeahead({
   const match = resolution.match;
   const results = useMentionLookupService(match.matchingString);
   const [selectedIndex, setSelectedIndex] = useState<null | number>(null);
+  const { t } = useTranslation(['toolbar']);
 
   useEffect(() => {
     const div = divRef.current;
@@ -766,7 +768,7 @@ function MentionsTypeahead({
 
   return (
     <div
-      aria-label="Suggested mentions"
+      aria-label={t('toolbar:mentionsPlugin.Suggested_mentions')}
       id="mentions-typeahead"
       ref={divRef}
       role="listbox"
@@ -1043,13 +1045,13 @@ function useMentions(editor: LexicalEditor): JSX.Element {
   return resolution === null || editor === null
     ? null
     : createPortal(
-        <MentionsTypeahead
-          close={closeTypeahead}
-          resolution={resolution}
-          editor={editor}
-        />,
-        document.body
-      );
+      <MentionsTypeahead
+        close={closeTypeahead}
+        resolution={resolution}
+        editor={editor}
+      />,
+      document.body
+    );
 }
 
 export default function MentionsPlugin(): JSX.Element {

@@ -35,6 +35,8 @@ import {
   SPEECH_TO_TEXT_COMMAND,
   SUPPORT_SPEECH_RECOGNITION,
 } from './SpeechToTextPlugin';
+import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 
 export default function ActionsPlugin({
   isRichText,
@@ -49,6 +51,7 @@ export default function ActionsPlugin({
   const [modal, showModal] = useModal();
   const { yjsDocMap } = useCollaborationContext();
   const isCollab = yjsDocMap.get('main') !== undefined;
+  const { t } = useTranslation(['action']);
 
   useEffect(() => {
     return mergeRegister(
@@ -120,8 +123,8 @@ export default function ActionsPlugin({
             'action-button action-button-mic ' +
             (isSpeechToText ? 'active' : '')
           }
-          title="Speech To Text"
-          aria-label={`${isSpeechToText ? 'Enable' : 'Disable'} speech to text`}
+          title={t('action:Speech_To_Text')}
+          aria-label={`${isSpeechToText ? t('action:Enable') : t('action:Disable')} ${t('action:speech_To_Text')}`}
           type="button"
         >
           <i className="mic" />
@@ -130,8 +133,8 @@ export default function ActionsPlugin({
       <button
         className="action-button import"
         onClick={() => importFile(editor)}
-        title="Import"
-        aria-label="Import editor state from JSON"
+        title={t('action:Import')}
+        aria-label={t('action:Import_Description')}
         type="button"
       >
         <i className="import" />
@@ -144,8 +147,8 @@ export default function ActionsPlugin({
             source: 'Playground',
           })
         }
-        title="Export"
-        aria-label="Export editor state to JSON"
+        title={t('action:Export')}
+        aria-label={t('action:Export_Description')}
         type="button"
       >
         <i className="export" />
@@ -154,68 +157,72 @@ export default function ActionsPlugin({
         className="action-button clear"
         disabled={isEditorEmpty}
         onClick={() => {
-          showModal('Clear editor', (onClose) => (
-            <ShowClearDialog editor={editor} onClose={onClose} />
-          ));
+          showModal(
+            t('action:Clear_Editor')
+            , (onClose) => (
+              <ShowClearDialog editor={editor} onClose={onClose} t={t} />
+            ));
         }}
-        title="Clear"
-        aria-label="Clear editor contents"
+        title={t('action:Clear')}
+        aria-label={t('action:Clear_Description')}
         type="button"
       >
         <i className="clear" />
       </button>
       <button
-        className={`action-button ${isEditable ? 'lock' : 'unlock'}`}
+        className={`action-button ${isEditable ? 'unlock' : 'lock'}`}
         onClick={() => {
           editor.setEditable(!editor.isEditable());
         }}
-        title="Read-Only Mode"
-        aria-label={`${isEditable ? 'Lock' : 'Unlock'} read-only mode`}
+        title={t('action:Read-Only_Mode')}
+        aria-label={`${isEditable ? t('action:Unlock') : t('action:Lock')} ${t('action:Read-Only_Mode')}`}
         type="button"
       >
-        <i className={isEditable ? 'lock' : 'unlock'} />
+        <i className={isEditable ? 'unlock' : 'lock'} />
       </button>
       <button
         className="action-button"
         onClick={handleMarkdownToggle}
-        title="Convert From Markdown"
-        aria-label="Convert from markdown"
+        title={t('action:Convert_From_Markdown')}
+        aria-label={t('action:Convert_From_Markdown_Description')}
         type="button"
       >
         <i className="markdown" />
       </button>
-      {isCollab && (
-        <button
-          className="action-button connect"
-          onClick={() => {
-            editor.dispatchCommand(TOGGLE_CONNECT_COMMAND, !connected);
-          }}
-          title={`${
-            connected ? 'Disconnect' : 'Connect'
-          } Collaborative Editing`}
-          aria-label={`${
-            connected ? 'Disconnect from' : 'Connect to'
-          } a collaborative editing server`}
-          type="button"
-        >
-          <i className={connected ? 'disconnect' : 'connect'} />
-        </button>
-      )}
+      {
+        isCollab && (
+          <button
+            className="action-button connect"
+            onClick={() => {
+              editor.dispatchCommand(TOGGLE_CONNECT_COMMAND, !connected);
+            }}
+            title={`${connected ? t('action:Disconnect') : t('action:Connect')
+              } ${t('action:Collaborative')}`}
+            aria-label={`${connected ? t('action:Disconnect_From') : t('action:Connect_To')
+              } ${t('action:Server')}`}
+            type="button"
+          >
+            <i className={connected ? t('action:disconnect') : t('action:connect')} />
+          </button>
+        )
+      }
       {modal}
-    </div>
+    </div >
   );
 }
 
 function ShowClearDialog({
   editor,
   onClose,
+  t
 }: {
   editor: LexicalEditor;
   onClose: () => void;
+  t: TFunction;
 }): JSX.Element {
   return (
     <>
-      Are you sure you want to clear the editor?
+      {t('action:Confirm_Clear')}
       <div className="Modal__content">
         <Button
           onClick={() => {
@@ -224,7 +231,7 @@ function ShowClearDialog({
             onClose();
           }}
         >
-          Clear
+          {t('action:Clear')}
         </Button>{' '}
         <Button
           onClick={() => {
@@ -232,7 +239,7 @@ function ShowClearDialog({
             onClose();
           }}
         >
-          Cancel
+          {t('action:Cancel')}
         </Button>
       </div>
     </>
