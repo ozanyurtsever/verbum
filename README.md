@@ -92,7 +92,7 @@ Coming soon... -->
 | actionsEnabled     | `boolean`         | optional | Enables the actions toolbar, default is `false`                                    |
 | placeholder        | `string`          | optional | The default content of the editor when it is first loaded                          |
 | listMaxIndent      | `number`          | optional | The maximum indent capacity of any listed element, the default is `7`              |
-| isReadOnly         | `boolean`         | optional | Enables read-only mode for the editor, default is `false`                          |
+| isEditable         | `boolean`         | optional | Enables read-only mode for the editor, default is `false`                          |
 | initialEditorState | `string`          | optional | JSON string to initialize the initial content of the editor.                       |
 | onChange           | `(editorState: string, editorInstance?: LexicalEditor) => void` | optional | Accessing the current editor state and the active editor instance                                                 |
 | locale  | `en | fr | null` | optional | Enables localization in the language of your choice, default is `en`. Available languages are `en` and `fr` |
