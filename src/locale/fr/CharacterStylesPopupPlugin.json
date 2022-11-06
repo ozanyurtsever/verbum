@@ -1,0 +1,11 @@
+{
+  "Format_text_as_bold" : "Formater le texte en gras",
+  "Format_text_as_italics" : "Formater le texte en italique",
+  "Format_text_to_underlined" : "Souligner le texte",
+  "Format_text_with_a_strikethrough" : "Barrer le texte",
+  "Format_Subscript" : "Mettre en indice",
+  "Format_Superscript" : "Mettre en exposant",
+  "Insert_code_block" : "Convertir en bloc de code",
+  "Insert_link" : "Insérer un lien",
+  "Add_comment" : "Ajouter un commentaire"
+}

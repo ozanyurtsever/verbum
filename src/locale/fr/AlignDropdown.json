@@ -1,0 +1,10 @@
+{
+  "Title": "Aligner",
+  "Description" : "Options de formatage pour l'alignement du texte",
+  "LeftAlign": "Aligner à gauche",
+  "CenterAlign": "Aligner au centre",
+  "RightAlign": "Aligner à droite",
+  "JustifyAlign": "Justifier alignement",
+  "Outdent": "Supprimer l'intentation",
+  "Indent": "Indenter"
+}

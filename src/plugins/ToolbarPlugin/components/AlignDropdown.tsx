@@ -9,6 +9,7 @@ import {
 } from 'lexical';
 import EditorContext from '../../../context/EditorContext';
 import ToolbarContext from '../../../context/ToolbarContext';
+import { useTranslation } from 'react-i18next';
 
 function Divider(): JSX.Element {
   return <div className="divider" />;
@@ -17,12 +18,13 @@ function Divider(): JSX.Element {
 const AlignDropdown = () => {
   const { activeEditor } = useContext(EditorContext);
   const { isRTL } = useContext(ToolbarContext);
+  const { t } = useTranslation('toolbar');
   return (
     <DropDown
-      buttonLabel="Align"
+      buttonLabel={t('toolbar:alignDropdown.Title')}
       buttonIconClassName="icon left-align"
       buttonClassName="toolbar-item spaced alignment"
-      buttonAriaLabel="Formatting options for text alignment"
+      buttonAriaLabel={t('toolbar:alignDropdown.Description')}
     >
       <button
         onClick={() => {
@@ -32,7 +34,9 @@ const AlignDropdown = () => {
         type="button"
       >
         <i className="icon left-align" />
-        <span className="text">Left Align</span>
+        <span className="text">
+          {t('toolbar:alignDropdown.LeftAlign')}
+        </span>
       </button>
       <button
         onClick={() => {
@@ -42,7 +46,9 @@ const AlignDropdown = () => {
         type="button"
       >
         <i className="icon center-align" />
-        <span className="text">Center Align</span>
+        <span className="text">
+          {t('toolbar:alignDropdown.CenterAlign')}
+        </span>
       </button>
       <button
         onClick={() => {
@@ -52,7 +58,9 @@ const AlignDropdown = () => {
         type="button"
       >
         <i className="icon right-align" />
-        <span className="text">Right Align</span>
+        <span className="text">
+          {t('toolbar:alignDropdown.RightAlign')}
+        </span>
       </button>
       <button
         onClick={() => {
@@ -62,7 +70,9 @@ const AlignDropdown = () => {
         type="button"
       >
         <i className="icon justify-align" />
-        <span className="text">Justify Align</span>
+        <span className="text">
+          {t('toolbar:alignDropdown.JustifyAlign')}
+        </span>
       </button>
       <Divider />
       <button
@@ -73,7 +83,9 @@ const AlignDropdown = () => {
         type="button"
       >
         <i className={'icon ' + (isRTL ? 'indent' : 'outdent')} />
-        <span className="text">Outdent</span>
+        <span className="text">
+          {t('toolbar:alignDropdown.Outdent')}
+        </span>
       </button>
       <button
         onClick={() => {
@@ -83,7 +95,9 @@ const AlignDropdown = () => {
         type="button"
       >
         <i className={'icon ' + (isRTL ? 'outdent' : 'indent')} />
-        <span className="text">Indent</span>
+        <span className="text">
+          {t('toolbar:alignDropdown.Indent')}
+        </span>
       </button>
     </DropDown>
   );

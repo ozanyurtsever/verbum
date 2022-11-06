@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import PlaygroundNodes from './nodes/PlaygroundNodes';
 import PlaygroundEditorTheme from './themes/PlaygroundEditorTheme';
 import './EditorComposer.css';
+import './locale';
 
 interface IEditorComposer {
   children: React.ReactElement;
