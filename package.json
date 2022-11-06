@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "tsdx watch  --transpileOnly",
-    "build": "tsdx build",
+    "build": "tsdx build --transpileOnly",
     "test": "tsdx test --passWithNoTests",
     "lint": "tsdx lint",
     "prepare": "tsdx build",
