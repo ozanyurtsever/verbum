@@ -21,13 +21,23 @@ import {
   UnderlineButton,
   UndoButton,
 } from '../src/plugins/ToolbarPlugin/components';
+import { $createParagraphNode, $createTextNode, $getRoot } from 'lexical';
 
 export default {
   title: 'Verbum',
 };
 
+const initialState = () => {
+  const paragraph = $createParagraphNode();
+  const text = $createTextNode('Hello World!');
+  paragraph.append(text);
+  const root = $getRoot();
+  root.append(paragraph);
+  root.selectEnd();
+};
+
 export const FullEditor = () => (
-  <EditorComposer>
+  <EditorComposer initialEditorState={initialState}>
     <Editor>
       <ToolbarPlugin>
         <FontFamilyDropdown />
