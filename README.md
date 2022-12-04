@@ -161,13 +161,13 @@ $ npm run storybook
 ## Future plans
 
 - Test coverage
-- Programmatic access to the editor input as JSON
-- Localization
+- ~~Programmatic access to the editor input as JSON~~
+- ~~Localization~~
 - Ready templates with different options (MUI, Bootstrap, etc...)
 - Dark/Light modes
 - Custom styling flexibility
-- Disassembling all of the toolbar to enable using them as nested components, increasing the flexibility
-- Enabling adjusting editor settings such read-only mode and etc. programmatically
+- ~~Disassembling all of the toolbar to enable using them as nested components, increasing the flexibility~~
+- ~~Enabling adjusting editor settings such read-only mode and etc. programmatically~~
 
 ## License
 
