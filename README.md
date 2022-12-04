@@ -81,6 +81,15 @@ Coming soon... -->
 
 ## API
 
+`<EditorComposer />`
+
+| Property           | Type              |          | description                                                                        |
+| ------------------ | ----------------- | -------- | ---------------------------------------------------------------------------------- |
+| children           | `ReactNode`       | required | Nested child component which is the Editor itself                                  |
+| initialEditorState | `InitialEditorStateType` | optional | The initial state of the editor                                             |
+
+<br />
+
 `<Editor />`
 
 | Property           | Type              |          | description                                                                        |
