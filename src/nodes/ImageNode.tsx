@@ -27,6 +27,7 @@ import { LexicalNestedComposer } from '@lexical/react/LexicalNestedComposer';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { TablePlugin } from '@lexical/react/LexicalTablePlugin';
 import { useLexicalNodeSelection } from '@lexical/react/useLexicalNodeSelection';
+import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
 import { mergeRegister } from '@lexical/utils';
 import {
   $getNodeByKey,
@@ -286,6 +287,7 @@ function ImageComponent({
                     Enter a caption...
                   </Placeholder>
                 }
+                ErrorBoundary={LexicalErrorBoundary}
               />
               {showNestedEditorTreeView === true ? <TreeViewPlugin /> : null}
             </LexicalNestedComposer>
