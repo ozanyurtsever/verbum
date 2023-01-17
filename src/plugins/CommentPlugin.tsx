@@ -39,6 +39,7 @@ import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
 import { PlainTextPlugin } from '@lexical/react/LexicalPlainTextPlugin';
+import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
 import { createDOMRange, createRectsFromDOMRange } from '@lexical/selection';
 import { $isRootTextContentEmpty, $rootTextContent } from '@lexical/text';
 import { mergeRegister, registerNestedElementResolver } from '@lexical/utils';
@@ -186,6 +187,7 @@ function PlainTextEditor({
         <PlainTextPlugin
           contentEditable={<ContentEditable className={className} />}
           placeholder={<Placeholder>{placeholder}</Placeholder>}
+          ErrorBoundary={LexicalErrorBoundary}
         />
         <OnChangePlugin onChange={onChange} />
         <HistoryPlugin />
@@ -217,7 +219,7 @@ function CommentInputBox({
   editor,
   cancelAddComment,
   submitAddComment,
-  t
+  t,
 }: {
   cancelAddComment: () => void;
   editor: LexicalEditor;
@@ -225,7 +227,7 @@ function CommentInputBox({
     commentOrThread: Comment | Thread,
     isInlineComment: boolean
   ) => void;
-  t: TFunction
+  t: TFunction;
 }) {
   const [content, setContent] = useState('');
   const [canSubmit, setCanSubmit] = useState(false);
@@ -431,11 +433,13 @@ function ShowDeleteCommentOrThreadDialog({
   ) => void;
   onClose: () => void;
   thread?: Thread;
-  t: TFunction
+  t: TFunction;
 }): JSX.Element {
   return (
     <>
-      {`${t('toolbar:commentPlugin.Delete_Comment_Description')} ${commentOrThread.type}?`}
+      {`${t('toolbar:commentPlugin.Delete_Comment_Description')} ${
+        commentOrThread.type
+      }?`}
       <div className="Modal__content">
         <Button
           onClick={() => {
@@ -462,7 +466,7 @@ function CommentsPanelListComment({
   deleteComment,
   thread,
   rtf,
-  t
+  t,
 }: {
   comment: Comment;
   deleteComment: (
@@ -509,7 +513,8 @@ function CommentsPanelListComment({
                     onClose={onClose}
                     t={t}
                   />
-                ));
+                )
+              );
             }}
             className="CommentPlugin_CommentsPanel_List_DeleteButton"
           >
@@ -542,9 +547,9 @@ function CommentsPanelList({
   submitAddComment: (
     commentOrThread: Comment | Thread,
     isInlineComment: boolean,
-    thread?: Thread,
+    thread?: Thread
   ) => void;
-  t: TFunction
+  t: TFunction;
 }): JSX.Element {
   const [editor] = useLexicalComposerContext();
   const [counter, setCounter] = useState(0);
@@ -610,8 +615,9 @@ function CommentsPanelList({
             <li
               key={id}
               onClick={handleClickThread}
-              className={`CommentPlugin_CommentsPanel_List_Thread ${markNodeMap.has(id) ? 'interactive' : ''
-                } ${activeIDs.indexOf(id) === -1 ? '' : 'active'}`}
+              className={`CommentPlugin_CommentsPanel_List_Thread ${
+                markNodeMap.has(id) ? 'interactive' : ''
+              } ${activeIDs.indexOf(id) === -1 ? '' : 'active'}`}
             >
               <div className="CommentPlugin_CommentsPanel_List_Thread_QuoteBox">
                 <blockquote className="CommentPlugin_CommentsPanel_List_Thread_Quote">
@@ -630,7 +636,8 @@ function CommentsPanelList({
                           onClose={onClose}
                           t={t}
                         />
-                      ));
+                      )
+                    );
                   }}
                   className="CommentPlugin_CommentsPanel_List_DeleteButton"
                 >
@@ -694,7 +701,7 @@ function CommentsPanel({
     isInlineComment: boolean,
     thread?: Thread
   ) => void;
-  t: TFunction
+  t: TFunction;
 }): JSX.Element {
   const listRef = useRef<HTMLUListElement>(null);
   const isEmpty = comments.length === 0;
@@ -998,10 +1005,15 @@ export default function CommentPlugin({
         )}
       {createPortal(
         <Button
-          className={`CommentPlugin_ShowCommentsButton ${showComments ? 'active' : ''
-            }`}
+          className={`CommentPlugin_ShowCommentsButton ${
+            showComments ? 'active' : ''
+          }`}
           onClick={() => setShowComments(!showComments)}
-          title={showComments ? t('toolbar:commentPlugin.Hide_Comments') : t('toolbar:commentPlugin.Show_Comments')}
+          title={
+            showComments
+              ? t('toolbar:commentPlugin.Hide_Comments')
+              : t('toolbar:commentPlugin.Show_Comments')
+          }
         >
           <i className="comments" />
         </Button>,
