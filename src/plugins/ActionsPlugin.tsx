@@ -124,7 +124,9 @@ export default function ActionsPlugin({
             (isSpeechToText ? 'active' : '')
           }
           title={t('action:Speech_To_Text')}
-          aria-label={`${isSpeechToText ? t('action:Enable') : t('action:Disable')} ${t('action:speech_To_Text')}`}
+          aria-label={`${
+            isSpeechToText ? t('action:Enable') : t('action:Disable')
+          } ${t('action:speech_To_Text')}`}
           type="button"
         >
           <i className="mic" />
@@ -157,11 +159,9 @@ export default function ActionsPlugin({
         className="action-button clear"
         disabled={isEditorEmpty}
         onClick={() => {
-          showModal(
-            t('action:Clear_Editor')
-            , (onClose) => (
-              <ShowClearDialog editor={editor} onClose={onClose} t={t} />
-            ));
+          showModal(t('action:Clear_Editor'), (onClose) => (
+            <ShowClearDialog editor={editor} onClose={onClose} t={t} />
+          ));
         }}
         title={t('action:Clear')}
         aria-label={t('action:Clear_Description')}
@@ -175,7 +175,9 @@ export default function ActionsPlugin({
           editor.setEditable(!editor.isEditable());
         }}
         title={t('action:Read-Only_Mode')}
-        aria-label={`${isEditable ? t('action:Unlock') : t('action:Lock')} ${t('action:Read-Only_Mode')}`}
+        aria-label={`${isEditable ? t('action:Unlock') : t('action:Lock')} ${t(
+          'action:Read-Only_Mode'
+        )}`}
         type="button"
       >
         <i className={isEditable ? 'unlock' : 'lock'} />
@@ -189,32 +191,34 @@ export default function ActionsPlugin({
       >
         <i className="markdown" />
       </button>
-      {
-        isCollab && (
-          <button
-            className="action-button connect"
-            onClick={() => {
-              editor.dispatchCommand(TOGGLE_CONNECT_COMMAND, !connected);
-            }}
-            title={`${connected ? t('action:Disconnect') : t('action:Connect')
-              } ${t('action:Collaborative')}`}
-            aria-label={`${connected ? t('action:Disconnect_From') : t('action:Connect_To')
-              } ${t('action:Server')}`}
-            type="button"
-          >
-            <i className={connected ? t('action:disconnect') : t('action:connect')} />
-          </button>
-        )
-      }
+      {isCollab && (
+        <button
+          className="action-button connect"
+          onClick={() => {
+            editor.dispatchCommand(TOGGLE_CONNECT_COMMAND, !connected);
+          }}
+          title={`${
+            connected ? t('action:Disconnect') : t('action:Connect')
+          } ${t('action:Collaborative')}`}
+          aria-label={`${
+            connected ? t('action:Disconnect_From') : t('action:Connect_To')
+          } ${t('action:Server')}`}
+          type="button"
+        >
+          <i
+            className={connected ? t('action:disconnect') : t('action:connect')}
+          />
+        </button>
+      )}
       {modal}
-    </div >
+    </div>
   );
 }
 
 function ShowClearDialog({
   editor,
   onClose,
-  t
+  t,
 }: {
   editor: LexicalEditor;
   onClose: () => void;

@@ -17,7 +17,11 @@ const ItalicButton = () => {
         activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic');
       }}
       className={'toolbar-item spaced ' + (isItalic ? 'active' : '')}
-      title={IS_APPLE ? `${t('toolbar:italicButton.Title')} (⌘I)` : `${t('toolbar:italicButton.Title')} (Ctrl+I)`}
+      title={
+        IS_APPLE
+          ? `${t('toolbar:italicButton.Title')} (⌘I)`
+          : `${t('toolbar:italicButton.Title')} (Ctrl+I)`
+      }
       aria-label={`${t('toolbar:italicButton.Description')} ${
         IS_APPLE ? '⌘I' : 'Ctrl+I'
       }`}

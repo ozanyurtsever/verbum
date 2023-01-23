@@ -64,7 +64,7 @@ function FloatingCharacterStylesEditor({
   isStrikethrough,
   isSubscript,
   isSuperscript,
-  t
+  t,
 }: {
   editor: LexicalEditor;
   isBold: boolean;
@@ -182,7 +182,9 @@ function FloatingCharacterStylesEditor({
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic');
         }}
         className={'popup-item spaced ' + (isItalic ? 'active' : '')}
-        aria-label={t('toolbar:characterStylesPopupPlugin.Format_text_as_italics')}
+        aria-label={t(
+          'toolbar:characterStylesPopupPlugin.Format_text_as_italics'
+        )}
         type="button"
       >
         <i className="format italic" />
@@ -192,7 +194,9 @@ function FloatingCharacterStylesEditor({
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline');
         }}
         className={'popup-item spaced ' + (isUnderline ? 'active' : '')}
-        aria-label={t('toolbar:characterStylesPopupPlugin.Format_text_to_underlined')}
+        aria-label={t(
+          'toolbar:characterStylesPopupPlugin.Format_text_to_underlined'
+        )}
         type="button"
       >
         <i className="format underline" />
@@ -202,7 +206,9 @@ function FloatingCharacterStylesEditor({
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'strikethrough');
         }}
         className={'popup-item spaced ' + (isStrikethrough ? 'active' : '')}
-        aria-label={t('toolbar:characterStylesPopupPlugin.Format_text_with_a_strikethrough')}
+        aria-label={t(
+          'toolbar:characterStylesPopupPlugin.Format_text_with_a_strikethrough'
+        )}
         type="button"
       >
         <i className="format strikethrough" />

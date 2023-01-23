@@ -17,9 +17,14 @@ const BoldButton = () => {
         activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold');
       }}
       className={'toolbar-item spaced ' + (isBold ? 'active' : '')}
-      title={IS_APPLE ? `${t('toolbar:boldButton.Title')} (⌘B)` : `${t('toolbar:boldButton.Title')} (Ctrl + B)`}
-      aria-label={`${t('toolbar:boldButton.Description')} ${IS_APPLE ? '⌘B' : 'Ctrl+B'
-        }`}
+      title={
+        IS_APPLE
+          ? `${t('toolbar:boldButton.Title')} (⌘B)`
+          : `${t('toolbar:boldButton.Title')} (Ctrl + B)`
+      }
+      aria-label={`${t('toolbar:boldButton.Description')} ${
+        IS_APPLE ? '⌘B' : 'Ctrl+B'
+      }`}
       type="button"
     >
       <i className="format bold" />

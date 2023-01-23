@@ -34,9 +34,7 @@ const AlignDropdown = () => {
         type="button"
       >
         <i className="icon left-align" />
-        <span className="text">
-          {t('toolbar:alignDropdown.LeftAlign')}
-        </span>
+        <span className="text">{t('toolbar:alignDropdown.LeftAlign')}</span>
       </button>
       <button
         onClick={() => {
@@ -46,9 +44,7 @@ const AlignDropdown = () => {
         type="button"
       >
         <i className="icon center-align" />
-        <span className="text">
-          {t('toolbar:alignDropdown.CenterAlign')}
-        </span>
+        <span className="text">{t('toolbar:alignDropdown.CenterAlign')}</span>
       </button>
       <button
         onClick={() => {
@@ -58,9 +54,7 @@ const AlignDropdown = () => {
         type="button"
       >
         <i className="icon right-align" />
-        <span className="text">
-          {t('toolbar:alignDropdown.RightAlign')}
-        </span>
+        <span className="text">{t('toolbar:alignDropdown.RightAlign')}</span>
       </button>
       <button
         onClick={() => {
@@ -70,9 +64,7 @@ const AlignDropdown = () => {
         type="button"
       >
         <i className="icon justify-align" />
-        <span className="text">
-          {t('toolbar:alignDropdown.JustifyAlign')}
-        </span>
+        <span className="text">{t('toolbar:alignDropdown.JustifyAlign')}</span>
       </button>
       <Divider />
       <button
@@ -83,9 +75,7 @@ const AlignDropdown = () => {
         type="button"
       >
         <i className={'icon ' + (isRTL ? 'indent' : 'outdent')} />
-        <span className="text">
-          {t('toolbar:alignDropdown.Outdent')}
-        </span>
+        <span className="text">{t('toolbar:alignDropdown.Outdent')}</span>
       </button>
       <button
         onClick={() => {
@@ -95,9 +85,7 @@ const AlignDropdown = () => {
         type="button"
       >
         <i className={'icon ' + (isRTL ? 'outdent' : 'indent')} />
-        <span className="text">
-          {t('toolbar:alignDropdown.Indent')}
-        </span>
+        <span className="text">{t('toolbar:alignDropdown.Indent')}</span>
       </button>
     </DropDown>
   );
