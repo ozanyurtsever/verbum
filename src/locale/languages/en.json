@@ -1,0 +1,194 @@
+{
+  "toolbar": {
+    "alignDropdown": {
+      "Title": "Align",
+      "Description": "Formatting options for text alignment",
+      "LeftAlign": "Left Align",
+      "CenterAlign": "Center Align",
+      "RightAlign": "Right Align",
+      "JustifyAlign": "Justify Align",
+      "Outdent": "Outdent",
+      "Indent": "Indent"
+    },
+    "backgroundColorPicker": {
+      "Description": "Formatting background color"
+    },
+    "blockFormatDropdown": {
+      "Description": "Formatting options for text style",
+      "Normal": "Normal",
+      "Heading_1": "Heading 1",
+      "Heading_2": "Heading 2",
+      "Heading_3": "Heading 3",
+      "BulletList": "Bullet List",
+      "NumberedList": "Numbered List",
+      "CheckList": "Check List",
+      "Quote": "Quote",
+      "CodeBlock": "Code Block"
+    },
+    "boldButton": {
+      "Title": "Bold",
+      "Description": "Format text as bold. Shortcut:"
+    },
+    "codeFormatButton": {
+      "Description": "Insert code block"
+    },
+    "insertLinkButton": {
+      "Description": "Insert link"
+    },
+    "italicButton": {
+      "Title": "Italic",
+      "Description": "Format text as italics. Shortcut:"
+    },
+    "redoButton": {
+      "Title": "Redo",
+      "Description": "Redo"
+    },
+    "underlineButton": {
+      "Title": "Underline",
+      "Description": "Format text to underlined. Shortcut:"
+    },
+    "undoButton": {
+      "Title": "Undo",
+      "Description": "Undo"
+    },
+    "textColorPicker": {
+      "Description": "Formatting text color"
+    },
+    "textFormatDropdown": {
+      "Description": "Formatting options for additional text styles",
+      "Options": {
+        "Strikethrough": {
+          "Label": "Strikethrough",
+          "Description": "Format text with a strikethrough"
+        },
+        "Subscript": {
+          "Label": "Subscript",
+          "Description": "Format text with a subscript"
+        },
+        "Superscript": {
+          "Label": "Superscript",
+          "Description": "Format text with a superscript"
+        }
+      }
+    },
+    "insertDropdown": {
+      "Title": "Insert",
+      "Description": "Insert specialized editor node",
+      "Mode": {
+        "Sample": "Sample",
+        "URL": "URL",
+        "File": "File"
+      },
+      "No_of_rows": "No of rows",
+      "No_of_columns": "No of columns",
+      "Question": "Question",
+      "Tweet_URL": "Tweet URL",
+      "Image_URL": "Image URL",
+      "Image_URL_Alt_Text": "Alt Text",
+      "Image_URL_Placeholder": "Random unsplash image",
+      "Image_Upload": "Image Upload",
+      "Image_Upload_Alt_Text": "Alt Text",
+      "Image_Upload_Placeholder": "Descriptive alternative text",
+      "YouTube_URL": "YouTube URL",
+      "Horizontal_Rule": "Horizontal Rule",
+      "Image": "Image",
+      "Insert_Image": "Insert Image",
+      "Excalidraw": "Excalidraw",
+      "Table": "Table",
+      "Insert_Table": "Insert Table",
+      "Poll": "Poll",
+      "Insert_Poll": "Insert Poll",
+      "Tweet": "Tweet",
+      "Insert_Tweet": "Insert Tweet",
+      "YouTube_Video": "YouTube Video",
+      "Insert_YouTube_Video": "Insert YouTube Video",
+      "Equation": "Equation",
+      "Insert_Equation": "Insert Equation",
+      "Sticky_Note": "Sticky Note"
+    },
+    "mentionsPlugin": {
+      "Suggested_mentions": "Suggested mentions"
+    },
+    "characterStylesPopupPlugin": {
+      "Format_text_as_bold": "Format text as bold",
+      "Format_text_as_italics": "Format text as italics",
+      "Format_text_to_underlined": "Format text to underlined",
+      "Format_text_with_a_strikethrough": "Format text with a strikethrough",
+      "Format_Subscript": "Format Subscript",
+      "Format_Superscript": "Format Superscript",
+      "Insert_code_block": "Insert code block",
+      "Insert_link": "Insert link",
+      "Add_comment": "Add comment"
+    },
+    "commentPlugin": {
+      "Hide_Comments": "Hide Comments",
+      "Show_Comments": "Show Comments",
+      "Comments": "Comments",
+      "No_Comments": "No Comments",
+      "Reply_to_comment": "Reply to comment...",
+      "Delete_Thread": "Delete Thread",
+      "Delete_Comment": "Delete Comment",
+      "Delete_Comment_Description": "Are you sure you want to delete this",
+      "Type_a_comment": "Type a comment..."
+    },
+    "testRecorderPlugin": {
+      "Disable_test_recorder": "Disable test recorder",
+      "Enable_test_recorder": "Enable test recorder",
+      "Insert_snapshot": "Insert snapshot",
+      "Copy_to_clipboard": "Copy to clipboard",
+      "Download_as_a_file": "Download as a file"
+    },
+    "tableActionMenuPlugin": {
+      "column_header": "column header",
+      "row_header": "row header",
+      "Insert": "Insert",
+      "above": "above",
+      "below": "below",
+      "left": "left",
+      "right": "right",
+      "Delete_column": "Delete column",
+      "Delete_row": "Delete row",
+      "Delete_table": "Delete table",
+      "column": "column",
+      "row": "row",
+      "columns": "columns",
+      "rows": "rows"
+    }
+  },
+  "action": {
+    "Confirm": "Confirm",
+    "Cancel": "Cancel",
+    "Discard": "Discard",
+    "Save": "Save",
+    "Add": "Add",
+    "Remove": "Remove",
+    "Delete": "Delete",
+    "Enable": "Enable",
+    "Disable": "Disable",
+    "Import": "Import",
+    "Speech_To_Text": "Speech To Text",
+    "speech_To_Text": "speech to text",
+    "Import_Description": "Import editor state from JSON",
+    "Export": "Export",
+    "Export_Description": "Export editor state to JSON",
+    "Clear": "Clear",
+    "Clear_Editor": "Clear Editor",
+    "Clear_Description": "Clear editor contents",
+    "Read-Only_Mode": "Read-Only Mode",
+    "Unlock": "Unlock",
+    "Lock": "Lock",
+    "read-Only_Mode": "read-only mode",
+    "Confirm_Clear": "Are you sure you want to clear the editor?",
+    "Confirm_Discard": "Are you sure you want to discard the changes?",
+    "Convert_From_Markdown": "Convert From Markdown",
+    "Convert_From_Markdown_Description": "Convert from markdown",
+    "Disconnect": "Disconnect",
+    "Connect": "Connect",
+    "Collaborative": "Collaborative Editing",
+    "disconnect": "disconnect",
+    "connect": "connect",
+    "Disconnect_From": "Disconnect From",
+    "Connect_To": "Connect To",
+    "Server": "a collaborative editing server"
+  }
+}

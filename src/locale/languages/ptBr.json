@@ -1,0 +1,194 @@
+{
+  "toolbar": {
+    "alignDropdown": {
+      "Title": "Alinhar",
+      "Description": "Opções de alinhamento de texto",
+      "LeftAlign": "Alinhar à esquerda",
+      "CenterAlign": "Centralizar",
+      "RightAlign": "Alinhar à direita",
+      "JustifyAlign": "Justificar",
+      "Outdent": "Recuar",
+      "Indent": "Indentar"
+    },
+    "backgroundColorPicker": {
+      "Description": "Cor de fundo do texto"
+    },
+    "blockFormatDropdown": {
+      "Description": "Formatação do estilo do texto",
+      "Normal": "Normal",
+      "Heading_1": "Cabeçalho 1",
+      "Heading_2": "Cabeçalho 2",
+      "Heading_3": "Cabeçalho 3",
+      "BulletList": "Lista desordenada",
+      "NumberedList": "Lista ordenada",
+      "CheckList": "Lista de controle",
+      "Quote": "Citação",
+      "CodeBlock": "Bloco de código"
+    },
+    "boldButton": {
+      "Title": "Negrito",
+      "Description": "Formata o texto em negrito. Atalho:"
+    },
+    "codeFormatButton": {
+      "Description": "Insere um bloco de código"
+    },
+    "insertLinkButton": {
+      "Description": "Insere um link"
+    },
+    "italicButton": {
+      "Title": "Itálico",
+      "Description": "Formata o texto em itálico. Atalho:"
+    },
+    "redoButton": {
+      "Title": "Refazer",
+      "Description": "Refaz a última alteração"
+    },
+    "underlineButton": {
+      "Title": "Sublinhado",
+      "Description": "Formata o texto como sublinhado. Atalho:"
+    },
+    "undoButton": {
+      "Title": "Desfazer",
+      "Description": "Desfaz a última alteração"
+    },
+    "textColorPicker": {
+      "Description": "Altera a cor do texto"
+    },
+    "textFormatDropdown": {
+      "Description": "Opções adicionis para formatação do estilo do texto",
+      "Options": {
+        "Strikethrough": {
+          "Label": "Tachado",
+          "Description": "Formata o texto como tachado"
+        },
+        "Subscript": {
+          "Label": "Subscrito",
+          "Description": "Formata o texto como subscrito"
+        },
+        "Superscript": {
+          "Label": "Sobrescrito",
+          "Description": "Formata o texto como sobrescrito"
+        }
+      }
+    },
+    "insertDropdown": {
+      "Title": "Inserir",
+      "Description": "Inserir nó de editor especializado",
+      "Mode": {
+        "Sample": "Exemplo",
+        "URL": "URL",
+        "File": "Arquivo"
+      },
+      "No_of_rows": "Nº de linhas",
+      "No_of_columns": "Nº de colunas",
+      "Question": "Pergunta",
+      "Tweet_URL": "URL do Tweet",
+      "Image_URL": "URL da imagem",
+      "Image_URL_Alt_Text": "Texto alternativo",
+      "Image_URL_Placeholder": "Imagem de abertura aleatória",
+      "Image_Upload": "Upload da imagem",
+      "Image_Upload_Alt_Text": "Texto alternativo",
+      "Image_Upload_Placeholder": "Texto descritivo alternativo",
+      "YouTube_URL": "URL do YouTube",
+      "Horizontal_Rule": "Linha horizontal",
+      "Image": "Imagem",
+      "Insert_Image": "Inserir imagem",
+      "Excalidraw": "Excalidraw",
+      "Table": "Tabela",
+      "Insert_Table": "Inserir tablela",
+      "Poll": "Votação",
+      "Insert_Poll": "Inserir votação",
+      "Tweet": "Tweet",
+      "Insert_Tweet": "Inserir tweet",
+      "YouTube_Video": "Vídeo do YouTube",
+      "Insert_YouTube_Video": "Inserir vídeo YouTube",
+      "Equation": "Equação",
+      "Insert_Equation": "Inserir equação",
+      "Sticky_Note": "Nota adesiva"
+    },
+    "mentionsPlugin": {
+      "Suggested_mentions": "Menções sugeridas"
+    },
+    "characterStylesPopupPlugin": {
+      "Format_text_as_bold": "Formata o texto como negrito",
+      "Format_text_as_italics": "Formata o texto como itálico",
+      "Format_text_to_underlined": "Formata o texto como sublinado",
+      "Format_text_with_a_strikethrough": "Formata o texto como tachado",
+      "Format_Subscript": "Formatar sobrescrito",
+      "Format_Superscript": "Formatar sobrescrito",
+      "Insert_code_block": "Inserir bloco de código",
+      "Insert_link": "Inserir link",
+      "Add_comment": "Adicionar comentário"
+    },
+    "commentPlugin": {
+      "Hide_Comments": "Esconder comentários",
+      "Show_Comments": "Mostrar comentários",
+      "Comments": "Comentários",
+      "No_Comments": "Sem comentários",
+      "Reply_to_comment": "Responder comentário...",
+      "Delete_Thread": "Deletar discução",
+      "Delete_Comment": "Deletar Comentário",
+      "Delete_Comment_Description": "Tem certeza que deseja deletar isso",
+      "Type_a_comment": "Digite um comentário..."
+    },
+    "testRecorderPlugin": {
+      "Disable_test_recorder": "Desativar gravador de teste",
+      "Enable_test_recorder": "Ativar gravador de teste",
+      "Insert_snapshot": "Inserir instantâneo",
+      "Copy_to_clipboard": "Copiar para área de transferência",
+      "Download_as_a_file": "Download como arquivo"
+    },
+    "tableActionMenuPlugin": {
+      "column_header": "cabeçalho de coluna",
+      "row_header": "cabeçalho de linha",
+      "Insert": "Inserir",
+      "above": "acima",
+      "below": "abaixo",
+      "left": "esquerda",
+      "right": "direita",
+      "Delete_column": "Deletar coluna",
+      "Delete_row": "Deletar linha",
+      "Delete_table": "Deletar tabela",
+      "column": "coluna",
+      "row": "linha",
+      "columns": "colunas",
+      "rows": "linhas"
+    }
+  },
+  "action": {
+    "Confirm": "Confirmar",
+    "Cancel": "Cancelar",
+    "Discard": "Descartar",
+    "Save": "Salvar",
+    "Add": "Adicionar",
+    "Remove": "Remover",
+    "Delete": "Deletar",
+    "Enable": "Ativar",
+    "Disable": "Desativar",
+    "Import": "Importar",
+    "Speech_To_Text": "Fala para Texto",
+    "speech_To_Text": "fala para texto",
+    "Import_Description": "Importar estado do editor de JSON",
+    "Export": "Exportar",
+    "Export_Description": "Exportar estado do editor para JSON",
+    "Clear": "Limpar",
+    "Clear_Editor": "Limpar Editor",
+    "Clear_Description": "Limpar conteúdos do editor",
+    "Read-Only_Mode": "Modo Somente Leitura",
+    "Unlock": "Liberar",
+    "Lock": "Bloquear",
+    "read-Only_Mode": "modo somente leitura",
+    "Confirm_Clear": "Tem certeza que deseja limpar o editor?",
+    "Confirm_Discard": "Tem certeza que deseja descartar as alterações?",
+    "Convert_From_Markdown": "Converter de uma Remarcação",
+    "Convert_From_Markdown_Description": "Converter de uma remarcação",
+    "Disconnect": "Desconectar",
+    "Connect": "Conectar",
+    "Collaborative": "Edição Colaborativa",
+    "disconnect": "desconectar",
+    "connect": "conectar",
+    "Disconnect_From": "Desconectar de",
+    "Connect_To": "Conectar a",
+    "Server": "um servidor de edição colaborativa"
+  }
+}
