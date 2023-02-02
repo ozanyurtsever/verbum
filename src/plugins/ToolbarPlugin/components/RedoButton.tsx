@@ -16,7 +16,11 @@ const RedoButton = () => {
       onClick={() => {
         activeEditor.dispatchCommand(REDO_COMMAND, undefined);
       }}
-      title={IS_APPLE ? `${t('toolbar:redoButton.Title')} (⌘Y)` : `${t('toolbar:redoButton.Title')} (Ctrl+Y)`}
+      title={
+        IS_APPLE
+          ? `${t('toolbar:redoButton.Title')} (⌘Y)`
+          : `${t('toolbar:redoButton.Title')} (Ctrl+Y)`
+      }
       className="toolbar-item"
       aria-label={t('toolbar:redoButton.Description')}
       type="button"

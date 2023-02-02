@@ -81,16 +81,16 @@ const LENGTH_LIMIT = 75;
 
 const AtSignMentionsRegex = new RegExp(
   '(^|\\s|\\()(' +
-  '[' +
-  TRIGGERS +
-  ']' +
-  '((?:' +
-  VALID_CHARS +
-  VALID_JOINS +
-  '){0,' +
-  LENGTH_LIMIT +
-  '})' +
-  ')$'
+    '[' +
+    TRIGGERS +
+    ']' +
+    '((?:' +
+    VALID_CHARS +
+    VALID_JOINS +
+    '){0,' +
+    LENGTH_LIMIT +
+    '})' +
+    ')$'
 );
 
 // 50 is the longest alias length limit.
@@ -99,15 +99,15 @@ const ALIAS_LENGTH_LIMIT = 50;
 // Regex used to match alias.
 const AtSignMentionsRegexAliasRegex = new RegExp(
   '(^|\\s|\\()(' +
-  '[' +
-  TRIGGERS +
-  ']' +
-  '((?:' +
-  VALID_CHARS +
-  '){0,' +
-  ALIAS_LENGTH_LIMIT +
-  '})' +
-  ')$'
+    '[' +
+    TRIGGERS +
+    ']' +
+    '((?:' +
+    VALID_CHARS +
+    '){0,' +
+    ALIAS_LENGTH_LIMIT +
+    '})' +
+    ')$'
 );
 
 // At most, 5 suggestions are shown in the popup.
@@ -1045,13 +1045,13 @@ function useMentions(editor: LexicalEditor): JSX.Element {
   return resolution === null || editor === null
     ? null
     : createPortal(
-      <MentionsTypeahead
-        close={closeTypeahead}
-        resolution={resolution}
-        editor={editor}
-      />,
-      document.body
-    );
+        <MentionsTypeahead
+          close={closeTypeahead}
+          resolution={resolution}
+          editor={editor}
+        />,
+        document.body
+      );
 }
 
 export default function MentionsPlugin(): JSX.Element {

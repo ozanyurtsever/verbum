@@ -404,7 +404,11 @@ function useTestRecorder(editor: LexicalEditor): [JSX.Element, JSX.Element] {
       id="test-recorder-button"
       className={`editor-dev-button ${isRecording ? 'active' : ''}`}
       onClick={() => toggleEditorSelection(getCurrentEditor())}
-      title={isRecording ? t('toolbar:testRecorderPlugin.Disable_test_recorder') : t('toolbar:testRecorderPlugin.Enable_test_recorder')}
+      title={
+        isRecording
+          ? t('toolbar:testRecorderPlugin.Disable_test_recorder')
+          : t('toolbar:testRecorderPlugin.Enable_test_recorder')
+      }
       type="button"
     />
   );

@@ -1,0 +1,195 @@
+{
+  "toolbar": {
+    "alignDropdown": {
+      "Title": "Aligner",
+      "Description": "Options de formatage pour l'alignement du texte",
+      "LeftAlign": "Aligner à gauche",
+      "CenterAlign": "Aligner au centre",
+      "RightAlign": "Aligner à droite",
+      "JustifyAlign": "Justifier alignement",
+      "Outdent": "Supprimer l'intentation",
+      "Indent": "Indenter"
+    },
+    "backgroundColorPicker": {
+      "Description": "Mise en forme de la couleur de fond"
+    },
+    "blockFormatDropdown": {
+      "Description": "Options de mise en forme pour le style de texte",
+      "Normal": "Normal",
+      "Heading_1": "Titre 1",
+      "Heading_2": "Titre 2",
+      "Heading_3": "Titre 3",
+      "BulletList": "Liste à puces",
+      "NumberedList": "Liste numérotée",
+      "CheckList": "Liste de contrôle",
+      "Quote": "Citation",
+      "CodeBlock": "Bloc de code"
+    },
+    "boldButton": {
+      "Title": "Gras",
+      "Description": "Formatez le texte en gras. Raccourci :"
+    },
+    "codeFormatButton": {
+      "Description": "Insérer un bloc de code"
+    },
+    "insertLinkButton": {
+      "Description": "Insérer un lien"
+    },
+    "italicButton": {
+      "Title": "Italique",
+      "Description": "Formatez le texte en italique. Raccourci :"
+    },
+    "redoButton": {
+      "Title": "Refaire",
+      "Description": "Refaire"
+    },
+    "underlineButton": {
+      "Title": "Souligner",
+      "Description": "Formatez le texte en le soulignant. Raccourci:"
+    },
+    "undoButton": {
+      "Title": "Annuler",
+      "Description": "Annuler"
+    },
+    "textColorPicker": {
+      "Description": "Mise en forme de la couleur du texte"
+    },
+    "textFormatDropdown": {
+      "Description": "Options de formatage pour les styles de texte supplémentaires",
+      "Options": {
+        "Strikethrough": {
+          "Label": "Barré",
+          "Description": "Formater le texte avec une barre oblique"
+        },
+        "Subscript": {
+          "Label": "Indice",
+          "Description": "Formater le texte avec un indice"
+        },
+        "Superscript": {
+          "Label": "Exposant",
+          "Description": "Formater le texte avec un exposant"
+        }
+      }
+    },
+    "insertDropdown": {
+      "Title": "Insérer",
+      "Description": "Insérer un nœud d'éditeur spécialisé",
+      "Mode": {
+        "Sample": "Exemple",
+        "URL": "URL",
+        "File": "Fichier"
+      },
+      "No_of_rows": "No de lignes",
+      "No_of_columns": "No de columns",
+      "Question": "Question",
+      "Tweet_URL": "URL du Tweet",
+      "Image_URL": "URL de l'image",
+      "Image_URL_Alt_Text": "Alt Text",
+      "Image_URL_Placeholder": "Image aléatoire sur unsplash",
+      "Image_Upload": "Charger une image",
+      "Image_Upload_Alt_Text": "Alt Text",
+      "Image_Upload_Placeholder": "Texte alternatif descriptif",
+      "YouTube_URL": "URL YouTube",
+      "Horizontal_Rule": "Ligne horizontale",
+      "Image": "Image",
+      "Insert_Image": "Insérer une Image",
+      "Excalidraw": "Excalidraw",
+      "Table": "Table",
+      "Insert_Table": "Insérer une Table",
+      "Poll": "Sondage",
+      "Insert_Poll": "Insérer un Sondage",
+      "Tweet": "Tweet",
+      "Insert_Tweet": "Insérer un Tweet",
+      "YouTube_Video": "Vidéo YouTube",
+      "Insert_YouTube_Video": "Insérer une vidéo YouTube",
+      "Equation": "Equation",
+      "Insert_Equation": "Insérer une équation",
+      "Sticky_Note": "Note autocollante"
+    },
+    "mentionsPlugin": {
+      "Suggested_mentions": "Mentions suggérées"
+    },
+    "characterStylesPopupPlugin": {
+      "Format_text_as_bold": "Formater le texte en gras",
+      "Format_text_as_italics": "Formater le texte en italique",
+      "Format_text_to_underlined": "Souligner le texte",
+      "Format_text_with_a_strikethrough": "Barrer le texte",
+      "Format_Subscript": "Mettre en indice",
+      "Format_Superscript": "Mettre en exposant",
+      "Insert_code_block": "Convertir en bloc de code",
+      "Insert_link": "Insérer un lien",
+      "Add_comment": "Ajouter un commentaire"
+    },
+    "commentPlugin": {
+      "Hide_Comments": "Masquer les commentaires",
+      "Show_Comments": "Afficher les commentaires",
+      "Comments": "Commentaires",
+      "No_Comments": "Aucun commentaire",
+      "Reply_to_comment": "Répondre au commentaire...",
+      "Delete_Thread": "Supprimer le fil",
+      "Delete_Comment": "Supprimer le commentaire",
+      "Delete_Comment_Description": "Etes-vous sûr de vouloir supprimer ce",
+      "Type_a_comment": "Tapez un commentaire..."
+    },
+    "testRecorderPlugin": {
+      "Disable_test_recorder": "Désactiver l'enregistreur de test",
+      "Enable_test_recorder": "Activer l'enregistreur de test",
+      "Insert_snapshot": "Insérer un instantané",
+      "Copy_to_clipboard": "Copier dans le presse-papiers",
+      "Download_as_a_file": "Télécharger en tant que fichier"
+    },
+    "tableActionMenuPlugin": {
+      "column_header": "en-tête de colonne",
+      "row_header": "en-tête de ligne",
+      "Insert": "Insérer",
+      "above": "au-dessus",
+      "below": "en dessous",
+      "left": "à gauche",
+      "right": "à droite",
+      "Delete_column": "Supprimer la colonne",
+      "Delete_row": "Supprimer une ligne",
+      "Delete_table": "Supprimer la table",
+      "column": "colonne",
+      "row": "ligne",
+      "columns": "colonnes",
+      "rows": "lignes"
+    }
+  },
+  "action": {
+    "Confirm": "Confirmer",
+    "Cancel": "Annuler",
+    "Discard": "Abandonner",
+    "Save": "Sauvegarder",
+    "Add": "Ajouter",
+    "Remove": "Supprimer",
+    "Delete": "Supprimer",
+    "Enable": "Activer",
+    "Disable": "Disable",
+    "Import": "Importer",
+    "Speech_To_Text": "Voix vers texte",
+    "speech_To_Text": "voix vers texte",
+    "Import_Description": "Importer l'état de l'éditeur depuis JSON",
+    "Export": "Exporter",
+    "Export_Description": "Exporter l'état de l'éditeur en JSON",
+    "Clear": "Effacer",
+    "Clear_Editor": "Effacer l'éditeur",
+    "Clear_Description": "Effacer le contenu de l'éditeur",
+    "Read-Only_Mode": "Mode lecture seule",
+    "Unlock": "Déverrouiller",
+    "Lock": "Verrouiller",
+    "read-Only_Mode": "mode lecture seule",
+    "Confirm_Clear": "Etes-vous sûr de vouloir effacer l'éditeur ?",
+    "Confirm_Discard": "Êtes-vous sûr de vouloir abandonner les modifications ?",
+    "Convert_From_Markdown": "Convertir à partir de Markdown",
+    "Convert_From_Markdown_Description": "Convertir à partir de markdown",
+    "Disconnect": "Déconnecter",
+    "Connect": "Connecter",
+    "Collaborative": "Édition collaborative",
+    "disconnect": "déconnecter",
+    "Connecter": "connecter",
+    "Disconnect_From": "Déconnecter de",
+    "Connect_To": "Connecter à",
+    "Server": "un serveur d'édition collaborative",
+    "Add_Option": "Ajouter une option"
+  }
+}

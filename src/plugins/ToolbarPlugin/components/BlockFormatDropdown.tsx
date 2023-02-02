@@ -55,9 +55,7 @@ const BlockFormatDropdown = () => {
         const selection = $getSelection();
 
         if ($isRangeSelection(selection)) {
-          $wrapNodes(selection, () =>
-            $createHeadingNode(headingSize)
-          );
+          $wrapNodes(selection, () => $createHeadingNode(headingSize));
         }
       });
     }
@@ -128,26 +126,36 @@ const BlockFormatDropdown = () => {
     >
       <button className="item" onClick={formatParagraph} type="button">
         <span className="icon paragraph" />
-        <span className="text">
-          {t('toolbar:blockFormatDropdown.Normal')}
-        </span>
+        <span className="text">{t('toolbar:blockFormatDropdown.Normal')}</span>
         {blockType === 'paragraph' && <span className="active" />}
       </button>
-      <button className="item" onClick={() => formatHeading('h1')} type="button">
+      <button
+        className="item"
+        onClick={() => formatHeading('h1')}
+        type="button"
+      >
         <span className="icon h1" />
         <span className="text">
           {t('toolbar:blockFormatDropdown.Heading_1')}
         </span>
         {blockType === 'h1' && <span className="active" />}
       </button>
-      <button className="item" onClick={() => formatHeading('h2')} type="button">
+      <button
+        className="item"
+        onClick={() => formatHeading('h2')}
+        type="button"
+      >
         <span className="icon h2" />
         <span className="text">
           {t('toolbar:blockFormatDropdown.Heading_2')}
         </span>
         {blockType === 'h2' && <span className="active" />}
       </button>
-      <button className="item" onClick={() => formatHeading('h3')} type="button">
+      <button
+        className="item"
+        onClick={() => formatHeading('h3')}
+        type="button"
+      >
         <span className="icon h3" />
         <span className="text">
           {t('toolbar:blockFormatDropdown.Heading_3')}
@@ -177,9 +185,7 @@ const BlockFormatDropdown = () => {
       </button>
       <button className="item" onClick={formatQuote} type="button">
         <span className="icon quote" />
-        <span className="text">
-          {t('toolbar:blockFormatDropdown.Quote')}
-        </span>
+        <span className="text">{t('toolbar:blockFormatDropdown.Quote')}</span>
         {blockType === 'quote' && <span className="active" />}
       </button>
       <button className="item" onClick={formatCode} type="button">

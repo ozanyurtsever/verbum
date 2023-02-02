@@ -17,7 +17,11 @@ const UnderlineButton = () => {
         activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline');
       }}
       className={'toolbar-item spaced ' + (isUnderline ? 'active' : '')}
-      title={IS_APPLE ? `${t('toolbar:underlineButton.Title')} (⌘U)` : `${t('toolbar:underlineButton.Title')} (Ctrl+U)`}
+      title={
+        IS_APPLE
+          ? `${t('toolbar:underlineButton.Title')} (⌘U)`
+          : `${t('toolbar:underlineButton.Title')} (Ctrl+U)`
+      }
       aria-label={`${t('toolbar:underlineButton.Description')} ${
         IS_APPLE ? '⌘U' : 'Ctrl+U'
       }`}

@@ -16,7 +16,11 @@ const UndoButton = () => {
       onClick={() => {
         activeEditor.dispatchCommand(UNDO_COMMAND, undefined);
       }}
-      title={IS_APPLE ? `${t('toolbar:undoButton.Title')} (⌘Z)` : `${t('toolbar:undoButton.Title')} (Ctrl+Z)`}
+      title={
+        IS_APPLE
+          ? `${t('toolbar:undoButton.Title')} (⌘Z)`
+          : `${t('toolbar:undoButton.Title')} (Ctrl+Z)`
+      }
       className="toolbar-item spaced"
       aria-label={t('toolbar:undoButton.Description')}
       type="button"

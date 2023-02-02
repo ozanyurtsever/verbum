@@ -25,11 +25,15 @@ const TextFormatDropdown = () => {
           'item ' + (isStrikethrough ? 'active dropdown-item-active' : '')
         }
         title={t('toolbar:textFormatDropdown.Options.Strikethrough.Label')}
-        aria-label={t('toolbar:textFormatDropdown.Options.Strikethrough.Description')}
+        aria-label={t(
+          'toolbar:textFormatDropdown.Options.Strikethrough.Description'
+        )}
         type="button"
       >
         <i className="icon strikethrough" />
-        <span className="text">{t('toolbar:textFormatDropdown.Options.Strikethrough.Label')}</span>
+        <span className="text">
+          {t('toolbar:textFormatDropdown.Options.Strikethrough.Label')}
+        </span>
       </button>
       <button
         onClick={() => {
@@ -37,11 +41,15 @@ const TextFormatDropdown = () => {
         }}
         className={'item ' + (isSubscript ? 'active dropdown-item-active' : '')}
         title={t('toolbar:textFormatDropdown.Options.Subscript.Label')}
-        aria-label={t('toolbar:textFormatDropdown.Options.Subscript.Description')}
+        aria-label={t(
+          'toolbar:textFormatDropdown.Options.Subscript.Description'
+        )}
         type="button"
       >
         <i className="icon subscript" />
-        <span className="text">{t('toolbar:textFormatDropdown.Options.Subscript.Label')}</span>
+        <span className="text">
+          {t('toolbar:textFormatDropdown.Options.Subscript.Label')}
+        </span>
       </button>
       <button
         onClick={() => {
@@ -51,11 +59,15 @@ const TextFormatDropdown = () => {
           'item ' + (isSuperscript ? 'active dropdown-item-active' : '')
         }
         title={t('toolbar:textFormatDropdown.Options.Superscript.Label')}
-        aria-label={t('toolbar:textFormatDropdown.Options.Superscript.Description')}
+        aria-label={t(
+          'toolbar:textFormatDropdown.Options.Superscript.Description'
+        )}
         type="button"
       >
         <i className="icon superscript" />
-        <span className="text">{t('toolbar:textFormatDropdown.Options.Superscript.Label')}</span>
+        <span className="text">
+          {t('toolbar:textFormatDropdown.Options.Superscript.Label')}
+        </span>
       </button>
     </DropDown>
   );
