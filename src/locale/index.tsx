@@ -3,6 +3,7 @@ import { initReactI18next } from 'react-i18next';
 import EN from './languages/en.json';
 import FR from './languages/fr.json';
 import PTBR from './languages/ptBr.json';
+import RU from './languages/ru.json'
 
 export const resources = {
   ar: {},
@@ -16,7 +17,7 @@ export const resources = {
   pl: {},
   pt: {},
   ptBr: PTBR,
-  ru: {},
+  ru: RU,
   ukr: {},
   zh: {},
 } as const;

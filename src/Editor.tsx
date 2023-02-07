@@ -48,7 +48,7 @@ interface IEditorProps {
   placeholder?: string;
   listMaxIndent?: number;
   isEditable?: boolean;
-  locale?: 'en' | 'fr' | 'ptBr' | null;
+  locale?: 'en' | 'fr' | 'ptBr' | 'ru' | null;
   onChange?: (editorState: string, editorInstance?: LexicalEditor) => void;
 }
 

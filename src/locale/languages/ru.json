@@ -1,0 +1,194 @@
+{
+  "toolbar": {
+    "alignDropdown": {
+      "Title": "Выравнивание",
+      "Description": "Параметры форматирования для выравнивания текста",
+      "LeftAlign": "По левому краю",
+      "CenterAlign": "По центру",
+      "RightAlign": "По правому краю",
+      "JustifyAlign": "По ширине",
+      "Outdent": "Выступ",
+      "Indent": "Отступ"
+    },
+    "backgroundColorPicker": {
+      "Description": "Форматирование цвета фона"
+    },
+    "blockFormatDropdown": {
+      "Description": "Параметры форматирования стиля текста",
+      "Normal": "Обычный",
+      "Heading_1": "Заголовок 1",
+      "Heading_2": "Заголовок 2",
+      "Heading_3": "Заголовок 3",
+      "BulletList": "Маркированный список",
+      "NumberedList": "Нумерованный список",
+      "CheckList": "Контрольный список",
+      "Quote": "Цитата",
+      "CodeBlock": "Программый код"
+    },
+    "boldButton": {
+      "Title": "Жирный",
+      "Description": "Выделить текст жирным шрифтом"
+    },
+    "codeFormatButton": {
+      "Description": "Вставить блок кода"
+    },
+    "insertLinkButton": {
+      "Description": "Вставить ссылку"
+    },
+    "italicButton": {
+      "Title": "Курсив",
+      "Description": "Выделить текст курсивом"
+    },
+    "redoButton": {
+      "Title": "Вперед",
+      "Description": "Сделать шаг вперед"
+    },
+    "underlineButton": {
+      "Title": "Подчеркнутый",
+      "Description": "Выделить текст подчеркиванием"
+    },
+    "undoButton": {
+      "Title": "Назад",
+      "Description": "Сделать шаг назад"
+    },
+    "textColorPicker": {
+      "Description": "Форматирование цвета текста"
+    },
+    "textFormatDropdown": {
+      "Description": "Параметры форматирования для дополнительных стилей текста",
+      "Options": {
+        "Strikethrough": {
+          "Label": "Зачеркнутый",
+          "Description": "Выделить текст зачеркиванием"
+        },
+        "Subscript": {
+          "Label": "Подстрочный индекс",
+          "Description": "Выделить текст как подстрочный индекс"
+        },
+        "Superscript": {
+          "Label": "Верхний индекс",
+          "Description": "Выделить текст как верхний индекс"
+        }
+      }
+    },
+    "insertDropdown": {
+      "Title": "Втавить",
+      "Description": "Вставить спец. блок",
+      "Mode": {
+        "Sample": "Шаблон",
+        "URL": "URL",
+        "File": "Файл"
+      },
+      "No_of_rows": "Кол-во строк",
+      "No_of_columns": "Кол-во столбцов",
+      "Question": "Вопрос",
+      "Tweet_URL": "Tweet ссылка",
+      "Image_URL": "Ссылка на изображение",
+      "Image_URL_Alt_Text": "Alt Text",
+      "Image_URL_Placeholder": "Random unsplash image",
+      "Image_Upload": "Загрузить изображение",
+      "Image_Upload_Alt_Text": "Alt Text",
+      "Image_Upload_Placeholder": "Descriptive alternative text",
+      "YouTube_URL": "YouTube ссылка",
+      "Horizontal_Rule": "Горизонтальное правило",
+      "Image": "Изображение",
+      "Insert_Image": "Вставить изображения",
+      "Excalidraw": "Excalidraw",
+      "Table": "Таблица",
+      "Insert_Table": "Вставить таблицу",
+      "Poll": "Голосование",
+      "Insert_Poll": "Втсавить голосование",
+      "Tweet": "Tweet",
+      "Insert_Tweet": "Вставить Tweet",
+      "YouTube_Video": "YouTube видео",
+      "Insert_YouTube_Video": "Вставить YouTube видео",
+      "Equation": "Уравнение",
+      "Insert_Equation": "Вставить уравнение",
+      "Sticky_Note": "Заметка"
+    },
+    "mentionsPlugin": {
+      "Suggested_mentions": "Предлагаемые упоминания"
+    },
+    "characterStylesPopupPlugin": {
+      "Format_text_as_bold": "Выделить текст жирным шрифтом",
+      "Format_text_as_italics": "Выделить текст курсивом",
+      "Format_text_to_underlined": "Выделить текст подчеркиванием",
+      "Format_text_with_a_strikethrough": "Выделить текст зачеркиванием",
+      "Format_Subscript": "Выделить текст как подстрочный индекс",
+      "Format_Superscript": "Выделить текст как верхний индекс",
+      "Insert_code_block": "Вставить блок кода",
+      "Insert_link": "Вставить ссылку",
+      "Add_comment": "Добавить комментарий"
+    },
+    "commentPlugin": {
+      "Hide_Comments": "Скрыть комментарии",
+      "Show_Comments": "Показать комментарии",
+      "Comments": "Комментарии",
+      "No_Comments": "Нет комментариев",
+      "Reply_to_comment": "Ответить на комментарий...",
+      "Delete_Thread": "Удалить обсуждение",
+      "Delete_Comment": "Удалить комментарий",
+      "Delete_Comment_Description": "Вы уверены, что хотите удалить это?",
+      "Type_a_comment": "Введите комментарий..."
+    },
+    "testRecorderPlugin": {
+      "Disable_test_recorder": "Отключить тестовую запись",
+      "Enable_test_recorder": "Включить тестовую запись",
+      "Insert_snapshot": "Вставить снимок",
+      "Copy_to_clipboard": "Скопировать в буфер обмена",
+      "Download_as_a_file": "Скачать как файл"
+    },
+    "tableActionMenuPlugin": {
+      "column_header": "заголовок столбца",
+      "row_header": "заголовок строки",
+      "Insert": "Вставить",
+      "above": "выше",
+      "below": "ниже",
+      "left": "левее",
+      "right": "правее",
+      "Delete_column": "Удалить столбец",
+      "Delete_row": "Удалить строку",
+      "Delete_table": "Удалить таблицу",
+      "column": "столбец",
+      "row": "строка",
+      "columns": "столбцы",
+      "rows": "строки"
+    }
+  },
+  "action": {
+    "Confirm": "Подтвердить",
+    "Cancel": "Отменить",
+    "Discard": "Сбросить",
+    "Save": "Сохранить",
+    "Add": "Добавить",
+    "Remove": "Убрать",
+    "Delete": "Удалить",
+    "Enable": "Включить",
+    "Disable": "Отключить",
+    "Import": "Импорт",
+    "Speech_To_Text": "Голосовой ввод",
+    "speech_To_Text": "голосовой ввод",
+    "Import_Description": "Импорт состояния редактора из JSON",
+    "Export": "Экспорт",
+    "Export_Description": "Экспорт состояния редактора в JSON",
+    "Clear": "Очистить",
+    "Clear_Editor": "Очистить редактор",
+    "Clear_Description": "Очистить содержимое редактора",
+    "Read-Only_Mode": "Режим только для чтения",
+    "Unlock": "Разблокировать",
+    "Lock": "Заблокировать",
+    "read-Only_Mode": "режим только для чтения",
+    "Confirm_Clear": "Вы уверены, что хотите очистить редактор?",
+    "Confirm_Discard": "Вы уверены, что хотите отменить изменения?",
+    "Convert_From_Markdown": "Конвертировать из Markdown",
+    "Convert_From_Markdown_Description": "Конвертировать в markdown",
+    "Disconnect": "Отключить",
+    "Connect": "Подключить",
+    "Collaborative": "Совместное редактирование",
+    "disconnect": "отключить",
+    "connect": "подключить",
+    "Disconnect_From": "Отключиться от",
+    "Connect_To": "Подключиться к",
+    "Server": "сервер для совместного редактирования"
+  }
+}
