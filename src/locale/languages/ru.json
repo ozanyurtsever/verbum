@@ -11,17 +11,17 @@
       "Indent": "Отступ"
     },
     "backgroundColorPicker": {
-      "Description": "Форматирование цвета фона"
+      "Description": "Цвет фона"
     },
     "blockFormatDropdown": {
-      "Description": "Параметры форматирования стиля текста",
+      "Description": "Форматирование текста",
       "Normal": "Обычный",
       "Heading_1": "Заголовок 1",
       "Heading_2": "Заголовок 2",
       "Heading_3": "Заголовок 3",
       "BulletList": "Маркированный список",
       "NumberedList": "Нумерованный список",
-      "CheckList": "Контрольный список",
+      "CheckList": "Список задач",
       "Quote": "Цитата",
       "CodeBlock": "Программый код"
     },
@@ -40,7 +40,7 @@
       "Description": "Выделить текст курсивом"
     },
     "redoButton": {
-      "Title": "Вперед",
+      "Title": "Повторить",
       "Description": "Сделать шаг вперед"
     },
     "underlineButton": {
@@ -48,14 +48,14 @@
       "Description": "Выделить текст подчеркиванием"
     },
     "undoButton": {
-      "Title": "Назад",
+      "Title": "Отменить",
       "Description": "Сделать шаг назад"
     },
     "textColorPicker": {
-      "Description": "Форматирование цвета текста"
+      "Description": "Цвет текста"
     },
     "textFormatDropdown": {
-      "Description": "Параметры форматирования для дополнительных стилей текста",
+      "Description": "Дополнительное форматирование текста",
       "Options": {
         "Strikethrough": {
           "Label": "Зачеркнутый",
@@ -72,34 +72,34 @@
       }
     },
     "insertDropdown": {
-      "Title": "Втавить",
+      "Title": "Вставить",
       "Description": "Вставить спец. блок",
       "Mode": {
         "Sample": "Шаблон",
         "URL": "URL",
         "File": "Файл"
       },
-      "No_of_rows": "Кол-во строк",
-      "No_of_columns": "Кол-во столбцов",
+      "No_of_rows": "Количество строк",
+      "No_of_columns": "Количество столбцов",
       "Question": "Вопрос",
-      "Tweet_URL": "Tweet ссылка",
+      "Tweet_URL": "Ссылка на твит",
       "Image_URL": "Ссылка на изображение",
-      "Image_URL_Alt_Text": "Alt Text",
-      "Image_URL_Placeholder": "Random unsplash image",
+      "Image_URL_Alt_Text": "Подпись к изображению",
+      "Image_URL_Placeholder": "Заполнение",
       "Image_Upload": "Загрузить изображение",
-      "Image_Upload_Alt_Text": "Alt Text",
-      "Image_Upload_Placeholder": "Descriptive alternative text",
+      "Image_Upload_Alt_Text": "Подпись к изображению",
+      "Image_Upload_Placeholder": "Подробное описание",
       "YouTube_URL": "YouTube ссылка",
-      "Horizontal_Rule": "Горизонтальное правило",
+      "Horizontal_Rule": "Горизонтальная линия",
       "Image": "Изображение",
-      "Insert_Image": "Вставить изображения",
-      "Excalidraw": "Excalidraw",
+      "Insert_Image": "Вставить изображение",
+      "Excalidraw": "Блок-схема",
       "Table": "Таблица",
       "Insert_Table": "Вставить таблицу",
-      "Poll": "Голосование",
-      "Insert_Poll": "Втсавить голосование",
-      "Tweet": "Tweet",
-      "Insert_Tweet": "Вставить Tweet",
+      "Poll": "Опрос",
+      "Insert_Poll": "Вставить опрос",
+      "Tweet": "Твит",
+      "Insert_Tweet": "Вставить твит",
       "YouTube_Video": "YouTube видео",
       "Insert_YouTube_Video": "Вставить YouTube видео",
       "Equation": "Уравнение",
@@ -136,7 +136,7 @@
       "Enable_test_recorder": "Включить тестовую запись",
       "Insert_snapshot": "Вставить снимок",
       "Copy_to_clipboard": "Скопировать в буфер обмена",
-      "Download_as_a_file": "Скачать как файл"
+      "Download_as_a_file": "Сохранить как..."
     },
     "tableActionMenuPlugin": {
       "column_header": "заголовок столбца",
@@ -181,7 +181,7 @@
     "Confirm_Clear": "Вы уверены, что хотите очистить редактор?",
     "Confirm_Discard": "Вы уверены, что хотите отменить изменения?",
     "Convert_From_Markdown": "Конвертировать из Markdown",
-    "Convert_From_Markdown_Description": "Конвертировать в markdown",
+    "Convert_From_Markdown_Description": "Конвертировать в MarkDown",
     "Disconnect": "Отключить",
     "Connect": "Подключить",
     "Collaborative": "Совместное редактирование",
