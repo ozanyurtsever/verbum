@@ -61,7 +61,7 @@ const Editor = ({
   listMaxIndent = 7,
   placeholder = '',
   isEditable = true,
-  locale = null,
+  locale,
   onChange,
 }: IEditorProps) => {
   const [editor] = useLexicalComposerContext();
