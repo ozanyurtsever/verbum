@@ -1,9 +1,8 @@
 import * as i18next from 'i18next';
-import { initReactI18next } from 'react-i18next';
 import EN from './languages/en.json';
 import FR from './languages/fr.json';
 import PTBR from './languages/ptBr.json';
-import RU from './languages/ru.json'
+import RU from './languages/ru.json';
 
 export const resources = {
   ar: {},
@@ -33,17 +32,20 @@ export const languageDetector = {
   cacheUserLanguage: () => {},
 };
 
-export const i18n = i18next
-  .use(initReactI18next)
-  .use(languageDetector as i18next.Module)
-  .init({
-    ns: ['toolbar', 'action'],
-    resources,
-    fallbackLng: 'en',
-    debug: true,
-    interpolation: {
-      escapeValue: false,
+const i18n = i18next
+  .createInstance(
+    {
+      ns: ['toolbar', 'action'],
+      resources,
+      fallbackLng: 'en',
+      debug: true,
+      interpolation: {
+        escapeValue: false,
+      },
     },
-  });
+    // We must provide a function as second parameter, otherwise i18next errors
+    (err, t) => {}
+  )
+  .use(languageDetector as i18next.Module);
 
 export default i18n;

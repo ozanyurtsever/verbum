@@ -6,7 +6,8 @@ import React from 'react';
 import PlaygroundNodes from './nodes/PlaygroundNodes';
 import PlaygroundEditorTheme from './themes/PlaygroundEditorTheme';
 import './EditorComposer.css';
-import './locale';
+import i18n from './locale';
+import { I18nextProvider } from 'react-i18next';
 
 interface IEditorComposer {
   children: React.ReactElement;
@@ -25,7 +26,9 @@ const EditorComposer = ({ children, initialEditorState }: IEditorComposer) => {
   };
   return (
     <LexicalComposer initialConfig={initialConfig}>
-      <div className="editor-shell">{children}</div>
+      <I18nextProvider i18n={i18n}>
+        <div className="editor-shell">{children}</div>
+      </I18nextProvider>
     </LexicalComposer>
   );
 };
