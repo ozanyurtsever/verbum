@@ -158,6 +158,12 @@ $ npm start
 $ npm run storybook
 ```
 
+Also you can test it locally using Storybook:
+
+```
+$ npm run storybook
+```
+
 ## Future plans
 
 - Test coverage
