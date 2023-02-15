@@ -22,9 +22,9 @@ const AlignDropdown = () => {
   return (
     <DropDown
       buttonLabel={t('toolbar:alignDropdown.Title')}
-      buttonIconClassName="icon left-align"
-      buttonClassName="toolbar-item spaced alignment"
       buttonAriaLabel={t('toolbar:alignDropdown.Description')}
+      buttonClassName="toolbar-item spaced alignment"
+      buttonIconClassName="icon left-align"
     >
       <button
         onClick={() => {

@@ -15,15 +15,15 @@
     },
     "blockFormatDropdown": {
       "Description": "Formatação do estilo do texto",
-      "Normal": "Normal",
-      "Heading_1": "Cabeçalho 1",
-      "Heading_2": "Cabeçalho 2",
-      "Heading_3": "Cabeçalho 3",
-      "BulletList": "Lista desordenada",
-      "NumberedList": "Lista ordenada",
-      "CheckList": "Lista de controle",
-      "Quote": "Citação",
-      "CodeBlock": "Bloco de código"
+      "paragraph": "Normal",
+      "h1": "Cabeçalho 1",
+      "h2": "Cabeçalho 2",
+      "h3": "Cabeçalho 3",
+      "bullet": "Lista desordenada",
+      "number": "Lista ordenada",
+      "check": "Lista de controle",
+      "quote": "Citação",
+      "code": "Bloco de código"
     },
     "boldButton": {
       "Title": "Negrito",
