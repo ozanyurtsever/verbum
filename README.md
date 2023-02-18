@@ -155,7 +155,6 @@ For development use:
 ```
 $ npm install (in case of an error, run `npm install --legacy-peer-deps`)
 $ npm start
-$ npm run storybook
 ```
 
 Also you can test it locally using Storybook:
