@@ -37,7 +37,7 @@ import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import EditorContext from './context/EditorContext';
 import { LexicalEditor } from 'lexical';
-import i18next from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 interface IEditorProps {
   children?: ReactNode;
@@ -74,10 +74,12 @@ const Editor = ({
   } = useSettings();
   const placeholderComponent = <Placeholder>{placeholder}</Placeholder>;
 
+  const { i18n } = useTranslation();
+
   useEffect(() => {
     editor.setEditable(isEditable);
 
-    if (locale) i18next.changeLanguage(locale);
+    if (locale) i18n.changeLanguage(locale);
   }, []);
 
   return (
