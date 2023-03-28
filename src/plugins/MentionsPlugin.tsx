@@ -15,12 +15,7 @@ import { $createAutoLinkNode } from '@lexical/link';
 
 import './MentionsPlugin.css';
 
-type MentionData = {
-  value: string;
-  url?: string;
-};
-
-type SearchData = (p: string) => Promise<MentionData[]>;
+type SearchData<A> = (p: string) => Promise<A[]>;
 
 const PUNCTUATION =
   '\\.,\\+\\*\\?\\$\\@\\|#{}\\(\\)\\^\\-\\[\\]\\\\/!%\'"~=<>_:;';
@@ -91,24 +86,11 @@ const SUGGESTION_LIST_LENGTH_LIMIT = 5;
 
 const mentionsCache = new Map();
 
-const lookupService = {
-  search(
-    string: string,
-    callback: (results: Array<MentionData>) => void,
-    mentionData: SearchData
-  ): void {
-    setTimeout(async () => {
-      const results = mentionData(string);
-      callback(await results);
-    }, 500);
-  },
-};
-
-function useMentionLookupService(
+function useMentionLookupService<A>(
   mentionString: string | null,
-  mentionData: SearchData
+  mentionData: SearchData<A>
 ) {
-  const [results, setResults] = useState<Array<MentionData>>([]);
+  const [results, setResults] = useState<Array<A>>([]);
 
   useEffect(() => {
     const cachedResults = mentionsCache.get(mentionString);
@@ -126,14 +108,11 @@ function useMentionLookupService(
     }
 
     mentionsCache.set(mentionString, null);
-    lookupService.search(
-      mentionString,
-      (newResults) => {
-        mentionsCache.set(mentionString, newResults);
-        setResults(newResults);
-      },
-      mentionData
-    );
+
+    mentionData(mentionString).then((results) => {
+      mentionsCache.set(mentionString, results);
+      setResults(results);
+    });
   }, [mentionString]);
 
   return results;
@@ -240,11 +219,15 @@ function MentionsTypeaheadMenuItem({
   );
 }
 
-export default function MentionsPlugin(props: {
-  searchData?: SearchData;
-  isLink?: boolean;
+export default function MentionsPlugin<A>(props: {
+  searchData: SearchData<A>;
+  getTypeaheadValues: (result: A) => {
+    url: string;
+    value: string;
+    picture: JSX.Element;
+  };
 }): JSX.Element | null {
-  const { searchData, isLink } = props;
+  const { searchData, getTypeaheadValues } = props;
 
   const [editor] = useLexicalComposerContext();
 
@@ -261,7 +244,11 @@ export default function MentionsPlugin(props: {
       results
         .map(
           (result) =>
-            new MentionTypeaheadOption(result.value, <i />, result.url)
+            new MentionTypeaheadOption(
+              getTypeaheadValues(result).value,
+              getTypeaheadValues(result).picture,
+              getTypeaheadValues(result).url
+            )
         )
         .slice(0, SUGGESTION_LIST_LENGTH_LIMIT),
     [results]
@@ -275,16 +262,11 @@ export default function MentionsPlugin(props: {
     ) => {
       editor.update(() => {
         if (nodeToReplace) {
-          const mentionNode = $createMentionNode(selectedOption.name);
-          if (isLink) {
-            const linkNode = $createAutoLinkNode(selectedOption.url);
-            linkNode.append(mentionNode);
-            nodeToReplace.replace(linkNode);
-            linkNode.select();
-          } else {
-            nodeToReplace.replace(mentionNode);
-            mentionNode.select();
-          }
+          const mentionNode = $createMentionNode(`@${selectedOption.name}`);
+          const linkNode = $createAutoLinkNode(selectedOption.url);
+          linkNode.append(mentionNode);
+          nodeToReplace.replace(linkNode);
+          linkNode.select();
         }
         closeMenu();
       });
