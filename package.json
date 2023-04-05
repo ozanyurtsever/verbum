@@ -90,7 +90,7 @@
     "typescript": "^4.6.4"
   },
   "dependencies": {
-    "@excalidraw/excalidraw": "0.11.0",
+    "@excalidraw/excalidraw": "0.14.2",
     "@lexical/clipboard": "^0.9.0",
     "@lexical/code": "^0.9.0",
     "@lexical/file": "^0.9.0",
