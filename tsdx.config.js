@@ -4,6 +4,7 @@ const images = require('@rollup/plugin-image');
 
 module.exports = {
   rollup(config, options) {
+    config.inlineDynamicImports=true //deprecated, but still works
     config.plugins = [
       postcss({
         inject: true, //  true

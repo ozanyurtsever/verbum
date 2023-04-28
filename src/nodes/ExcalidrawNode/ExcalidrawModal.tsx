@@ -8,7 +8,7 @@
 
 import './ExcalidrawModal.css';
 
-import Excalidraw from '@excalidraw/excalidraw';
+import { Excalidraw } from '@excalidraw/excalidraw';
 import _default from '@excalidraw/excalidraw';
 import * as React from 'react';
 import { ReactPortal, useEffect, useRef, useState } from 'react';
@@ -162,11 +162,6 @@ export default function ExcalidrawModal({
     setElements(els);
   };
 
-  // This is a hacky work-around for Excalidraw + Vite.
-  // In DEV, Vite pulls this in fine, in prod it doesn't. It seems
-  // like a module resolution issue with ESM vs CJS?
-  const _Excalidraw = Excalidraw.$$typeof != null ? Excalidraw : _default;
-
   return createPortal(
     <div className="ExcalidrawModal__overlay" role="dialog">
       <div
@@ -176,7 +171,7 @@ export default function ExcalidrawModal({
       >
         <div className="ExcalidrawModal__row">
           {discardModalOpen && <ShowDiscardDialog />}
-          <_Excalidraw
+          <Excalidraw
             onChange={onChange}
             initialData={{
               appState: { isLoading: false },

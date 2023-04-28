@@ -1,6 +1,7 @@
 import EditorComposer from './EditorComposer';
 import Editor from './Editor';
 import ToolbarPlugin from './plugins/ToolbarPlugin/ToolbarPlugin';
+import MentionsPlugin from './plugins/MentionsPlugin';
 
 import {
   AlignDropdown,
@@ -44,4 +45,5 @@ export {
   UnderlineButton,
   ToolbarTypes,
   Divider,
+  MentionsPlugin,
 };
