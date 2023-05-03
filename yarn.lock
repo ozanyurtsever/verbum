@@ -1288,9 +1288,9 @@
     "eslint-visitor-keys" "^3.3.0"
 
 "@eslint-community/regexpp@^4.4.0":
-  "integrity" "sha512-vITaYzIcNmjn5tF5uxcZ/ft7/RXGrMUIS9HalWckEOF6ESiwXKoMzAQf2UW0aVd6rnOeExTJVd5hmWXucBKGXQ=="
-  "resolved" "https://registry.npmjs.org/@eslint-community/regexpp/-/regexpp-4.5.0.tgz"
-  "version" "4.5.0"
+  "integrity" "sha512-Z5ba73P98O1KUYCCJTUeVpja9RcGoMdncZ6T49FCUl2lN38JtCJ+3WgIDBv0AuY4WChU5PmtJmOCTlN6FZTFKQ=="
+  "resolved" "https://registry.npmjs.org/@eslint-community/regexpp/-/regexpp-4.5.1.tgz"
+  "version" "4.5.1"
 
 "@eslint/eslintrc@^2.0.2":
   "integrity" "sha512-3W4f5tDUra+pA+FzgugqL2pRimUTDJWKr7BINqOpkZrC0uYI0NIc0/JFgBROCU07HR6GieA5m3/rsPIhDmCXTQ=="
@@ -1307,10 +1307,10 @@
     "minimatch" "^3.1.2"
     "strip-json-comments" "^3.1.1"
 
-"@eslint/js@8.37.0":
-  "integrity" "sha512-x5vzdtOOGgFVDCUs81QRB2+liax8rFg3+7hqM+QhBG0/G3F1ZsoYl97UrqgHgQ9KKT7G6c4V+aTUCgu/n22v1A=="
-  "resolved" "https://registry.npmjs.org/@eslint/js/-/js-8.37.0.tgz"
-  "version" "8.37.0"
+"@eslint/js@8.39.0":
+  "integrity" "sha512-kf9RB0Fg7NZfap83B3QOqOGg9QmD9yBudqQXzzOtn3i4y7ZUXe5ONeW34Gwi+TxhH4mvj72R1Zc300KUMa9Bng=="
+  "resolved" "https://registry.npmjs.org/@eslint/js/-/js-8.39.0.tgz"
+  "version" "8.39.0"
 
 "@excalidraw/excalidraw@0.14.2":
   "integrity" "sha512-8LdjpTBWEK5waDWB7Bt/G9YBI4j0OxkstUhvaDGz7dwQGfzF6FW5CXBoYHNEoX0qmb+Fg/NPOlZ7FrKsrSVCqg=="
@@ -1648,164 +1648,164 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@lexical/clipboard@^0.9.0", "@lexical/clipboard@0.9.0":
-  "integrity" "sha512-YDfFKC0YWZn7TV4ZEf1wPvdPeWM8vlfnNovQMbkjgjyxiXLK+fJKt1HgO/Utxmnb+GyB8cJTwbdTjKDELfd62g=="
-  "resolved" "https://registry.npmjs.org/@lexical/clipboard/-/clipboard-0.9.0.tgz"
-  "version" "0.9.0"
+"@lexical/clipboard@0.10.0":
+  "integrity" "sha512-k1n93NQdTrGHFMQQ1NxD/G13uoTEBHKOqjgSAV3I3pQjG57zO51LsMjBxgR9BChVI1DotnQ/JQCbx2HCQkCeng=="
+  "resolved" "https://registry.npmjs.org/@lexical/clipboard/-/clipboard-0.10.0.tgz"
+  "version" "0.10.0"
   dependencies:
-    "@lexical/html" "0.9.0"
-    "@lexical/list" "0.9.0"
-    "@lexical/selection" "0.9.0"
-    "@lexical/utils" "0.9.0"
+    "@lexical/html" "0.10.0"
+    "@lexical/list" "0.10.0"
+    "@lexical/selection" "0.10.0"
+    "@lexical/utils" "0.10.0"
 
-"@lexical/code@^0.9.0", "@lexical/code@0.9.0":
-  "integrity" "sha512-DdHB7kS/iOTeb6C2DvYKvNb/FTdG78eFpineO1Tb4PaBNY5JmFLHIIHeA10eCeuGouJfhJFjkplel3JBV4FNAw=="
-  "resolved" "https://registry.npmjs.org/@lexical/code/-/code-0.9.0.tgz"
-  "version" "0.9.0"
+"@lexical/code@0.10.0":
+  "integrity" "sha512-ZEeoAtj/nXWmmN0Ol4lXSEAtxQozdDd/5I9P23Z4Leobg1YioZBDKwodM/TEITxrFme/cLgk3XCK1N2h2Noakw=="
+  "resolved" "https://registry.npmjs.org/@lexical/code/-/code-0.10.0.tgz"
+  "version" "0.10.0"
   dependencies:
-    "@lexical/utils" "0.9.0"
+    "@lexical/utils" "0.10.0"
     "prismjs" "^1.27.0"
 
-"@lexical/dragon@0.9.0":
-  "integrity" "sha512-ehx/yr+epvhrsk6CcqsUFLSslq+VGBt8mlQBuceXekIvzUT0I3Uktgtfw5zFsFMc/DnJAEafv/tZlHlc1ZTioQ=="
-  "resolved" "https://registry.npmjs.org/@lexical/dragon/-/dragon-0.9.0.tgz"
-  "version" "0.9.0"
+"@lexical/dragon@0.10.0":
+  "integrity" "sha512-LBRkUW4NadFFQN9BIL3nz51AtPl1nSzRas61ob+hueSbovgr/+k9QGjLD1L7FIKnna2qzRlJjoI70Ll/V3fiCQ=="
+  "resolved" "https://registry.npmjs.org/@lexical/dragon/-/dragon-0.10.0.tgz"
+  "version" "0.10.0"
 
-"@lexical/file@^0.9.0":
-  "integrity" "sha512-prRPsuVwV7qQ82+WfX5zOtxQNbFEMRLkZD3W/JabzSy+QYcPje2JOmYusQ1R0/c4Uf43BE4xm0G753zKxbLXbA=="
-  "resolved" "https://registry.npmjs.org/@lexical/file/-/file-0.9.0.tgz"
-  "version" "0.9.0"
+"@lexical/file@0.10.0":
+  "integrity" "sha512-/lVAkIfANHdnrFzhcZfyBGBxIEoWj9q5qP7r8sEgHRRnYjmvp2IexGZB1qv7xTL3JfDTB4hoSsv7uGnFNib0tg=="
+  "resolved" "https://registry.npmjs.org/@lexical/file/-/file-0.10.0.tgz"
+  "version" "0.10.0"
 
-"@lexical/hashtag@^0.9.0", "@lexical/hashtag@0.9.0":
-  "integrity" "sha512-RjEt27dZfC/BP/yM3kJ8eB4Qf2UqLpImlUsc50z16gSZntZ3fK+9jkSZ7+ACzzvZ81Uph9vVkmdi/3zzlljjEw=="
-  "resolved" "https://registry.npmjs.org/@lexical/hashtag/-/hashtag-0.9.0.tgz"
-  "version" "0.9.0"
+"@lexical/hashtag@0.10.0":
+  "integrity" "sha512-jy+LssP4ABfwS+bT2KD+W6gWl+dsyFd8Ql27bsfkNoeyIBMeSLRBNBymkkUyZGKfXrbkzMUJoH7Dws/loHY5Ng=="
+  "resolved" "https://registry.npmjs.org/@lexical/hashtag/-/hashtag-0.10.0.tgz"
+  "version" "0.10.0"
   dependencies:
-    "@lexical/utils" "0.9.0"
+    "@lexical/utils" "0.10.0"
 
-"@lexical/history@0.9.0":
-  "integrity" "sha512-prEeoDqYB1rz4Qr64kn62lmphn85Nd3HO2Cx5DNWwwgTz+X9LcFC32yJMzoX61iVm9Uhk4XbjnX0ZW46meosNA=="
-  "resolved" "https://registry.npmjs.org/@lexical/history/-/history-0.9.0.tgz"
-  "version" "0.9.0"
+"@lexical/history@0.10.0":
+  "integrity" "sha512-yu7FruEtOulZliE6nVgvC+GLVHhN15IcLVvKdYIi+QYzkOorKc6miVuGpLvJRHE7VtK0NMWb2ykyYz9gl5jW3Q=="
+  "resolved" "https://registry.npmjs.org/@lexical/history/-/history-0.10.0.tgz"
+  "version" "0.10.0"
   dependencies:
-    "@lexical/utils" "0.9.0"
+    "@lexical/utils" "0.10.0"
 
-"@lexical/html@0.9.0":
-  "integrity" "sha512-qNmmPYMpd7OYYCoShAMdklHtGoUcinW6kokLYo0atZ4ERuH72GfP1IVQ6qe04M0VU/Ps1ng5ZEOp1Gje6fMtvQ=="
-  "resolved" "https://registry.npmjs.org/@lexical/html/-/html-0.9.0.tgz"
-  "version" "0.9.0"
+"@lexical/html@0.10.0":
+  "integrity" "sha512-zxPbjojLfZXt4Sx6CMi0NzPUrTJG8McXaCsqPKK2GQQnkKfmXLh5QsK7YhofngBDDQOtqVYzTNhrxMWVP1Sm/A=="
+  "resolved" "https://registry.npmjs.org/@lexical/html/-/html-0.10.0.tgz"
+  "version" "0.10.0"
   dependencies:
-    "@lexical/selection" "0.9.0"
+    "@lexical/selection" "0.10.0"
 
-"@lexical/link@^0.9.0", "@lexical/link@0.9.0":
-  "integrity" "sha512-zubpf5Wli+F9Q8hqIQ8/arzVJzhXStA2qjvVBv1aM4YwbwLP3jqhRngSfMQX7ZDrHow8uc9xrR7l/t6eO/8XfQ=="
-  "resolved" "https://registry.npmjs.org/@lexical/link/-/link-0.9.0.tgz"
-  "version" "0.9.0"
+"@lexical/link@0.10.0":
+  "integrity" "sha512-LehZx9ruUR0UNZmNUMofrgwGkQo75X/yEAHQ/qFXt8Jz0D4g9fS6vsiSVn7BD4XrTdaf2kUaIe0VHScIZPjB0A=="
+  "resolved" "https://registry.npmjs.org/@lexical/link/-/link-0.10.0.tgz"
+  "version" "0.10.0"
   dependencies:
-    "@lexical/utils" "0.9.0"
+    "@lexical/utils" "0.10.0"
 
-"@lexical/list@^0.9.0", "@lexical/list@0.9.0":
-  "integrity" "sha512-vC6W9UaWvL1QB8HG+2OfR10fk+eOMktUllSmfNMeCi26ymcAkzvu9OtbLgL2aiU1h95S+iC7fPhUXl/G5gaB1w=="
-  "resolved" "https://registry.npmjs.org/@lexical/list/-/list-0.9.0.tgz"
-  "version" "0.9.0"
+"@lexical/list@0.10.0":
+  "integrity" "sha512-xoba6e4RUPIOhD0kJ0X1iI8SgOGDNWtyObd/UBbFfAQDx0VETj31Q7PepSPy9OEeuvnF1Nn9pvUeHyG7cNFuHw=="
+  "resolved" "https://registry.npmjs.org/@lexical/list/-/list-0.10.0.tgz"
+  "version" "0.10.0"
   dependencies:
-    "@lexical/utils" "0.9.0"
+    "@lexical/utils" "0.10.0"
 
-"@lexical/mark@^0.9.0", "@lexical/mark@0.9.0":
-  "integrity" "sha512-ACflXazTIEMg+HEGrZa4lmje1R4bxfqbyqRw7C/t+iHr2eZROEpIg9Z+ztQ7wx8YSdNXI36k/WsDEU8uxIgGdQ=="
-  "resolved" "https://registry.npmjs.org/@lexical/mark/-/mark-0.9.0.tgz"
-  "version" "0.9.0"
+"@lexical/mark@0.10.0":
+  "integrity" "sha512-Xo8G8tADlxV9Es5hbca6MfZjOU5mkjZNdbRJ5dy4STNhtl3FcqbVGSAewFibzsKG3x/s8npFDY6nN/k/lkGaRg=="
+  "resolved" "https://registry.npmjs.org/@lexical/mark/-/mark-0.10.0.tgz"
+  "version" "0.10.0"
   dependencies:
-    "@lexical/utils" "0.9.0"
+    "@lexical/utils" "0.10.0"
 
-"@lexical/markdown@0.9.0":
-  "integrity" "sha512-2VcA+csrnVpXDLU4G69gg4DCKiU1mUn0lPUKOp74iuR+g2K/5PbiRSwJD6vbn18Qxp5qM+bGmMVDbPXp6rIxvA=="
-  "resolved" "https://registry.npmjs.org/@lexical/markdown/-/markdown-0.9.0.tgz"
-  "version" "0.9.0"
+"@lexical/markdown@0.10.0":
+  "integrity" "sha512-P6XT8736DtZoTV6KfO0+FM9pkCbGGk0wCim1HIDc3v2S4r9+Pie/FgOOWSz4jKygjhs/6EYgYJmZKq7G4Fo5WA=="
+  "resolved" "https://registry.npmjs.org/@lexical/markdown/-/markdown-0.10.0.tgz"
+  "version" "0.10.0"
   dependencies:
-    "@lexical/code" "0.9.0"
-    "@lexical/link" "0.9.0"
-    "@lexical/list" "0.9.0"
-    "@lexical/rich-text" "0.9.0"
-    "@lexical/text" "0.9.0"
-    "@lexical/utils" "0.9.0"
+    "@lexical/code" "0.10.0"
+    "@lexical/link" "0.10.0"
+    "@lexical/list" "0.10.0"
+    "@lexical/rich-text" "0.10.0"
+    "@lexical/text" "0.10.0"
+    "@lexical/utils" "0.10.0"
 
-"@lexical/offset@0.9.0":
-  "integrity" "sha512-Tw1V852si1fK7jLtpWNmTlFMUkZAGIKrOuKE/MnboXrDXL1qydCZn1rN/UVIDTPjmF6O6YGh4XQwi4IIWBDvfQ=="
-  "resolved" "https://registry.npmjs.org/@lexical/offset/-/offset-0.9.0.tgz"
-  "version" "0.9.0"
+"@lexical/offset@0.10.0":
+  "integrity" "sha512-vgVmoR7XMjFuQiO6GecLGM/gcNgJlJXitO5uCHARi2yjJDmmCQ07THu5xpfXKXnkJTZXn1VfWWmAGu72Q9fKNw=="
+  "resolved" "https://registry.npmjs.org/@lexical/offset/-/offset-0.10.0.tgz"
+  "version" "0.10.0"
 
-"@lexical/overflow@^0.9.0", "@lexical/overflow@0.9.0":
-  "integrity" "sha512-OxtsJ4b9xj6A3TcIJ5RgPmwMmQr643lu9LFMWTrSsLEUIhwWCRwqGaY37LflqpLRNLlcGTbqAqzlTs33hEvsqg=="
-  "resolved" "https://registry.npmjs.org/@lexical/overflow/-/overflow-0.9.0.tgz"
-  "version" "0.9.0"
+"@lexical/overflow@0.10.0":
+  "integrity" "sha512-8YfYhjwDGliGzYFyLVH4nCqrgR0p3+vAwEe2WI65HJnPW9TnxRkrak7QkFPTsefiTnb1gnRc+FajP9LfjdQ8YA=="
+  "resolved" "https://registry.npmjs.org/@lexical/overflow/-/overflow-0.10.0.tgz"
+  "version" "0.10.0"
 
-"@lexical/plain-text@^0.9.0", "@lexical/plain-text@0.9.0":
-  "integrity" "sha512-V5UKWRdi0Wl1lIGBcPgbWoO4x4leIcBJ1GA2HSp/7dIn5ay9x+lgqKQMI9nQlg72yai5cthv5r16pypjlpk4dg=="
-  "resolved" "https://registry.npmjs.org/@lexical/plain-text/-/plain-text-0.9.0.tgz"
-  "version" "0.9.0"
+"@lexical/plain-text@0.10.0":
+  "integrity" "sha512-KcjQR+nHvXQDDRZ9bhcLOWfrY47OXcQc1YMx3otHbMPlEC+f/J75DTUyp+V5fry9X8gHDq0iHm+w8hqgh5ii1Q=="
+  "resolved" "https://registry.npmjs.org/@lexical/plain-text/-/plain-text-0.10.0.tgz"
+  "version" "0.10.0"
 
-"@lexical/react@^0.9.0":
-  "integrity" "sha512-gnQ12ufSXLsgudohUbF1Uf5DXkaH0/5S7n+h64ofdeFwbCmqy7yq0FZgWpSX1lBW0UI15UT2uqVQ5LwPqqNhuQ=="
-  "resolved" "https://registry.npmjs.org/@lexical/react/-/react-0.9.0.tgz"
-  "version" "0.9.0"
+"@lexical/react@0.10.0":
+  "integrity" "sha512-7Ql/Y3FZSsPSCObT58CYRUd4tQzKL2U8B1xO0KXZBUbj+sO6gpNbc7/Y7MiZwCQzVNwP84j7mwkXQ1EnUBS52A=="
+  "resolved" "https://registry.npmjs.org/@lexical/react/-/react-0.10.0.tgz"
+  "version" "0.10.0"
   dependencies:
-    "@lexical/clipboard" "0.9.0"
-    "@lexical/code" "0.9.0"
-    "@lexical/dragon" "0.9.0"
-    "@lexical/hashtag" "0.9.0"
-    "@lexical/history" "0.9.0"
-    "@lexical/link" "0.9.0"
-    "@lexical/list" "0.9.0"
-    "@lexical/mark" "0.9.0"
-    "@lexical/markdown" "0.9.0"
-    "@lexical/overflow" "0.9.0"
-    "@lexical/plain-text" "0.9.0"
-    "@lexical/rich-text" "0.9.0"
-    "@lexical/selection" "0.9.0"
-    "@lexical/table" "0.9.0"
-    "@lexical/text" "0.9.0"
-    "@lexical/utils" "0.9.0"
-    "@lexical/yjs" "0.9.0"
+    "@lexical/clipboard" "0.10.0"
+    "@lexical/code" "0.10.0"
+    "@lexical/dragon" "0.10.0"
+    "@lexical/hashtag" "0.10.0"
+    "@lexical/history" "0.10.0"
+    "@lexical/link" "0.10.0"
+    "@lexical/list" "0.10.0"
+    "@lexical/mark" "0.10.0"
+    "@lexical/markdown" "0.10.0"
+    "@lexical/overflow" "0.10.0"
+    "@lexical/plain-text" "0.10.0"
+    "@lexical/rich-text" "0.10.0"
+    "@lexical/selection" "0.10.0"
+    "@lexical/table" "0.10.0"
+    "@lexical/text" "0.10.0"
+    "@lexical/utils" "0.10.0"
+    "@lexical/yjs" "0.10.0"
     "react-error-boundary" "^3.1.4"
 
-"@lexical/rich-text@^0.9.0", "@lexical/rich-text@0.9.0":
-  "integrity" "sha512-FC2stGty/S5hrQW3uL3xsrNXvKmPqhsSG73gwfx5VH6CxwABQjBGfNq1wO5p02c3J/KOC8OeKuEtgbwldEX48Q=="
-  "resolved" "https://registry.npmjs.org/@lexical/rich-text/-/rich-text-0.9.0.tgz"
-  "version" "0.9.0"
+"@lexical/rich-text@0.10.0":
+  "integrity" "sha512-mkg+8h5qh09daCc8+PhzHjczSVhlTOkrr8S4oma89mfQZ/CODJYd0tOOd9y/8JaDrBddTqjd4xTjXwEEJzVA4g=="
+  "resolved" "https://registry.npmjs.org/@lexical/rich-text/-/rich-text-0.10.0.tgz"
+  "version" "0.10.0"
 
-"@lexical/selection@^0.9.0", "@lexical/selection@0.9.0":
-  "integrity" "sha512-jPLeaqNujER1t61OWmSuUMS010A6Nz49efO8rEJFjMbUK7GB9IDsSDgvE4WnT/yBrXLAickjSiXgUq51LQTYYw=="
-  "resolved" "https://registry.npmjs.org/@lexical/selection/-/selection-0.9.0.tgz"
-  "version" "0.9.0"
+"@lexical/selection@0.10.0":
+  "integrity" "sha512-dziT1fb+/x8S3PUHI6BuF4DPML2njCDdyY7l9uTgzN9jGXxo9bzy+ySgRRN8IgjWQb8jkntAqkYIWTj4/3Jr7Q=="
+  "resolved" "https://registry.npmjs.org/@lexical/selection/-/selection-0.10.0.tgz"
+  "version" "0.10.0"
 
-"@lexical/table@^0.9.0", "@lexical/table@0.9.0":
-  "integrity" "sha512-Qi0naXpMw4eUREEUGRJH41uf6DXbK5UgrJSMaX1FYvEV8Mk3EjRW1KkjuQGbwlchtEvchyyY6wo6uoYR80Vw7w=="
-  "resolved" "https://registry.npmjs.org/@lexical/table/-/table-0.9.0.tgz"
-  "version" "0.9.0"
+"@lexical/table@0.10.0":
+  "integrity" "sha512-m0MBma4PNn5VV3yAGFK0iCTCZ5z/VBrZWLGxo3yPnY7FHgtUsDY84xYXziZGeixU+ehiQfsSPWVEGEC+EHFGTg=="
+  "resolved" "https://registry.npmjs.org/@lexical/table/-/table-0.10.0.tgz"
+  "version" "0.10.0"
   dependencies:
-    "@lexical/utils" "0.9.0"
+    "@lexical/utils" "0.10.0"
 
-"@lexical/text@0.9.0":
-  "integrity" "sha512-+OHoB1Qb2SajGTEm9K4I3hDtCmeLr0Bs62psra6qYE/lil0Y8brrEXB5egppDpm6mKtiMzGrkBDMpcsKw/kiWA=="
-  "resolved" "https://registry.npmjs.org/@lexical/text/-/text-0.9.0.tgz"
-  "version" "0.9.0"
+"@lexical/text@0.10.0":
+  "integrity" "sha512-kR/V4KgCIUedjEbdPtIrvsvalETDbAPhCB7HA9MBALYw9FxjXlpYBqP7yY8AxWoYCXMqDtKRu/vmo/OMi3Z8Bw=="
+  "resolved" "https://registry.npmjs.org/@lexical/text/-/text-0.10.0.tgz"
+  "version" "0.10.0"
 
-"@lexical/utils@^0.9.0", "@lexical/utils@0.9.0":
-  "integrity" "sha512-s4BrBKrd7VHexLSYdSKrRAVmuxmfVV49MYx/khILGnNQKYS2O8PuERCXi+IRi8Ac5ASELO6d28Y2my8NMM1CYA=="
-  "resolved" "https://registry.npmjs.org/@lexical/utils/-/utils-0.9.0.tgz"
-  "version" "0.9.0"
+"@lexical/utils@0.10.0":
+  "integrity" "sha512-HrRZBLxZhe5V8+kNH6VZP9pfhQdBwK76KYBjWpCaQWkmeeuLx8clY3O+SMjy1Pu/Pdh80qqtad8bdJ0l2CxMSQ=="
+  "resolved" "https://registry.npmjs.org/@lexical/utils/-/utils-0.10.0.tgz"
+  "version" "0.10.0"
   dependencies:
-    "@lexical/list" "0.9.0"
-    "@lexical/selection" "0.9.0"
-    "@lexical/table" "0.9.0"
+    "@lexical/list" "0.10.0"
+    "@lexical/selection" "0.10.0"
+    "@lexical/table" "0.10.0"
 
-"@lexical/yjs@0.9.0":
-  "integrity" "sha512-xRwa/gmBgS4uE0lYFht9gM602wzb0MSXJBWreI8hSyyipQPgr7XTndKzt/0ntZ6RvgV8KEINyftjNftwGQNooA=="
-  "resolved" "https://registry.npmjs.org/@lexical/yjs/-/yjs-0.9.0.tgz"
-  "version" "0.9.0"
+"@lexical/yjs@0.10.0":
+  "integrity" "sha512-OV5yLl4XjfDKgRPSb1EyefU7c+MILKZrOzbPlv2xeTgIEd/sJiEszxvJlYsngLLN65wBDNKk90EcCWpH3KLz7A=="
+  "resolved" "https://registry.npmjs.org/@lexical/yjs/-/yjs-0.10.0.tgz"
+  "version" "0.10.0"
   dependencies:
-    "@lexical/offset" "0.9.0"
+    "@lexical/offset" "0.10.0"
 
 "@mdx-js/mdx@^1.6.22":
   "integrity" "sha512-AMxuLxPz2j5/6TpF/XSdKpQP1NlG0z11dFOlq+2IP/lSgl11GY8ji6S/rgsViN/L0BDvHvUMruRb7ub+24LUYA=="
@@ -6420,10 +6420,10 @@
     "esrecurse" "^4.3.0"
     "estraverse" "^4.1.1"
 
-"eslint-scope@^7.1.1":
-  "integrity" "sha512-QKQM/UXpIiHcLqJ5AOyIW7XZmzjkzQXYE54n1++wb0u9V/abW3l9uQnxX8Z5Xd18xyKIMTUAyQ0k1e8pz6LUrw=="
-  "resolved" "https://registry.npmjs.org/eslint-scope/-/eslint-scope-7.1.1.tgz"
-  "version" "7.1.1"
+"eslint-scope@^7.2.0":
+  "integrity" "sha512-DYj5deGlHBfMt15J7rdtyKNq/Nqlv5KfU4iodrQ019XESsRnwXH9KAE0y3cwtUHDo2ob7CypAnCqefh6vioWRw=="
+  "resolved" "https://registry.npmjs.org/eslint-scope/-/eslint-scope-7.2.0.tgz"
+  "version" "7.2.0"
   dependencies:
     "esrecurse" "^4.3.0"
     "estraverse" "^5.2.0"
@@ -6458,14 +6458,14 @@
   "version" "3.4.0"
 
 "eslint@*", "eslint@^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8", "eslint@^3 || ^4 || ^5 || ^6 || ^7 || ^8", "eslint@^6.0.0 || ^7.0.0 || >=8.0.0", "eslint@>= 4.12.1", "eslint@>= 6", "eslint@>=3.14.1", "eslint@>=5.0.0", "eslint@>=7.28.0":
-  "integrity" "sha512-NU3Ps9nI05GUoVMxcZx1J8CNR6xOvUT4jAUMH5+z8lpp3aEdPVCImKw6PWG4PY+Vfkpr+jvMpxs/qoE7wq0sPw=="
-  "resolved" "https://registry.npmjs.org/eslint/-/eslint-8.37.0.tgz"
-  "version" "8.37.0"
+  "integrity" "sha512-mwiok6cy7KTW7rBpo05k6+p4YVZByLNjAZ/ACB9DRCu4YDRwjXI01tWHp6KAUWelsBetTxKK/2sHB0vdS8Z2Og=="
+  "resolved" "https://registry.npmjs.org/eslint/-/eslint-8.39.0.tgz"
+  "version" "8.39.0"
   dependencies:
     "@eslint-community/eslint-utils" "^4.2.0"
     "@eslint-community/regexpp" "^4.4.0"
     "@eslint/eslintrc" "^2.0.2"
-    "@eslint/js" "8.37.0"
+    "@eslint/js" "8.39.0"
     "@humanwhocodes/config-array" "^0.11.8"
     "@humanwhocodes/module-importer" "^1.0.1"
     "@nodelib/fs.walk" "^1.2.8"
@@ -6475,7 +6475,7 @@
     "debug" "^4.3.2"
     "doctrine" "^3.0.0"
     "escape-string-regexp" "^4.0.0"
-    "eslint-scope" "^7.1.1"
+    "eslint-scope" "^7.2.0"
     "eslint-visitor-keys" "^3.4.0"
     "espree" "^9.5.1"
     "esquery" "^1.4.2"
@@ -9505,10 +9505,10 @@
     "prelude-ls" "^1.2.1"
     "type-check" "~0.4.0"
 
-"lexical@^0.9.0", "lexical@0.9.0":
-  "integrity" "sha512-UHMvjRVqrpBLJkCRytVxAvy3PftRnlhZIqKcY1Uiugf6KjzP0GQTwWhxxcltJJ0sZCjZcVYgiib+m08R5KXz0g=="
-  "resolved" "https://registry.npmjs.org/lexical/-/lexical-0.9.0.tgz"
-  "version" "0.9.0"
+"lexical@0.10.0":
+  "integrity" "sha512-/lYJVpjQPOzFVfQWhnxRSP6HHBywiltzx9/pWRsByzXDZL+FTty3yjTsSFiCWy4PoVZaXqH8gYBe9dkxZK7+Hg=="
+  "resolved" "https://registry.npmjs.org/lexical/-/lexical-0.10.0.tgz"
+  "version" "0.10.0"
 
 "lib0@^0.2.31", "lib0@^0.2.42", "lib0@^0.2.49":
   "integrity" "sha512-CjxlM7UgICfN6b2OPALBXchIBiNk6jE+1g7JP8ha+dh1xKRDSYpH0WQl1+rMqCju49xUnwPG34v4CR5/rPOZhg=="
