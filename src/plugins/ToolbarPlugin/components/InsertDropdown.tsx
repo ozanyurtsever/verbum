@@ -8,9 +8,6 @@ import type { InsertImagePayload } from '../../ImagesPlugin';
 import ImagesPlugin, { INSERT_IMAGE_COMMAND } from '../../ImagesPlugin';
 import { INSERT_TABLE_COMMAND } from '@lexical/table';
 import { INSERT_HORIZONTAL_RULE_COMMAND } from '@lexical/react/LexicalHorizontalRuleNode';
-import EquationsPlugin, {
-  INSERT_EQUATION_COMMAND,
-} from '../../EquationsPlugin';
 import ExcalidrawPlugin, {
   INSERT_EXCALIDRAW_COMMAND,
 } from '../../ExcalidrawPlugin';
@@ -18,8 +15,6 @@ import PollPlugin, { INSERT_POLL_COMMAND } from '../../PollPlugin';
 import TwitterPlugin, { INSERT_TWEET_COMMAND } from '../../TwitterPlugin';
 import YouTubePlugin, { INSERT_YOUTUBE_COMMAND } from '../../YouTubePlugin';
 import { $createStickyNode } from '../../../nodes/StickyNode';
-import KatexEquationAlterer from '../../../ui/KatexEquationAlterer';
-import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import useModal from '../../../hooks/useModal';
 import TableCellResizer from '../../TableCellResizer';
 import { TablePlugin } from '@lexical/react/LexicalTablePlugin';
@@ -307,27 +302,6 @@ function InsertYouTubeDialog({
   );
 }
 
-function InsertEquationDialog({
-  activeEditor,
-  onClose,
-}: {
-  activeEditor: LexicalEditor;
-  onClose: () => void;
-}): JSX.Element {
-  const onEquationConfirm = useCallback(
-    (equation: string, inline: boolean) => {
-      activeEditor.dispatchCommand(INSERT_EQUATION_COMMAND, {
-        equation,
-        inline,
-      });
-      onClose();
-    },
-    [activeEditor, onClose]
-  );
-
-  return <KatexEquationAlterer onConfirm={onEquationConfirm} />;
-}
-
 //#endregion Inserting different modules
 
 export interface IInsertDropdownProps {
@@ -348,7 +322,6 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
   enableYoutube = false,
   enableTwitter = false,
   enablePoll = false,
-  enableEquations = false,
   enableExcalidraw = false,
   enableHorizontalRule = false,
   enableStickyNote = false,
@@ -369,7 +342,6 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
       {enableTwitter && <TwitterPlugin />}
       {enablePoll && <PollPlugin />}
       {enableImage && <ImagesPlugin />}
-      {enableEquations && <EquationsPlugin />}
       {enableExcalidraw && <ExcalidrawPlugin />}
       {enableHorizontalRule && <HorizontalRulePlugin />}
 
@@ -494,23 +466,6 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
           >
             <i className="icon youtube" />
             <span className="text">YouTube Video</span>
-          </button>
-        )}
-        {enableEquations && (
-          <button
-            onClick={() => {
-              showModal('Insert Equation', (onClose) => (
-                <InsertEquationDialog
-                  activeEditor={activeEditor}
-                  onClose={onClose}
-                />
-              ));
-            }}
-            className="item"
-            type="button"
-          >
-            <i className="icon equation" />
-            <span className="text">Equation</span>
           </button>
         )}
         {enableStickyNote && (

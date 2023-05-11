@@ -107,7 +107,6 @@
     "@lexical/utils": "0.10.0",
     "i18next": "^22.0.3",
     "i18next-browser-languagedetector": "^7.0.0",
-    "katex": "^0.15.2",
     "lexical": "0.10.0",
     "react-i18next": "^12.0.0",
     "use-child": "^1.0.0",

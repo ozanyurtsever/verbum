@@ -20,7 +20,6 @@ import { TableCellNode, TableNode, TableRowNode } from '@lexical/table';
 import { Class } from 'utility-types';
 
 import { EmojiNode } from './EmojiNode';
-import { EquationNode } from './EquationNode';
 import { ExcalidrawNode } from './ExcalidrawNode';
 import { ImageNode } from './ImageNode';
 import { KeywordNode } from './KeywordNode';
@@ -51,7 +50,6 @@ const PlaygroundNodes: Array<Class<LexicalNode>> = [
   MentionNode,
   EmojiNode,
   ExcalidrawNode,
-  EquationNode,
   TypeaheadNode,
   KeywordNode,
   HorizontalRuleNode,
