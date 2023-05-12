@@ -112,6 +112,8 @@ Verbum supports automatic browser language detection by default if locale not pr
 
 <br />
 
+## Plugins
+
 `<ToolbarPlugin />`
 
 | Property          | Type                   |          | description                                                                                      |
@@ -146,6 +148,36 @@ Verbum supports automatic browser language detection by default if locale not pr
 | ------------------ | ----------------------- | -------- | --------------------------------- |
 | searchData         | `SearchData<A>`         | required | Searching data using input string |
 | getTypeaheadValues | `GetTypeaheadValues<A>` | required | Search data transormation         |
+
+### Plugins support
+
+| Plugin name                | Working            | Broken | Comment                                                        |
+| -------------------------- | ------------------ | ------ | -------------------------------------------------------------- |
+| ActionsPlugin              | :white_check_mark: |        |                                                                |
+| AutoLinkPlugin             | :white_check_mark: |        |                                                                |
+| CharacterStylesPopupPlugin | :white_check_mark: |        |                                                                |
+| ClickableLinkPlugin        | :white_check_mark: |        |                                                                |
+| CodeHighlightPlugin        | :white_check_mark: |        | Include broken CommentPlugin                                   |
+| CommentPlugin              |                    | :x:    |                                                                |
+| EmojisPlugin               | :white_check_mark: |        | A few emojis                                                   |
+| EquationsPlugin            | :white_check_mark: |        | Included in InsertDropdown.tsx, it's too heavy                 |
+| ExcalidrawPlugin           | :white_check_mark: |        | Included in InsertDropdown.tsx                                 |
+| HorizontalRulePlugin       | :white_check_mark: |        | Included in InsertDropdown.tsx                                 |
+| ImagesPlugin               |                    | :x:    | Included in InsertDropdown.tsx,Insert file only                |
+| KeywordsPlugin             |                    |        |                                                                |
+| ListMaxIndentLevelPlugin   | :white_check_mark: |        |                                                                |
+| MarkdownShortcutPlugin     | :white_check_mark: |        | ActionsPlugin                                                  |
+| MentionsPlugin             | :white_check_mark: |        |                                                                |
+| PollPlugin                 | :white_check_mark: |        | Included in InsertDropdown.tsx                                 |
+| SpeechToTextPlugin         | :white_check_mark: |        | ActionsPlugin                                                  |
+| StickyPlugin               | :white_check_mark: |        | Included in InsertDropdown.tsx, there is a bug with text style |
+| TabFocusPlugin             |                    |        |                                                                |
+| TableActionMenuPlugin      | :white_check_mark: |        | Included in InsertDropdown.tsx                                 |
+| TestRecorderPlugin         |                    |        |                                                                |
+| TreeViewPlugin             |                    |        |                                                                |
+| TwitterPlugin              | :white_check_mark: |        | Included in InsertDropdown.tsx                                 |
+| TypingPerfPlugin           |                    |        |                                                                |
+| YouTubePlugin              | :white_check_mark: |        | Included in InsertDropdown.tsx                                 |
 
 ## Development
 
