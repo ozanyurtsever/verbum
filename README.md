@@ -92,6 +92,7 @@ Coming soon... -->
 
 `<Editor />`
 
+<!-- prettier-ignore-start -->
 | Property           | Type                                                            |          | description                                                                        |
 | ------------------ | --------------------------------------------------------------- | -------- | ---------------------------------------------------------------------------------- |
 | children           | `ReactNode`                                                     | optional | Nested child components, like the `ToolbarPlugin`                                  |
@@ -104,9 +105,8 @@ Coming soon... -->
 | isEditable         | `boolean`                                                       | optional | Enables read-only mode for the editor, default is `false`                          |
 | initialEditorState | `string`                                                        | optional | JSON string to initialize the initial content of the editor.                       |
 | onChange           | `(editorState: string, editorInstance?: LexicalEditor) => void` | optional | Accessing the current editor state and the active editor instance                  |
-
-<!-- prettier-ignore -->
 | locale             | `'en' | 'fr' | 'ptBr' | 'ru' | null;`                           | optional | Enables localization in the language of your choice, default is `en`. Available languages are `en`, `fr`, `ptBr` and `ru` |
+<!-- prettier-ignore-end -->
 
 ## Automatic browser language detection Support
 
