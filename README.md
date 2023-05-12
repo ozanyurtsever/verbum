@@ -93,7 +93,7 @@ Coming soon... -->
 `<Editor />`
 
 | Property           | Type                                                            |          | description                                                                        |
-| ------------------ | --------------------------------------------------------------- | -------- | ---------------------------------------------------------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------- |
+| ------------------ | --------------------------------------------------------------- | -------- | ---------------------------------------------------------------------------------- |
 | children           | `ReactNode`                                                     | optional | Nested child components, like the `ToolbarPlugin`                                  |
 | hashtagsEnabled    | `boolean`                                                       | optional | Enables the automatic hashtag highlighting, default is `false`                     |
 | autoLinkEnabled    | `boolean`                                                       | optional | Enables the automatic link highlighting, default is `false`                        |
@@ -104,7 +104,9 @@ Coming soon... -->
 | isEditable         | `boolean`                                                       | optional | Enables read-only mode for the editor, default is `false`                          |
 | initialEditorState | `string`                                                        | optional | JSON string to initialize the initial content of the editor.                       |
 | onChange           | `(editorState: string, editorInstance?: LexicalEditor) => void` | optional | Accessing the current editor state and the active editor instance                  |
-| locale             | `en                                                             | fr       | null`                                                                              | optional | Enables localization in the language of your choice, default is `en`. Available languages are `en` and `fr` |
+
+<!-- prettier-ignore -->
+| locale             | `'en' | 'fr' | 'ptBr' | 'ru' | null;`                           | optional | Enables localization in the language of your choice, default is `en`. Available languages are `en`, `fr`, `ptBr` and `ru` |
 
 ## Automatic browser language detection Support
 
