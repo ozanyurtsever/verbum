@@ -83,28 +83,28 @@ Coming soon... -->
 
 `<EditorComposer />`
 
-| Property           | Type              |          | description                                                                        |
-| ------------------ | ----------------- | -------- | ---------------------------------------------------------------------------------- |
-| children           | `ReactNode`       | required | Nested child component which is the Editor itself                                  |
-| initialEditorState | `InitialEditorStateType` | optional | The initial state of the editor                                             |
+| Property           | Type                     |          | description                                       |
+| ------------------ | ------------------------ | -------- | ------------------------------------------------- |
+| children           | `ReactNode`              | required | Nested child component which is the Editor itself |
+| initialEditorState | `InitialEditorStateType` | optional | The initial state of the editor                   |
 
 <br />
 
 `<Editor />`
 
-| Property           | Type              |          | description                                                                        |
-| ------------------ | ----------------- | -------- | ---------------------------------------------------------------------------------- |
-| children           | `ReactNode`       | optional | Nested child components, like the `ToolbarPlugin`                                  |
-| hashtagsEnabled    | `boolean`         | optional | Enables the automatic hashtag highlighting, default is `false`                     |
-| autoLinkEnabled    | `boolean`         | optional | Enables the automatic link highlighting, default is `false`                        |
-| emojisEnabled      | `boolean`         | optional | Replaces the emoji combiniations with its corresponding symbol, default is `false` |
-| actionsEnabled     | `boolean`         | optional | Enables the actions toolbar, default is `false`                                    |
-| placeholder        | `string`          | optional | The default content of the editor when it is first loaded                          |
-| listMaxIndent      | `number`          | optional | The maximum indent capacity of any listed element, the default is `7`              |
-| isEditable         | `boolean`         | optional | Enables read-only mode for the editor, default is `false`                          |
-| initialEditorState | `string`          | optional | JSON string to initialize the initial content of the editor.                       |
-| onChange           | `(editorState: string, editorInstance?: LexicalEditor) => void` | optional | Accessing the current editor state and the active editor instance                                                 |
-| locale  | `en | fr | null` | optional | Enables localization in the language of your choice, default is `en`. Available languages are `en` and `fr` |
+| Property           | Type                                                            |          | description                                                                        |
+| ------------------ | --------------------------------------------------------------- | -------- | ---------------------------------------------------------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------- |
+| children           | `ReactNode`                                                     | optional | Nested child components, like the `ToolbarPlugin`                                  |
+| hashtagsEnabled    | `boolean`                                                       | optional | Enables the automatic hashtag highlighting, default is `false`                     |
+| autoLinkEnabled    | `boolean`                                                       | optional | Enables the automatic link highlighting, default is `false`                        |
+| emojisEnabled      | `boolean`                                                       | optional | Replaces the emoji combiniations with its corresponding symbol, default is `false` |
+| actionsEnabled     | `boolean`                                                       | optional | Enables the actions toolbar, default is `false`                                    |
+| placeholder        | `string`                                                        | optional | The default content of the editor when it is first loaded                          |
+| listMaxIndent      | `number`                                                        | optional | The maximum indent capacity of any listed element, the default is `7`              |
+| isEditable         | `boolean`                                                       | optional | Enables read-only mode for the editor, default is `false`                          |
+| initialEditorState | `string`                                                        | optional | JSON string to initialize the initial content of the editor.                       |
+| onChange           | `(editorState: string, editorInstance?: LexicalEditor) => void` | optional | Accessing the current editor state and the active editor instance                  |
+| locale             | `en                                                             | fr       | null`                                                                              | optional | Enables localization in the language of your choice, default is `en`. Available languages are `en` and `fr` |
 
 ## Automatic browser language detection Support
 
@@ -147,6 +147,15 @@ Verbum supports automatic browser language detection by default if locale not pr
 | enableExcalidraw     | `boolean` | optional | Enables diagram inserting feature                |
 | enableHorizontalRule | `boolean` | optional | Enables the horizontal rule inserting for layout |
 | enableStickyNote     | `boolean` | optional | Enables stick note inserting for layout          |
+
+<br />
+
+`<MentionsPlugin />`
+
+| Property           | Type                    |          | description                       |
+| ------------------ | ----------------------- | -------- | --------------------------------- |
+| searchData         | `SearchData<A>`         | required | Searching data using input string |
+| getTypeaheadValues | `GetTypeaheadValues<A>` | required | Search data transormation         |
 
 ## Development
 

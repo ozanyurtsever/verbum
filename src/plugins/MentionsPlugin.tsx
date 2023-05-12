@@ -17,6 +17,12 @@ import './MentionsPlugin.css';
 
 type SearchData<A> = (p: string) => Promise<A[]>;
 
+type GetTypeaheadValues<A> = (result: A) => {
+  url: string;
+  value: string;
+  picture: JSX.Element;
+};
+
 const PUNCTUATION =
   '\\.,\\+\\*\\?\\$\\@\\|#{}\\(\\)\\^\\-\\[\\]\\\\/!%\'"~=<>_:;';
 const NAME = '\\b[A-Z][^\\s' + PUNCTUATION + ']';
@@ -221,11 +227,7 @@ function MentionsTypeaheadMenuItem({
 
 export default function MentionsPlugin<A>(props: {
   searchData: SearchData<A>;
-  getTypeaheadValues: (result: A) => {
-    url: string;
-    value: string;
-    picture: JSX.Element;
-  };
+  getTypeaheadValues: GetTypeaheadValues<A>;
 }): JSX.Element | null {
   const { searchData, getTypeaheadValues } = props;
 
