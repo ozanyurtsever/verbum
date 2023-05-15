@@ -151,33 +151,33 @@ Verbum supports automatic browser language detection by default if locale not pr
 
 ### Plugins support
 
-| Plugin name                | Working            | Broken | Comment                                                        |
-| -------------------------- | ------------------ | ------ | -------------------------------------------------------------- |
-| ActionsPlugin              | :white_check_mark: |        |                                                                |
-| AutoLinkPlugin             | :white_check_mark: |        |                                                                |
-| CharacterStylesPopupPlugin | :white_check_mark: |        |                                                                |
-| ClickableLinkPlugin        | :white_check_mark: |        |                                                                |
-| CodeHighlightPlugin        | :white_check_mark: |        | Include broken CommentPlugin                                   |
-| CommentPlugin              |                    | :x:    |                                                                |
-| EmojisPlugin               | :white_check_mark: |        | A few emojis                                                   |
-| EquationsPlugin            | :white_check_mark: |        | Included in InsertDropdown.tsx, it's too heavy                 |
-| ExcalidrawPlugin           | :white_check_mark: |        | Included in InsertDropdown.tsx                                 |
-| HorizontalRulePlugin       | :white_check_mark: |        | Included in InsertDropdown.tsx                                 |
-| ImagesPlugin               |                    | :x:    | Included in InsertDropdown.tsx,Insert file only                |
-| KeywordsPlugin             |                    |        |                                                                |
-| ListMaxIndentLevelPlugin   | :white_check_mark: |        |                                                                |
-| MarkdownShortcutPlugin     | :white_check_mark: |        | ActionsPlugin                                                  |
-| MentionsPlugin             | :white_check_mark: |        |                                                                |
-| PollPlugin                 | :white_check_mark: |        | Included in InsertDropdown.tsx                                 |
-| SpeechToTextPlugin         | :white_check_mark: |        | ActionsPlugin                                                  |
-| StickyPlugin               | :white_check_mark: |        | Included in InsertDropdown.tsx, there is a bug with text style |
-| TabFocusPlugin             |                    |        |                                                                |
-| TableActionMenuPlugin      | :white_check_mark: |        | Included in InsertDropdown.tsx                                 |
-| TestRecorderPlugin         |                    |        |                                                                |
-| TreeViewPlugin             |                    |        |                                                                |
-| TwitterPlugin              | :white_check_mark: |        | Included in InsertDropdown.tsx                                 |
-| TypingPerfPlugin           |                    |        |                                                                |
-| YouTubePlugin              | :white_check_mark: |        | Included in InsertDropdown.tsx                                 |
+| Plugin name                | Working            | Description                                    | Source                     |
+| -------------------------- | ------------------ | ---------------------------------------------- | -------------------------- |
+| ActionsPlugin              | :white_check_mark: | Action menu in the right bottom corner         | Editor.tsx                 |
+| AutoLinkPlugin             | :white_check_mark: | Auto highlight links                           | Editor.tsx                 |
+| CharacterStylesPopupPlugin | :white_check_mark: | Modal style editor for selected text           | Independent                |
+| ClickableLinkPlugin        | :white_check_mark: | Enable to open links in new tab                | Independent                |
+| CodeHighlightPlugin        | :white_check_mark: | Code Block with different languages            | Independent                |
+| CommentPlugin              | :x:                |                                                | CharacterStylesPopupPlugin |
+| EmojisPlugin               | :white_check_mark: | A few emojis                                   | Editor.tsx                 |
+| EquationsPlugin            | :white_check_mark: | Katex, It's too heavy                          | InsertDropdown.tsx         |
+| ExcalidrawPlugin           | :white_check_mark: | Excalidraw                                     | InsertDropdown.tsx         |
+| HorizontalRulePlugin       | :white_check_mark: | Horizontal divider                             | InsertDropdown.tsx         |
+| ImagesPlugin               | :x:                | Insert file only (no URLs)                     | InsertDropdown.tsx         |
+| KeywordsPlugin             | :x:                |                                                | Independent                |
+| ListMaxIndentLevelPlugin   | :white_check_mark: | Max Indent Level (bullet, numeric)             | Independent                |
+| MarkdownShortcutPlugin     | :white_check_mark: | Convert into Markdown format                   | ActionsPlugin              |
+| MentionsPlugin             | :white_check_mark: | Mentions, starts with `@`                      | Independent                |
+| PollPlugin                 | :x:                | Poll, need test with many votes                | InsertDropdown.tsx         |
+| SpeechToTextPlugin         | :white_check_mark: | Voice recognition to text                      | ActionsPlugin              |
+| StickyPlugin               | :x:                | Yellow sticker, there is a bug with text style | InsertDropdown.tsx         |
+| TabFocusPlugin             |                    |                                                |                            |
+| TableActionMenuPlugin      | :white_check_mark: | Create table                                   | InsertDropdown.tsx         |
+| TestRecorderPlugin         |                    |                                                |                            |
+| TreeViewPlugin             |                    |                                                |                            |
+| TwitterPlugin              | :white_check_mark: | Insert twits                                   | InsertDropdown.tsx         |
+| TypingPerfPlugin           |                    |                                                |                            |
+| YouTubePlugin              | :white_check_mark: | Insert YouTube videos                          | InsertDropdown.tsx         |
 
 ## Development
 
