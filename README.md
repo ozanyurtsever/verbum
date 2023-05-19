@@ -160,8 +160,8 @@ Verbum supports automatic browser language detection by default if locale not pr
 | CodeHighlightPlugin        | :white_check_mark: | Code Block with different languages            | Independent                |
 | CommentPlugin              | :x:                |                                                | CharacterStylesPopupPlugin |
 | EmojisPlugin               | :white_check_mark: | A few emojis                                   | Editor.tsx                 |
-| EquationsPlugin            | :white_check_mark: | Katex, It's too heavy                          | InsertDropdown.tsx         |
-| ExcalidrawPlugin           | :white_check_mark: | Excalidraw                                     | InsertDropdown.tsx         |
+| EquationsPlugin            | :scissors:         | Katex, It's too heavy (cut out)                | InsertDropdown.tsx         |
+| ExcalidrawPlugin           | :scissors:         | Excalidraw (cut out)                           | InsertDropdown.tsx         |
 | HorizontalRulePlugin       | :white_check_mark: | Horizontal divider                             | InsertDropdown.tsx         |
 | ImagesPlugin               | :x:                | Insert file only (no URLs)                     | InsertDropdown.tsx         |
 | KeywordsPlugin             | :x:                |                                                | Independent                |
