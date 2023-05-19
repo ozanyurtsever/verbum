@@ -5171,11 +5171,6 @@
   "resolved" "https://registry.npmjs.org/commander/-/commander-7.2.0.tgz"
   "version" "7.2.0"
 
-"commander@^8.0.0":
-  "integrity" "sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww=="
-  "resolved" "https://registry.npmjs.org/commander/-/commander-8.3.0.tgz"
-  "version" "8.3.0"
-
 "common-path-prefix@^3.0.0":
   "integrity" "sha512-QE33hToZseCH3jS0qN96O/bSh3kaw/h+Tq7ngyY9eWDUnTlTNUyqfqvCXioLe5Na5jFsL78ra/wuBU4iuEgd4w=="
   "resolved" "https://registry.npmjs.org/common-path-prefix/-/common-path-prefix-3.0.0.tgz"
@@ -9330,13 +9325,6 @@
   "integrity" "sha512-pBxcB3LFc8QVgdggvZWyeys+hnrNWg4OcZIU/1X59k5jQdLBlCsYGRQaz234SqoRLTCgMH00fY0xRJH+F9METQ=="
   "resolved" "https://registry.npmjs.org/junk/-/junk-3.1.0.tgz"
   "version" "3.1.0"
-
-"katex@^0.15.2":
-  "integrity" "sha512-UpzJy4yrnqnhXvRPhjEuLA4lcPn6eRngixW7Q3TJErjg3Aw2PuLFBzTkdUb89UtumxjhHTqL3a5GDGETMSwgJA=="
-  "resolved" "https://registry.npmjs.org/katex/-/katex-0.15.6.tgz"
-  "version" "0.15.6"
-  dependencies:
-    "commander" "^8.0.0"
 
 "kind-of@^3.0.2", "kind-of@^3.0.3":
   "integrity" "sha512-NOW9QQXMoZGg/oqnVNoNTTIFEIid1627WCffUBJEdMxYApq7mNE7CpzucIPc+ZQg25Phej7IJSmX3hO+oblOtQ=="
