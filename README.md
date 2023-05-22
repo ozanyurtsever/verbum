@@ -126,6 +126,26 @@ Verbum supports automatic browser language detection by default if locale not pr
 
 <br />
 
+### Toolbar components
+
+`<FontFamilyDropdown />`
+
+Add your own font families.
+
+| Property    | Type                               |          | description   |
+| ----------- | ---------------------------------- | -------- | ------------- |
+| fontOptions | `FontOptions = [string, string][]` | optional | List of fonts |
+
+`<FontSizeDropdown />`
+
+Add your own font sizes.
+
+| Property        | Type                               |          | description        |
+| --------------- | ---------------------------------- | -------- | ------------------ |
+| fontSizeOptions | `FontOptions = [string, string][]` | optional | List of font sizes |
+
+<br />
+
 `<InsertDropdown />`
 
 | Property             | Type      |          | description                                      |
