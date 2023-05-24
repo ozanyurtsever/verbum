@@ -4,8 +4,10 @@ import DropDown from '../../../ui/DropDown';
 import Button from '../../../ui/Button';
 import TextInput from '../../../ui/TextInput';
 import FileInput from '../../../ui/FileInput';
-import type { InsertImagePayload } from '../../ImagesPlugin';
-import ImagesPlugin, { INSERT_IMAGE_COMMAND } from '../../ImagesPlugin';
+import ImagesPlugin, {
+  INSERT_IMAGE_COMMAND,
+  InsertImagePayload,
+} from '../../ImagesPlugin';
 import { INSERT_TABLE_COMMAND } from '@lexical/table';
 import { INSERT_HORIZONTAL_RULE_COMMAND } from '@lexical/react/LexicalHorizontalRuleNode';
 import PollPlugin, { INSERT_POLL_COMMAND } from '../../PollPlugin';
