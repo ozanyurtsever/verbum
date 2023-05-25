@@ -4,8 +4,10 @@ import DropDown from '../../../ui/DropDown';
 import Button from '../../../ui/Button';
 import TextInput from '../../../ui/TextInput';
 import FileInput from '../../../ui/FileInput';
-import type { InsertImagePayload } from '../../ImagesPlugin';
-import ImagesPlugin, { INSERT_IMAGE_COMMAND } from '../../ImagesPlugin';
+import ImagesPlugin, {
+  INSERT_IMAGE_COMMAND,
+  InsertImagePayload,
+} from '../../ImagesPlugin';
 import { INSERT_TABLE_COMMAND } from '@lexical/table';
 import { INSERT_HORIZONTAL_RULE_COMMAND } from '@lexical/react/LexicalHorizontalRuleNode';
 import PollPlugin, { INSERT_POLL_COMMAND } from '../../PollPlugin';
@@ -306,7 +308,7 @@ export interface IInsertDropdownProps {
   enableYoutube?: boolean;
   enableTwitter?: boolean;
   enablePoll?: boolean;
-  enableImage?: boolean;
+  enableImage?: { enable: boolean; maxWidth: number };
   enableEquations?: boolean;
   enableExcalidraw?: boolean;
   enableHorizontalRule?: boolean;
@@ -315,7 +317,7 @@ export interface IInsertDropdownProps {
 
 const InsertDropdown: React.FC<IInsertDropdownProps> = ({
   enableTable = true,
-  enableImage = true,
+  enableImage = { enable: true, maxWidth: 1000 },
   enableYoutube = false,
   enableTwitter = false,
   enablePoll = false,
@@ -337,7 +339,7 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
       {enableYoutube && <YouTubePlugin />}
       {enableTwitter && <TwitterPlugin />}
       {enablePoll && <PollPlugin />}
-      {enableImage && <ImagesPlugin />}
+      {enableImage.enable && <ImagesPlugin maxWidth={enableImage.maxWidth} />}
       {enableHorizontalRule && <HorizontalRulePlugin />}
 
       <DropDown
@@ -361,7 +363,7 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
             <span className="text">Horizontal Rule</span>
           </button>
         )}
-        {enableImage && (
+        {enableImage.enable && (
           <button
             onClick={() => {
               showModal('Insert Image', (onClose) => (

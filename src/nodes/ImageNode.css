@@ -7,7 +7,7 @@
  *
  */
 
-.ImageNode__contentEditable {
+ .ImageNode__contentEditable {
   min-height: 20px;
   border: 0px;
   resize: none;
@@ -15,7 +15,6 @@
   caret-color: rgb(5, 5, 5);
   display: block;
   position: relative;
-  tab-size: 1;
   outline: 0px;
   padding: 10px;
   user-select: text;
@@ -37,4 +36,8 @@
   white-space: nowrap;
   display: inline-block;
   pointer-events: none;
+}
+
+.image-control-wrapper--resizing {
+  touch-action: none;
 }

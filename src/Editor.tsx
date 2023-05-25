@@ -38,6 +38,7 @@ import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext
 import EditorContext from './context/EditorContext';
 import { LexicalEditor } from 'lexical';
 import { useTranslation } from 'react-i18next';
+import DragDropPaste from './plugins/DragDropPastePlugin';
 
 interface IEditorProps {
   children?: ReactNode;
@@ -94,6 +95,7 @@ const Editor = ({
         {emojisEnabled && <EmojisPlugin />}
         <KeywordsPlugin />
         <SpeechToTextPlugin />
+        <DragDropPaste />
         {autoLinkEnabled && <AutoLinkPlugin />}
 
         <>

@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
 import type {
   DOMConversionMap,
   DOMConversionOutput,
@@ -11,7 +19,7 @@ import type {
   Spread,
 } from 'lexical';
 
-import { createEditor, DecoratorNode } from 'lexical';
+import { $applyNodeReplacement, createEditor, DecoratorNode } from 'lexical';
 import * as React from 'react';
 import { Suspense } from 'react';
 
@@ -34,8 +42,8 @@ export interface ImagePayload {
 
 function convertImageElement(domNode: Node): null | DOMConversionOutput {
   if (domNode instanceof HTMLImageElement) {
-    const { alt: altText, src } = domNode;
-    const node = $createImageNode({ altText, src });
+    const { alt: altText, src, width, height } = domNode;
+    const node = $createImageNode({ altText, height, src, width });
     return { node };
   }
   return null;
@@ -50,8 +58,6 @@ export type SerializedImageNode = Spread<
     showCaption: boolean;
     src: string;
     width?: number;
-    type: 'image';
-    version: 1;
   },
   SerializedLexicalNode
 >;
@@ -108,6 +114,8 @@ export class ImageNode extends DecoratorNode<JSX.Element> {
     const element = document.createElement('img');
     element.setAttribute('src', this.__src);
     element.setAttribute('alt', this.__altText);
+    element.setAttribute('width', this.__width.toString());
+    element.setAttribute('height', this.__height.toString());
     return { element };
   }
 
@@ -225,16 +233,18 @@ export function $createImageNode({
   caption,
   key,
 }: ImagePayload): ImageNode {
-  return new ImageNode(
-    src,
-    altText,
-    maxWidth,
-    width,
-    height,
-    showCaption,
-    caption,
-    captionsEnabled,
-    key
+  return $applyNodeReplacement(
+    new ImageNode(
+      src,
+      altText,
+      maxWidth,
+      width,
+      height,
+      showCaption,
+      caption,
+      captionsEnabled,
+      key
+    )
   );
 }
 
