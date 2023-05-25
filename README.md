@@ -148,17 +148,17 @@ Add your own font sizes.
 
 `<InsertDropdown />`
 
-| Property             | Type      |          | description                                      |
-| -------------------- | --------- | -------- | ------------------------------------------------ |
-| enableTable          | `boolean` | optional | Enables table inserting feature                  |
-| enableYoutube        | `boolean` | optional | Enables youtube video inserting feature          |
-| enableTwitter        | `boolean` | optional | Enables tweet inserting feature                  |
-| enablePoll           | `boolean` | optional | Enables poll inserting feature                   |
-| enableImage          | `boolean` | optional | Enables image inserting feature                  |
-| enableEquations      | `boolean` | optional | Enables equation inserting feature               |
-| enableExcalidraw     | `boolean` | optional | Enables diagram inserting feature                |
-| enableHorizontalRule | `boolean` | optional | Enables the horizontal rule inserting for layout |
-| enableStickyNote     | `boolean` | optional | Enables stick note inserting for layout          |
+| Property             | Type                                     |          | description                                      |
+| -------------------- | ---------------------------------------- | -------- | ------------------------------------------------ |
+| enableTable          | `boolean`                                | optional | Enables table inserting feature                  |
+| enableYoutube        | `boolean`                                | optional | Enables youtube video inserting feature          |
+| enableTwitter        | `boolean`                                | optional | Enables tweet inserting feature                  |
+| enablePoll           | `boolean`                                | optional | Enables poll inserting feature                   |
+| enableImage          | `{ enable: boolean; maxWidth: number };` | optional | Enables image inserting feature, set max width   |
+| enableEquations      | `boolean`                                | optional | Enables equation inserting feature               |
+| enableExcalidraw     | `boolean`                                | optional | Enables diagram inserting feature                |
+| enableHorizontalRule | `boolean`                                | optional | Enables the horizontal rule inserting for layout |
+| enableStickyNote     | `boolean`                                | optional | Enables stick note inserting for layout          |
 
 <br />
 
