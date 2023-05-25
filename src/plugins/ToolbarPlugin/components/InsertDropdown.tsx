@@ -308,7 +308,7 @@ export interface IInsertDropdownProps {
   enableYoutube?: boolean;
   enableTwitter?: boolean;
   enablePoll?: boolean;
-  enableImage?: boolean;
+  enableImage?: { enable: boolean; maxWidth: number };
   enableEquations?: boolean;
   enableExcalidraw?: boolean;
   enableHorizontalRule?: boolean;
@@ -317,7 +317,7 @@ export interface IInsertDropdownProps {
 
 const InsertDropdown: React.FC<IInsertDropdownProps> = ({
   enableTable = true,
-  enableImage = true,
+  enableImage = { enable: true, maxWidth: 1000 },
   enableYoutube = false,
   enableTwitter = false,
   enablePoll = false,
@@ -339,7 +339,7 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
       {enableYoutube && <YouTubePlugin />}
       {enableTwitter && <TwitterPlugin />}
       {enablePoll && <PollPlugin />}
-      {enableImage && <ImagesPlugin />}
+      {enableImage.enable && <ImagesPlugin maxWidth={enableImage.maxWidth} />}
       {enableHorizontalRule && <HorizontalRulePlugin />}
 
       <DropDown
@@ -363,7 +363,7 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
             <span className="text">Horizontal Rule</span>
           </button>
         )}
-        {enableImage && (
+        {enableImage.enable && (
           <button
             onClick={() => {
               showModal('Insert Image', (onClose) => (

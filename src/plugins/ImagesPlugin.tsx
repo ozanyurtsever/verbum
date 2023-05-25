@@ -216,8 +216,10 @@ export function InsertImageDialog({
 
 export default function ImagesPlugin({
   captionsEnabled,
+  maxWidth,
 }: {
   captionsEnabled?: boolean;
+  maxWidth?: number;
 }): JSX.Element | null {
   const [editor] = useLexicalComposerContext();
 
@@ -230,7 +232,10 @@ export default function ImagesPlugin({
       editor.registerCommand<InsertImagePayload>(
         INSERT_IMAGE_COMMAND,
         (payload) => {
-          const imageNode = $createImageNode(payload);
+          const imageNode = $createImageNode({
+            ...payload,
+            maxWidth: maxWidth,
+          });
           $insertNodes([imageNode]);
           if ($isRootOrShadowRoot(imageNode.getParentOrThrow())) {
             $wrapNodeInElement(imageNode, $createParagraphNode).selectEnd();
