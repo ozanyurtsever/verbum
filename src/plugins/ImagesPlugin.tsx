@@ -29,8 +29,6 @@ import {
 import { useEffect, useRef, useState } from 'react';
 import * as React from 'react';
 
-import landscapeImage from '../images/landscape.jpg';
-import yellowFlowerImage from '../images/yellow-flower.jpg';
 import {
   $createImageNode,
   $isImageNode,
@@ -183,11 +181,11 @@ export function InsertImageDialog({
                   ? {
                       altText:
                         'Daylight fir trees forest glacier green high ice landscape',
-                      src: landscapeImage,
+                      src: '../images/landscape.jpg',
                     }
                   : {
                       altText: 'Yellow flower in tilt shift lens',
-                      src: yellowFlowerImage,
+                      src: '../images/yellow-flower.jpg',
                     }
               )
             }
