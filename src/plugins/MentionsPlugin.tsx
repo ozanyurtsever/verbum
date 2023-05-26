@@ -1,8 +1,8 @@
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import {
   LexicalTypeaheadMenuPlugin,
-  QueryMatch,
-  TypeaheadOption,
+  MenuTextMatch,
+  MenuOption,
   useBasicTypeaheadTriggerMatch,
 } from '@lexical/react/LexicalTypeaheadMenuPlugin';
 import { $createTextNode, TextNode } from 'lexical';
@@ -127,7 +127,7 @@ function useMentionLookupService<A>(
 function checkForCapitalizedNameMentions(
   text: string,
   minMatchLength: number
-): QueryMatch | null {
+): MenuTextMatch | null {
   const match = CapitalizedNameMentionsRegex.exec(text);
   if (match !== null) {
     // The strategy ignores leading whitespace but we need to know it's
@@ -149,7 +149,7 @@ function checkForCapitalizedNameMentions(
 function checkForAtSignMentions(
   text: string,
   minMatchLength: number
-): QueryMatch | null {
+): MenuTextMatch | null {
   let match = AtSignMentionsRegex.exec(text);
 
   if (match === null) {
@@ -172,12 +172,12 @@ function checkForAtSignMentions(
   return null;
 }
 
-function getPossibleQueryMatch(text: string): QueryMatch | null {
+function getPossibleMenuTextMatch(text: string): MenuTextMatch | null {
   const match = checkForAtSignMentions(text, 1);
   return match === null ? checkForCapitalizedNameMentions(text, 3) : match;
 }
 
-class MentionTypeaheadOption extends TypeaheadOption {
+class MentionMenuOption extends MenuOption {
   name: string;
   picture: JSX.Element;
   url: string;
@@ -201,7 +201,7 @@ function MentionsTypeaheadMenuItem({
   isSelected: boolean;
   onClick: () => void;
   onMouseEnter: () => void;
-  option: MentionTypeaheadOption;
+  option: MentionMenuOption;
 }) {
   let className = 'item';
   if (isSelected) {
@@ -246,7 +246,7 @@ export default function MentionsPlugin<A>(props: {
       results
         .map(
           (result) =>
-            new MentionTypeaheadOption(
+            new MentionMenuOption(
               getTypeaheadValues(result).value,
               getTypeaheadValues(result).picture,
               getTypeaheadValues(result).url
@@ -258,7 +258,7 @@ export default function MentionsPlugin<A>(props: {
 
   const onSelectOption = useCallback(
     (
-      selectedOption: MentionTypeaheadOption,
+      selectedOption: MentionMenuOption,
       nodeToReplace: TextNode | null,
       closeMenu: () => void
     ) => {
@@ -278,7 +278,7 @@ export default function MentionsPlugin<A>(props: {
 
   const checkForMentionMatch = useCallback(
     (text: string) => {
-      const mentionMatch = getPossibleQueryMatch(text);
+      const mentionMatch = getPossibleMenuTextMatch(text);
       const slashMatch = checkForSlashTriggerMatch(text, editor);
       return !slashMatch && mentionMatch ? mentionMatch : null;
     },
@@ -286,7 +286,7 @@ export default function MentionsPlugin<A>(props: {
   );
 
   return (
-    <LexicalTypeaheadMenuPlugin<MentionTypeaheadOption>
+    <LexicalTypeaheadMenuPlugin<MentionMenuOption>
       onQueryChange={setQueryString}
       onSelectOption={onSelectOption}
       triggerFn={checkForMentionMatch}
