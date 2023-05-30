@@ -9,11 +9,12 @@ import { $createTextNode, TextNode } from 'lexical';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-
+import { renderToStaticMarkup } from 'react-dom/server';
 import { $createMentionNode } from '../nodes/MentionNode';
 import { $createAutoLinkNode } from '@lexical/link';
 
 import './MentionsPlugin.css';
+import { use } from 'i18next';
 
 type SearchData<A> = (p: string) => Promise<A[]>;
 
@@ -21,6 +22,7 @@ type GetTypeaheadValues<A> = (result: A) => {
   url: string;
   value: string;
   picture: JSX.Element;
+  userCard: JSX.Element;
 };
 
 const PUNCTUATION =
@@ -181,12 +183,19 @@ class MentionMenuOption extends MenuOption {
   name: string;
   picture: JSX.Element;
   url: string;
+  userCard: JSX.Element;
 
-  constructor(name: string, picture: JSX.Element, url?: string) {
+  constructor(
+    name: string,
+    picture: JSX.Element,
+    url?: string,
+    userCard?: JSX.Element
+  ) {
     super(name);
     this.name = name;
     this.picture = picture;
     this.url = url;
+    this.userCard = userCard;
   }
 }
 
@@ -249,12 +258,15 @@ export default function MentionsPlugin<A>(props: {
             new MentionMenuOption(
               getTypeaheadValues(result).value,
               getTypeaheadValues(result).picture,
-              getTypeaheadValues(result).url
+              getTypeaheadValues(result).url,
+              getTypeaheadValues(result).userCard
             )
         )
         .slice(0, SUGGESTION_LIST_LENGTH_LIMIT),
     [results]
   );
+
+  const qwe = document.createElement('div');
 
   const onSelectOption = useCallback(
     (
@@ -264,7 +276,14 @@ export default function MentionsPlugin<A>(props: {
     ) => {
       editor.update(() => {
         if (nodeToReplace) {
-          const mentionNode = $createMentionNode(`@${selectedOption.name}`);
+          const popover = document.createElement('div');
+          const staticElement = renderToStaticMarkup(selectedOption.userCard);
+          popover.innerHTML = staticElement;
+
+          const mentionNode = $createMentionNode(
+            `@${selectedOption.name}`,
+            popover
+          );
           const linkNode = $createAutoLinkNode(selectedOption.url);
           linkNode.append(mentionNode);
           nodeToReplace.replace(linkNode);
