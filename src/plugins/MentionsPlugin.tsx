@@ -5,11 +5,11 @@ import {
   MenuOption,
   useBasicTypeaheadTriggerMatch,
 } from '@lexical/react/LexicalTypeaheadMenuPlugin';
-import { $createTextNode, TextNode } from 'lexical';
+import { TextNode } from 'lexical';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-
+import { renderToStaticMarkup } from 'react-dom/server';
 import { $createMentionNode } from '../nodes/MentionNode';
 import { $createAutoLinkNode } from '@lexical/link';
 
@@ -17,10 +17,26 @@ import './MentionsPlugin.css';
 
 type SearchData<A> = (p: string) => Promise<A[]>;
 
+type OffsetCard = {
+  leftOffset: number;
+  topOffset: number;
+};
+
+type PopoverCard<A> = {
+  card: (data: A) => JSX.Element;
+  offset: OffsetCard;
+};
+
+type UserCard = {
+  card: JSX.Element;
+  offset: OffsetCard;
+};
+
 type GetTypeaheadValues<A> = (result: A) => {
   url: string;
   value: string;
   picture: JSX.Element;
+  popoverCard?: PopoverCard<A>;
 };
 
 const PUNCTUATION =
@@ -181,12 +197,19 @@ class MentionMenuOption extends MenuOption {
   name: string;
   picture: JSX.Element;
   url: string;
+  userCard: UserCard;
 
-  constructor(name: string, picture: JSX.Element, url?: string) {
+  constructor(
+    name: string,
+    picture: JSX.Element,
+    url?: string,
+    userCard?: UserCard
+  ) {
     super(name);
     this.name = name;
     this.picture = picture;
     this.url = url;
+    this.userCard = userCard;
   }
 }
 
@@ -249,7 +272,16 @@ export default function MentionsPlugin<A>(props: {
             new MentionMenuOption(
               getTypeaheadValues(result).value,
               getTypeaheadValues(result).picture,
-              getTypeaheadValues(result).url
+              getTypeaheadValues(result).url,
+              {
+                card: getTypeaheadValues(result).popoverCard.card(result),
+                offset: {
+                  leftOffset:
+                    getTypeaheadValues(result).popoverCard.offset.leftOffset,
+                  topOffset:
+                    getTypeaheadValues(result).popoverCard.offset.topOffset,
+                },
+              }
             )
         )
         .slice(0, SUGGESTION_LIST_LENGTH_LIMIT),
@@ -264,7 +296,17 @@ export default function MentionsPlugin<A>(props: {
     ) => {
       editor.update(() => {
         if (nodeToReplace) {
-          const mentionNode = $createMentionNode(`@${selectedOption.name}`);
+          const popover = document.createElement('div');
+          const staticElement = renderToStaticMarkup(
+            selectedOption.userCard.card
+          );
+          popover.innerHTML = staticElement;
+
+          const mentionNode = $createMentionNode(`@${selectedOption.name}`, {
+            card: popover,
+            leftOffset: selectedOption.userCard.offset.leftOffset,
+            topOffset: selectedOption.userCard.offset.topOffset,
+          });
           const linkNode = $createAutoLinkNode(selectedOption.url);
           linkNode.append(mentionNode);
           nodeToReplace.replace(linkNode);
