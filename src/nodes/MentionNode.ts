@@ -6,18 +6,12 @@
  *
  */
 
-import type {
-  EditorConfig,
-  LexicalEditor,
-  LexicalNode,
-  NodeKey,
-} from 'lexical';
+import type { EditorConfig, LexicalNode, NodeKey } from 'lexical';
 
 import SerializedTextNode from 'lexical';
 
 import { Spread } from 'globals';
 import { TextNode } from 'lexical';
-import { ReactNode } from 'react';
 
 export type SerializedMentionNode = Spread<
   {
@@ -28,17 +22,17 @@ export type SerializedMentionNode = Spread<
   typeof SerializedTextNode
 >;
 
+type PopoverCard = {
+  card: HTMLElement;
+  leftOffset: number;
+  topOffset: number;
+};
+
 const mentionStyle = 'background-color: rgba(24, 119, 232, 0.2)';
-
-// const message = document.createElement('p');
-// message.textContent = 'Here is an example popover';
-
-const node: ReactNode = undefined;
 
 export class MentionNode extends TextNode {
   __mention: string;
-  __popover: HTMLElement; // = document.createElement('div');
-  // __position: {left: number, top: number}
+  __popoverCard: PopoverCard;
 
   static getType(): string {
     return 'mention';
@@ -60,23 +54,16 @@ export class MentionNode extends TextNode {
 
   constructor(
     mentionName: string,
-    popover?: HTMLDivElement,
+    popover?: PopoverCard,
     text?: string,
-    key?: NodeKey,
+    key?: NodeKey
   ) {
     super(text ?? mentionName, key);
     this.__mention = mentionName;
     if (popover !== undefined) {
-       this.__popover = popover;
-       this.__popover.id = 'verbum-mention-popover';
-      // this.__popover.style.backgroundColor = '#0078D4';
-      // this.__popover.style.color = 'white';
-      // this.__popover.style.border = '1px solid black';
-       this.__popover.style.position = 'absolute';
-      // this.__popover.style.width = '200px';
-      // this.__popover.style.height = '100px';
-      // this.__popover.style.padding = '10px';
-      // this.__popover.appendChild(message);
+      this.__popoverCard = popover;
+      this.__popoverCard.card.id = 'verbum-mention-popover';
+      this.__popoverCard.card.style.position = 'absolute';
       this.removePopover();
     }
   }
@@ -91,16 +78,11 @@ export class MentionNode extends TextNode {
   }
 
   removePopover = () => {
-    const existingPopover = document.getElementById(this.__popover.id);
+    const existingPopover = document.getElementById(this.__popoverCard.card.id);
     if (existingPopover && existingPopover.parentElement) {
       existingPopover.parentElement.removeChild(existingPopover);
     }
   };
-
-  setPosition = (elemet: HTMLElement) => {
-
-
-  }
 
   createDOM(config: EditorConfig): HTMLElement {
     const dom = super.createDOM(config);
@@ -108,21 +90,16 @@ export class MentionNode extends TextNode {
     dom.className = 'mention';
 
     dom.addEventListener('pointerover', (event) => {
-      console.log('over');
-      this.setPosition(dom)
-      const {left, top} = dom.getBoundingClientRect()
-      //const {width, height} = this.__popover.getBoundingClientRect()
-      this.__popover.style.left = `${left}px`;
-      this.__popover.style.top = `${top - 125}px`;
-      document.body.appendChild(this.__popover);
+      const { left, top } = dom.getBoundingClientRect();
+      this.__popoverCard.card.style.left = `${left - this.__popoverCard.leftOffset}px`;
+      this.__popoverCard.card.style.top = `${top - this.__popoverCard.topOffset}px`;
+      document.body.appendChild(this.__popoverCard.card);
     });
 
     dom.addEventListener('pointerout', (event) => {
-      console.log('out');
       this.removePopover();
     });
 
-    //console.log(dom);
     return dom;
   }
 
@@ -131,7 +108,10 @@ export class MentionNode extends TextNode {
   }
 }
 
-export function $createMentionNode(mentionName: string, popover?: HTMLDivElement): MentionNode {
+export function $createMentionNode(
+  mentionName: string,
+  popover?: PopoverCard
+): MentionNode {
   const mentionNode = new MentionNode(mentionName, popover);
   mentionNode.setMode('segmented').toggleDirectionless();
   return mentionNode;
