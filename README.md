@@ -169,6 +169,22 @@ Add your own font sizes.
 | searchData         | `SearchData<A>`         | required | Searching data using input string |
 | getTypeaheadValues | `GetTypeaheadValues<A>` | required | Search data transormation         |
 
+`GetTypeaheadValues<A>`
+
+| Property    | Type             |          | description                                           |
+| ----------- | ---------------- | -------- | ----------------------------------------------------- |
+| url         | `string`         | required | URL adress                                            |
+| value       | `string`         | required | Mention menu option value                             |
+| picture     | `JSX.Element`    | required | Mention menu option picture                           |
+| popoverCard | `PopoverCard<A>` | optional | Displaying a popup card when hovering over a username |
+
+`PopoverCard<A>`
+
+| Property | Type                       |          | description                         |
+| -------- | -------------------------- | -------- | ----------------------------------- |
+| card     | `(data: A) => JSX.Element` | required | Popover card, depends on `<A>` type |
+| offset   | `OffsetCard`               | required | Card offset (left, top)             |
+
 ### Plugins support
 
 | Plugin name                | Working            | Description                                    | Source                     |
