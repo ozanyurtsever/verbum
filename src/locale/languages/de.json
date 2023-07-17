@@ -1,0 +1,194 @@
+{
+  "toolbar": {
+    "alignDropdown": {
+      "Title": "Ausrichtung",
+      "Description": "Formatierungsoptionen für die Textausrichtung",
+      "LeftAlign": "Links ausrichten",
+      "CenterAlign": "Zentriert ausrichten",
+      "RightAlign": "Rechts ausrichten",
+      "JustifyAlign": "Blocksatz",
+      "Outdent": "Einzug verkleinern",
+      "Indent": "Einzug vergrößern"
+    },
+    "backgroundColorPicker": {
+      "Description": "Formatierung der Hintergrundfarbe"
+    },
+    "blockFormatDropdown": {
+      "Description": "Formatierungsoptionen für Textstile",
+      "paragraph": "Normal",
+      "h1": "Überschrift 1",
+      "h2": "Überschrift 2",
+      "h3": "Überschrift 3",
+      "bullet": "Aufzählungsliste",
+      "number": "Nummerierte Liste",
+      "check": "Checkliste",
+      "quote": "Zitat",
+      "code": "Codeblock"
+    },
+    "boldButton": {
+      "Title": "Fett",
+      "Description": "Text als fett formatieren. Tastaturkürzel:"
+    },
+    "codeFormatButton": {
+      "Description": "Codeblock einfügen"
+    },
+    "insertLinkButton": {
+      "Description": "Link einfügen"
+    },
+    "italicButton": {
+      "Title": "Kursiv",
+      "Description": "Text als kursiv formatieren. Tastaturkürzel:"
+    },
+    "redoButton": {
+      "Title": "Wiederherstellen",
+      "Description": "Wiederherstellen"
+    },
+    "underlineButton": {
+      "Title": "Unterstrichen",
+      "Description": "Text unterstreichen. Tastaturkürzel:"
+    },
+    "undoButton": {
+      "Title": "Rückgängig",
+      "Description": "Rückgängig"
+    },
+    "textColorPicker": {
+      "Description": "Formatierung der Textfarbe"
+    },
+    "textFormatDropdown": {
+      "Description": "Formatierungsoptionen für zusätzliche Textstile",
+      "Options": {
+        "Strikethrough": {
+          "Label": "Durchgestrichen",
+          "Description": "Text durchstreichen"
+        },
+        "Subscript": {
+          "Label": "Tiefgestellt",
+          "Description": "Text tiefstellen"
+        },
+        "Superscript": {
+          "Label": "Hochgestellt",
+          "Description": "Text hochstellen"
+        }
+      }
+    },
+    "insertDropdown": {
+      "Title": "Einfügen",
+      "Description": "Spezialisiertes Editorelement einfügen",
+      "Mode": {
+        "Sample": "Beispiel",
+        "URL": "URL",
+        "File": "Datei"
+      },
+      "No_of_rows": "Anzahl der Zeilen",
+      "No_of_columns": "Anzahl der Spalten",
+      "Question": "Frage",
+      "Tweet_URL": "Tweet URL",
+      "Image_URL": "Bild URL",
+      "Image_URL_Alt_Text": "Alt Text",
+      "Image_URL_Placeholder": "Zufälliges Unsplash-Bild",
+      "Image_Upload": "Bild hochladen",
+      "Image_Upload_Alt_Text": "Alternativer Text (Beschreibung)",
+      "Image_Upload_Placeholder": "Beschreibungstext ",
+      "YouTube_URL": "YouTube URL",
+      "Horizontal_Rule": "Horizontale Linie",
+      "Image": "Bild",
+      "Insert_Image": "Bild einfügen",
+      "Excalidraw": "Excalidraw",
+      "Table": "Tabelle",
+      "Insert_Table": "Tabelle einfügen",
+      "Poll": "Umfrage",
+      "Insert_Poll": "Umfrage einfügen",
+      "Tweet": "Tweet",
+      "Insert_Tweet": "Tweet einfügen",
+      "YouTube_Video": "YouTube Video",
+      "Insert_YouTube_Video": "YouTube Video einfügen",
+      "Equation": "Gleichung",
+      "Insert_Equation": "Gleichung einfügen",
+      "Sticky_Note": "Haftnotiz"
+    },
+    "mentionsPlugin": {
+      "Suggested_mentions": "Vorgeschlagene Erwähnungen"
+    },
+    "characterStylesPopupPlugin": {
+      "Format_text_as_bold": "Text fett formatieren",
+      "Format_text_as_italics": "Text kursiv formatieren",
+      "Format_text_to_underlined": "Text unterstreichen",
+      "Format_text_with_a_strikethrough": "Text durchstreichen",
+      "Format_Subscript": "Text tiefstellen",
+      "Format_Superscript": "Text hochstellen",
+      "Insert_code_block": "Codeblock einfügen",
+      "Insert_link": "Link einfügen",
+      "Add_comment": "Kommentar hinzufügen"
+    },
+    "commentPlugin": {
+      "Hide_Comments": "Kommentare verbergen",
+      "Show_Comments": "Kommentare anzeigen",
+      "Comments": "Kommentare",
+      "No_Comments": "Keine Kommentare",
+      "Reply_to_comment": "Auf Kommentar antworten...",
+      "Delete_Thread": "Thread löschen",
+      "Delete_Comment": "Kommentar löschen",
+      "Delete_Comment_Description": "Sind Sie sicher, dass Sie dies löschen möchten?",
+      "Type_a_comment": "Schreiben Sie einen Kommentar..."
+    },
+    "testRecorderPlugin": {
+      "Disable_test_recorder": "Testrecorder deaktivieren",
+      "Enable_test_recorder": "Testrecorder aktivieren",
+      "Insert_snapshot": "Schnappschuss einfügen",
+      "Copy_to_clipboard": "In die Zwischenablage kopieren",
+      "Download_as_a_file": "Als Datei herunterladen"
+    },
+    "tableActionMenuPlugin": {
+      "column_header": "Spaltenüberschrift",
+      "row_header": "Zeilenüberschrift",
+      "Insert": "Einfügen",
+      "above": "oben",
+      "below": "unten",
+      "left": "links",
+      "right": "rechts",
+      "Delete_column": "Spalte löschen",
+      "Delete_row": "Zeile löschen",
+      "Delete_table": "Tabelle löschen",
+      "column": "Spalte",
+      "row": "Zeile",
+      "columns": "Spalten",
+      "rows": "Zeilen"
+    }
+  },
+  "action": {
+    "Confirm": "Bestätigen",
+    "Cancel": "Abbrechen",
+    "Discard": "Verwerfen",
+    "Save": "Speichern",
+    "Add": "Hinzufügen",
+    "Remove": "Entfernen",
+    "Delete": "Löschen",
+    "Enable": "Aktivieren",
+    "Disable": "Deaktivieren",
+    "Import": "Importieren",
+    "Speech_To_Text": "Sprache zu Text",
+    "speech_To_Text": "sprache zu text",
+    "Import_Description": "Editor-Zustand aus JSON importieren",
+    "Export": "Exportieren",
+    "Export_Description": "Editor-Zustand in JSON exportieren",
+    "Clear": "Leeren",
+    "Clear_Editor": "Editor leeren",
+    "Clear_Description": "Inhalt des Editors leeren",
+    "Read-Only_Mode": "Nur-Lesen-Modus",
+    "Unlock": "Entsperren",
+    "Lock": "Sperren",
+    "read-Only_Mode": "nur-lesen-modus",
+    "Confirm_Clear": "Sind Sie sicher, dass Sie den Editor leeren möchten?",
+    "Confirm_Discard": "Sind Sie sicher, dass Sie die Änderungen verwerfen möchten?",
+    "Convert_From_Markdown": "Umwandlung von Markdown",
+    "Convert_From_Markdown_Description": "Umwandlung von Markdown",
+    "Disconnect": "Trennen",
+    "Connect": "Verbinden",
+    "Collaborative": "Gemeinsames Bearbeiten",
+    "disconnect": "trennen",
+    "connect": "verbinden",
+    "Disconnect_From": "Trennen von",
+    "Connect_To": "Verbinden mit",
+    "Server": "ein gemeinsamer Bearbeitungsserver"
+  }
+}
