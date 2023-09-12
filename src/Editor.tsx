@@ -46,7 +46,7 @@ interface IEditorProps {
   hashtagsEnabled?: boolean;
   autoLinkEnabled?: boolean;
   emojisEnabled?: boolean;
-  emojiPickerPlugin?: boolean;
+  emojiPickerEnabled?: boolean;
   actionsEnabled?: boolean;
   placeholder?: string;
   listMaxIndent?: number;
@@ -60,7 +60,7 @@ const Editor = ({
   hashtagsEnabled = false,
   autoLinkEnabled = false,
   emojisEnabled = false,
-  emojiPickerPlugin = false,
+  emojiPickerEnabled = false,
   actionsEnabled = false,
   listMaxIndent = 7,
   placeholder = '',
@@ -96,7 +96,7 @@ const Editor = ({
         <ClearEditorPlugin />
         {hashtagsEnabled && <HashtagPlugin />}
         {emojisEnabled && <EmojisPlugin />}
-        {emojiPickerPlugin && <EmojiPickerPlugin />}
+        {emojiPickerEnabled && <EmojiPickerPlugin />}
         <KeywordsPlugin />
         <SpeechToTextPlugin />
         <DragDropPaste />
