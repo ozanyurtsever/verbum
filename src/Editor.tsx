@@ -39,12 +39,14 @@ import EditorContext from './context/EditorContext';
 import { LexicalEditor } from 'lexical';
 import { useTranslation } from 'react-i18next';
 import DragDropPaste from './plugins/DragDropPastePlugin';
+import EmojiPickerPlugin from './plugins/EmojiPickerPlugin';
 
 interface IEditorProps {
   children?: ReactNode;
   hashtagsEnabled?: boolean;
   autoLinkEnabled?: boolean;
   emojisEnabled?: boolean;
+  emojiPickerPlugin?: boolean;
   actionsEnabled?: boolean;
   placeholder?: string;
   listMaxIndent?: number;
@@ -58,6 +60,7 @@ const Editor = ({
   hashtagsEnabled = false,
   autoLinkEnabled = false,
   emojisEnabled = false,
+  emojiPickerPlugin = false,
   actionsEnabled = false,
   listMaxIndent = 7,
   placeholder = '',
@@ -93,6 +96,7 @@ const Editor = ({
         <ClearEditorPlugin />
         {hashtagsEnabled && <HashtagPlugin />}
         {emojisEnabled && <EmojisPlugin />}
+        {emojiPickerPlugin && <EmojiPickerPlugin />}
         <KeywordsPlugin />
         <SpeechToTextPlugin />
         <DragDropPaste />
