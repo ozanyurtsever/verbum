@@ -2,6 +2,8 @@
 
 Laconic - Flexible Text Editor for React
 
+Previously known as [Verbum](https://github.com/ozanyurtsever/verbum).
+
 **Laconic** is a fully flexible rich text editor based on [`lexical-playground`](https://github.com/facebook/lexical/tree/main/packages/lexical-playground) and [`lexical`](https://github.com/facebook/lexical) framework.
 
 **⚠️ As the Lexical framework is currently in early development, this component library is also likely to change quite often**

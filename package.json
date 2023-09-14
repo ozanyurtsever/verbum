@@ -1,5 +1,5 @@
 {
-  "version": "0.6.0",
+  "version": "0.0.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -43,16 +43,16 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "verbum",
+  "name": "laconic",
   "author": "Ozan Yurtsever",
-  "module": "dist/verbum.esm.js",
+  "module": "dist/laconic.esm.js",
   "size-limit": [
     {
-      "path": "dist/verbum.cjs.production.min.js",
+      "path": "dist/laconic.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/verbum.esm.js",
+      "path": "dist/laconic.esm.js",
       "limit": "10 KB"
     }
   ],
@@ -115,6 +115,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ozanyurtsever/verbum"
+    "url": "https://github.com/foldables-io/laconic"
   }
 }
