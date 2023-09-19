@@ -115,6 +115,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/foldables-io/laconic"
-  }
+    "url": "git+https://github.com/foldables-io/laconic"
+  },
+  "description": "Laconic - Text editor for React",
+  "bugs": {
+    "url": "https://github.com/foldables-io/laconic/issues"
+  },
+  "homepage": "https://github.com/foldables-io/laconic#readme",
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [
+    "test"
+  ]
 }
