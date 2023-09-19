@@ -1,17 +1,17 @@
-# Laconic
+# Pressum
 
-Laconic - Flexible Text Editor for React
+Pressum - Flexible Text Editor for React
 
 Previously known as [Verbum](https://github.com/ozanyurtsever/verbum).
 
-**Laconic** is a fully flexible rich text editor based on [`lexical-playground`](https://github.com/facebook/lexical/tree/main/packages/lexical-playground) and [`lexical`](https://github.com/facebook/lexical) framework.
+**Pressum** is a fully flexible rich text editor based on [`lexical-playground`](https://github.com/facebook/lexical/tree/main/packages/lexical-playground) and [`lexical`](https://github.com/facebook/lexical) framework.
 
 **⚠️ As the Lexical framework is currently in early development, this component library is also likely to change quite often**
 
 ## Installation
 
 ```
-npm install laconic --save
+npm install pressum --save
 ```
 
 ## Demo
@@ -40,7 +40,7 @@ import {
   TextFormatDropdown,
   UnderlineButton,
   Divider,
-} from 'laconic';
+} from 'pressum';
 
 const NoteViewer: FC = () => {
   return (
@@ -109,7 +109,7 @@ Coming soon... -->
 
 ## Automatic browser language detection Support
 
-Laconic supports automatic browser language detection by default if locale not provided. If the browser language is set to `fr`, the editor will be automatically localized in French. If the browser language is set to `en`, the editor will be automatically localized in English. If the browser language is set to any other language, the editor will be automatically localized in English.
+Pressum supports automatic browser language detection by default if locale not provided. If the browser language is set to `fr`, the editor will be automatically localized in French. If the browser language is set to `en`, the editor will be automatically localized in English. If the browser language is set to any other language, the editor will be automatically localized in English.
 
 <br />
 

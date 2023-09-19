@@ -43,16 +43,16 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "laconic",
+  "name": "pressum",
   "author": "Ozan Yurtsever",
-  "module": "dist/laconic.esm.js",
+  "module": "dist/pressum.esm.js",
   "size-limit": [
     {
-      "path": "dist/laconic.cjs.production.min.js",
+      "path": "dist/pressum.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/laconic.esm.js",
+      "path": "dist/pressum.esm.js",
       "limit": "10 KB"
     }
   ],
@@ -115,13 +115,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/foldables-io/laconic"
+    "url": "git+https://github.com/foldables-io/pressum"
   },
-  "description": "Laconic - Text editor for React",
+  "description": "Pressum - Text editor for React",
   "bugs": {
-    "url": "https://github.com/foldables-io/laconic/issues"
+    "url": "https://github.com/foldables-io/pressum/issues"
   },
-  "homepage": "https://github.com/foldables-io/laconic#readme",
+  "homepage": "https://github.com/foldables-io/pressum#readme",
   "directories": {
     "test": "test"
   },
