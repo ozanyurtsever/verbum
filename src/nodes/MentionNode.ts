@@ -22,24 +22,17 @@ export type SerializedMentionNode = Spread<
   typeof SerializedTextNode
 >;
 
-type PopoverCard = {
-  card: HTMLElement;
-  leftOffset: number;
-  topOffset: number;
-};
-
 const mentionStyle = 'background-color: rgba(24, 119, 232, 0.2)';
 
 export class MentionNode extends TextNode {
   __mention: string;
-  __popoverCard: PopoverCard;
 
   static getType(): string {
     return 'mention';
   }
 
   static clone(node: MentionNode): MentionNode {
-    return new MentionNode(node.__mention, undefined, node.__text, node.__key);
+    return new MentionNode(node.__mention, node.__text, node.__key);
   }
 
   static importJSON(serializedNode: SerializedMentionNode): MentionNode {
@@ -52,20 +45,9 @@ export class MentionNode extends TextNode {
     return node;
   }
 
-  constructor(
-    mentionName: string,
-    popover?: PopoverCard,
-    text?: string,
-    key?: NodeKey
-  ) {
+  constructor(mentionName: string, text?: string, key?: NodeKey) {
     super(text ?? mentionName, key);
     this.__mention = mentionName;
-    if (popover !== undefined) {
-      this.__popoverCard = popover;
-      this.__popoverCard.card.id = 'verbum-mention-popover';
-      this.__popoverCard.card.style.position = 'absolute';
-      this.removePopover();
-    }
   }
 
   exportJSON(): SerializedMentionNode {
@@ -77,28 +59,10 @@ export class MentionNode extends TextNode {
     };
   }
 
-  removePopover = () => {
-    const existingPopover = document.getElementById(this.__popoverCard.card.id);
-    if (existingPopover && existingPopover.parentElement) {
-      existingPopover.parentElement.removeChild(existingPopover);
-    }
-  };
-
   createDOM(config: EditorConfig): HTMLElement {
     const dom = super.createDOM(config);
     dom.style.cssText = mentionStyle;
     dom.className = 'mention';
-
-    dom.addEventListener('pointerover', (event) => {
-      const { left, top } = dom.getBoundingClientRect();
-      this.__popoverCard.card.style.left = `${left - this.__popoverCard.leftOffset}px`;
-      this.__popoverCard.card.style.top = `${top - this.__popoverCard.topOffset}px`;
-      document.body.appendChild(this.__popoverCard.card);
-    });
-
-    dom.addEventListener('pointerout', (event) => {
-      this.removePopover();
-    });
 
     return dom;
   }
@@ -108,11 +72,8 @@ export class MentionNode extends TextNode {
   }
 }
 
-export function $createMentionNode(
-  mentionName: string,
-  popover?: PopoverCard
-): MentionNode {
-  const mentionNode = new MentionNode(mentionName, popover);
+export function $createMentionNode(mentionName: string): MentionNode {
+  const mentionNode = new MentionNode(mentionName);
   mentionNode.setMode('segmented').toggleDirectionless();
   return mentionNode;
 }
