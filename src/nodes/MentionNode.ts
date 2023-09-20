@@ -6,21 +6,33 @@
  *
  */
 
-import type { EditorConfig, LexicalNode, NodeKey } from 'lexical';
+import type { DOMConversionMap, DOMConversionOutput, DOMExportOutput, SerializedTextNode, EditorConfig, LexicalNode, NodeKey } from 'lexical';
 
-import SerializedTextNode from 'lexical';
+import type {Spread} from 'lexical';
 
-import { Spread } from 'globals';
-import { TextNode } from 'lexical';
+import { $applyNodeReplacement, TextNode } from 'lexical';
 
 export type SerializedMentionNode = Spread<
   {
     mentionName: string;
-    type: 'mention';
-    version: 1;
   },
-  typeof SerializedTextNode
+  SerializedTextNode
 >;
+
+function convertMentionElement(
+  domNode: HTMLElement,
+): DOMConversionOutput | null {
+  const textContent = domNode.textContent;
+
+  if (textContent !== null) {
+    const node = $createMentionNode(textContent);
+    return {
+      node,
+    };
+  }
+
+  return null;
+}
 
 const mentionStyle = 'background-color: rgba(24, 119, 232, 0.2)';
 
@@ -67,15 +79,44 @@ export class MentionNode extends TextNode {
     return dom;
   }
 
+  exportDOM(): DOMExportOutput {
+    const element = document.createElement('span');
+    element.setAttribute('data-lexical-mention', 'true');
+    element.textContent = this.__text;
+    return {element};
+  }
+
+  static importDOM(): DOMConversionMap | null {
+    return {
+      span: (domNode: HTMLElement) => {
+        if (!domNode.hasAttribute('data-lexical-mention')) {
+          return null;
+        }
+        return {
+          conversion: convertMentionElement,
+          priority: 1,
+        };
+      },
+    };
+  }
+
   isTextEntity(): true {
     return true;
+  }
+
+  canInsertTextBefore(): boolean {
+    return false;
+  }
+
+  canInsertTextAfter(): boolean {
+    return false;
   }
 }
 
 export function $createMentionNode(mentionName: string): MentionNode {
   const mentionNode = new MentionNode(mentionName);
   mentionNode.setMode('segmented').toggleDirectionless();
-  return mentionNode;
+  return $applyNodeReplacement(mentionNode);
 }
 
 export function $isMentionNode(

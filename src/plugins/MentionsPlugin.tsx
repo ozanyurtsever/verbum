@@ -31,10 +31,6 @@ const DocumentMentionsRegex = {
   PUNCTUATION,
 };
 
-const CapitalizedNameMentionsRegex = new RegExp(
-  '(^|[^#])((?:' + DocumentMentionsRegex.NAME + '{' + 1 + ',})$)'
-);
-
 const PUNC = DocumentMentionsRegex.PUNCTUATION;
 
 const TRIGGERS = ['@'].join('');
@@ -123,28 +119,6 @@ function useMentionLookupService<A>(
   return results;
 }
 
-function checkForCapitalizedNameMentions(
-  text: string,
-  minMatchLength: number
-): MenuTextMatch | null {
-  const match = CapitalizedNameMentionsRegex.exec(text);
-  if (match !== null) {
-    // The strategy ignores leading whitespace but we need to know it's
-    // length to add it to the leadOffset
-    const maybeLeadingWhitespace = match[1];
-
-    const matchingString = match[2];
-    if (matchingString != null && matchingString.length >= minMatchLength) {
-      return {
-        leadOffset: match.index + maybeLeadingWhitespace.length,
-        matchingString,
-        replaceableString: matchingString,
-      };
-    }
-  }
-  return null;
-}
-
 function checkForAtSignMentions(
   text: string,
   minMatchLength: number
@@ -172,8 +146,7 @@ function checkForAtSignMentions(
 }
 
 function getPossibleMenuTextMatch(text: string): MenuTextMatch | null {
-  const match = checkForAtSignMentions(text, 1);
-  return match === null ? checkForCapitalizedNameMentions(text, 3) : match;
+  return checkForAtSignMentions(text, 1);
 }
 
 class MentionMenuOption extends MenuOption {
@@ -264,10 +237,10 @@ export default function MentionsPlugin<A>(props: {
       editor.update(() => {
         if (nodeToReplace) {
           const mentionNode = $createMentionNode(`@${selectedOption.name}`);
-          const linkNode = $createAutoLinkNode(selectedOption.url);
-          linkNode.append(mentionNode);
-          nodeToReplace.replace(linkNode);
-          linkNode.select();
+          // const linkNode = $createAutoLinkNode(selectedOption.url);
+          // linkNode.append(mentionNode);
+          nodeToReplace.replace(mentionNode);
+          mentionNode.select();
         }
         closeMenu();
       });
@@ -277,9 +250,11 @@ export default function MentionsPlugin<A>(props: {
 
   const checkForMentionMatch = useCallback(
     (text: string) => {
-      const mentionMatch = getPossibleMenuTextMatch(text);
       const slashMatch = checkForSlashTriggerMatch(text, editor);
-      return !slashMatch && mentionMatch ? mentionMatch : null;
+      if (slashMatch !== null) {
+        return null;
+      }
+      return getPossibleMenuTextMatch(text);
     },
     [checkForSlashTriggerMatch, editor]
   );
