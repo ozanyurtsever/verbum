@@ -98,6 +98,7 @@ Coming soon... -->
 | hashtagsEnabled    | `boolean`                                                       | optional | Enables the automatic hashtag highlighting, default is `false`                                                            |
 | autoLinkEnabled    | `boolean`                                                       | optional | Enables the automatic link highlighting, default is `false`                                                               |
 | emojisEnabled      | `boolean`                                                       | optional | Replaces the emoji combiniations with its corresponding symbol, default is `false`                                        |
+| emojiPickerEnabled | `boolean`                                                       | optional | Use `:` for search and paste emoji, default is `false`                                                                    |
 | actionsEnabled     | `boolean`                                                       | optional | Enables the actions toolbar, default is `false`                                                                           |
 | placeholder        | `string`                                                        | optional | The default content of the editor when it is first loaded                                                                 |
 | listMaxIndent      | `number`                                                        | optional | The maximum indent capacity of any listed element, the default is `7`                                                     |
@@ -196,6 +197,7 @@ Add your own font sizes.
 | CodeHighlightPlugin        | :white_check_mark: | Code Block with different languages            | Independent                |
 | CommentPlugin              | :x:                |                                                | CharacterStylesPopupPlugin |
 | EmojisPlugin               | :white_check_mark: | A few emojis                                   | Editor.tsx                 |
+| EmojiPickerPlugin          | :white_check_mark: | Emoji picker (emoji-list.ts)                   | Editor.tsx                 |
 | EquationsPlugin            | :scissors:         | Katex, It's too heavy (cut out)                | InsertDropdown.tsx         |
 | ExcalidrawPlugin           | :scissors:         | Excalidraw (cut out)                           | InsertDropdown.tsx         |
 | HorizontalRulePlugin       | :white_check_mark: | Horizontal divider                             | InsertDropdown.tsx         |

@@ -6,13 +6,13 @@
  *
  */
 
-import type { LexicalEditor } from 'lexical';
+import type {LexicalEditor} from 'lexical';
 
-import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
-import { TextNode } from 'lexical';
-import { useEffect } from 'react';
+import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
+import {TextNode} from 'lexical';
+import {useEffect} from 'react';
 
-import { $createEmojiNode, EmojiNode } from '../nodes/EmojiNode';
+import {$createEmojiNode, EmojiNode} from '../nodes/EmojiNode';
 
 const emojis: Map<string, [string, string]> = new Map([
   [':)', ['emoji happysmile', '🙂']],
@@ -51,7 +51,7 @@ function findAndTransformEmoji(node: TextNode): null | TextNode {
 }
 
 function textNodeTransform(node: TextNode): void {
-  let targetNode = node;
+  let targetNode: TextNode | null = node;
 
   while (targetNode !== null) {
     if (!targetNode.isSimpleText()) {
@@ -72,7 +72,7 @@ function useEmojis(editor: LexicalEditor): void {
   }, [editor]);
 }
 
-export default function EmojisPlugin(): JSX.Element {
+export default function EmojisPlugin(): JSX.Element | null {
   const [editor] = useLexicalComposerContext();
   useEmojis(editor);
   return null;
