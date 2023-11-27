@@ -27,9 +27,7 @@ const EditorComposer = ({ children, initialEditorState }: IEditorComposer) => {
   return (
     <LexicalComposer initialConfig={initialConfig}>
       <I18nextProvider i18n={i18n}>
-        <svg xmlns="Verbum-EditorComposer">
-          <div className="editor-shell">{children}</div>
-        </svg>
+        <div className="editor-shell">{children}</div>
       </I18nextProvider>
     </LexicalComposer>
   );

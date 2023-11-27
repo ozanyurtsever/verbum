@@ -265,29 +265,26 @@ const ToolbarPlugin = ({
         blockType,
       }}
     >
-      <svg xmlns="Verbum-toolbar">
-        <div className="toolbar">
-          <UndoButton />
-          <RedoButton />
-          <Divider />
-          {supportedBlockTypes.has(blockType) &&
-            activeEditor === initialEditor && (
-              <>
-                <BlockFormatDropdown />
-                <Divider />
-              </>
-            )}
-          {blockType === 'code' ? (
-            <>
-              <CodeLanguageDropdown />
-              <Divider />
-              {alignExists && AlignComponent}
-            </>
-          ) : (
-            <>{children}</>
-          )}
-        </div>
-      </svg>
+      <div className="toolbar">
+        <UndoButton />
+        <RedoButton />
+        <Divider />
+        {supportedBlockTypes.has(blockType) && activeEditor === initialEditor && (
+          <>
+            <BlockFormatDropdown />
+            <Divider />
+          </>
+        )}
+        {blockType === 'code' ? (
+          <>
+            <CodeLanguageDropdown />
+            <Divider />
+            {alignExists && AlignComponent}
+          </>
+        ) : (
+          <>{children}</>
+        )}
+      </div>
     </ToolbarContext.Provider>
   );
 };

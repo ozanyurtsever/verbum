@@ -6,8 +6,6 @@
  *
  *
  */
-@namespace 'Verbum-toolbar';
-
 .ToolbarPlugin__dialogActions {
   display: flex;
   flex-direction: row;
