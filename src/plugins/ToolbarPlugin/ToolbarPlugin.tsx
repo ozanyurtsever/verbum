@@ -39,7 +39,7 @@ import CodeLanguageDropdown from './components/CodeLanguageDropdown';
 import BlockFormatDropdown from './components/BlockFormatDropdown';
 import Divider from '../../ui/Divider';
 
-const supportedBlockTypes = new Set([
+const defaultSupportedBlockTypes = new Set([
   'paragraph',
   'quote',
   'code',
@@ -65,6 +65,8 @@ interface IToolbarProps {
   defaultFontColor?: string /** The default selected font color in the toolbar */;
   defaultBgColor?: string /** The default selected background color in the toolbar */;
   defaultFontFamily?: string /** The default selected font family in the toolbar */;
+  supportedBlockTypes?: Set<string> /** The supported block types in the toolbar */;
+  hasUndoRedo?: boolean /** Whether to show undo and redo buttons */;
 }
 
 const ToolbarPlugin = ({
@@ -73,6 +75,8 @@ const ToolbarPlugin = ({
   defaultFontColor = '#000',
   defaultBgColor = '#fff',
   defaultFontFamily = 'Arial',
+  supportedBlockTypes = defaultSupportedBlockTypes,
+  hasUndoRedo = true,
 }: IToolbarProps) => {
   const [insertExists, InsertComponent] = useChild(children, InsertDropdown);
   const [alignExists, AlignComponent] = useChild(children, AlignDropdown);
@@ -266,16 +270,20 @@ const ToolbarPlugin = ({
       }}
     >
       <div className="toolbar">
-        <UndoButton />
-        <RedoButton />
-        <Divider />
-        {supportedBlockTypes.has(blockType) && activeEditor === initialEditor && (
+        {hasUndoRedo && (
           <>
-            <BlockFormatDropdown />
+            <UndoButton />
+            <RedoButton />
             <Divider />
           </>
         )}
-        {blockType === 'code' ? (
+        {supportedBlockTypes.has(blockType) && activeEditor === initialEditor && supportedBlockTypes.size > 0 && (
+          <>
+            <BlockFormatDropdown supportedBlockTypes={supportedBlockTypes} />
+            <Divider />
+          </>
+        )}
+        {blockType === 'code' && supportedBlockTypes.has(blockType) ? (
           <>
             <CodeLanguageDropdown />
             <Divider />

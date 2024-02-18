@@ -19,6 +19,8 @@
       "h1": "Titre 1",
       "h2": "Titre 2",
       "h3": "Titre 3",
+      "h4": "Titre 4",
+      "h5": "Titre 5",
       "bullet": "Liste à puces",
       "number": "Liste numérotée",
       "check": "Liste de contrôle",

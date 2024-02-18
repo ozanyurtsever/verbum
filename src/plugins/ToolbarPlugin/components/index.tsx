@@ -11,6 +11,9 @@ import InsertDropdown from './InsertDropdown';
 import InsertLinkButton from './InsertLinkButton';
 import ItalicButton from './ItalicButton';
 import RedoButton from './RedoButton';
+import SubscriptButton from './SubscriptButton';
+import SuperscriptButton from './SuperscriptButton';
+import StrikethroughButton from './StrikethroughButton';
 import TextColorPicker from './TextColorPicker';
 import TextFormatDropdown from './TextFormatDropdown';
 import UnderlineButton from './UnderlineButton';
@@ -30,6 +33,9 @@ export {
   InsertLinkButton,
   ItalicButton,
   RedoButton,
+  SubscriptButton,
+  SuperscriptButton,
+  StrikethroughButton,
   TextColorPicker,
   TextFormatDropdown,
   UnderlineButton,

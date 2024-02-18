@@ -5,21 +5,19 @@ import ToolbarPlugin from '../src/plugins/ToolbarPlugin/ToolbarPlugin';
 import {
   AlignDropdown,
   BackgroundColorPicker,
-  BlockFormatDropdown,
   BoldButton,
   CodeFormatButton,
-  CodeLanguageDropdown,
-  FloatingLinkEditor,
   FontFamilyDropdown,
   FontSizeDropdown,
   InsertDropdown,
   InsertLinkButton,
   ItalicButton,
-  RedoButton,
   TextColorPicker,
   TextFormatDropdown,
   UnderlineButton,
-  UndoButton,
+  SuperscriptButton,
+  SubscriptButton,
+  StrikethroughButton
 } from '../src/plugins/ToolbarPlugin/components';
 import { $createParagraphNode, $createTextNode, $getRoot } from 'lexical';
 
@@ -55,6 +53,70 @@ export const FullEditor = () => (
         <InsertDropdown />
         <Divider />
         <AlignDropdown />
+      </ToolbarPlugin>
+    </Editor>
+  </EditorComposer>
+);
+
+const customSupportedBlockTypes = new Set([
+  'paragraph',
+  'h1',
+  'h2',
+  'h3',
+  'h4',
+  'h5',
+  'bullet',
+  'number',
+]);
+export const CustomBlockType = () => (
+  <EditorComposer initialEditorState={initialState}>
+    <Editor>
+      <ToolbarPlugin supportedBlockTypes={customSupportedBlockTypes} />
+    </Editor>
+  </EditorComposer>
+);
+
+export const HideUndoRedo = () => (
+  <EditorComposer initialEditorState={initialState}>
+    <Editor>
+      <ToolbarPlugin hasUndoRedo={false} />
+    </Editor>
+  </EditorComposer>
+);
+
+export const NoBlockFormats = () => (
+  <EditorComposer initialEditorState={initialState}>
+    <Editor>
+      <ToolbarPlugin supportedBlockTypes={new Set()} />
+    </Editor>
+  </EditorComposer>
+);
+
+const pluginModification = { characterStylesPopup: false }
+export const NoCharacterStylesPopup = () => (
+  <EditorComposer initialEditorState={initialState}>
+    <Editor plugins={ pluginModification }>
+      <ToolbarPlugin />
+    </Editor>
+  </EditorComposer >
+);
+
+const iWantEmojis = { emojis: true }
+export const AutoEmojis = () => (
+  <EditorComposer initialEditorState={initialState}>
+    <Editor plugins={ iWantEmojis }>
+      <ToolbarPlugin />
+    </Editor>
+  </EditorComposer >
+);
+
+export const SpecialFormatsAsIcons = () => (
+  <EditorComposer initialEditorState={initialState}>
+    <Editor>
+      <ToolbarPlugin>
+        <SuperscriptButton />
+        <SubscriptButton />
+        <StrikethroughButton />
       </ToolbarPlugin>
     </Editor>
   </EditorComposer>
