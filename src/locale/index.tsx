@@ -3,7 +3,7 @@ import EN from './languages/en.json';
 import FR from './languages/fr.json';
 import PTBR from './languages/ptBr.json';
 import RU from './languages/ru.json';
-
+import TR  from './languages/tr.json';
 export const resources = {
   ar: {},
   de: {},
@@ -17,6 +17,7 @@ export const resources = {
   pt: {},
   ptBr: PTBR,
   ru: RU,
+  tr: TR,
   ukr: {},
   zh: {},
 } as const;
