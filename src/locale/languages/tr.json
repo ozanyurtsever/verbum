@@ -1,0 +1,194 @@
+{
+  "toolbar": {
+    "alignDropdown": {
+      "Title": "Hizala",
+      "Description": "Metin hizalama seçenekleri",
+      "LeftAlign": "Sola Hizala",
+      "CenterAlign": "Ortaya Hizala",
+      "RightAlign": "Sağa Hizala",
+      "JustifyAlign": "İki Yana Yasla",
+      "Outdent": "Girintiyi Azalt",
+      "Indent": "Girintiyi Artır"
+    },
+    "backgroundColorPicker": {
+      "Description": "Arka plan rengini biçimlendir"
+    },
+    "blockFormatDropdown": {
+      "Description": "Metin stili biçimlendirme seçenekleri",
+      "paragraph": "Normal",
+      "h1": "Başlık 1",
+      "h2": "Başlık 2",
+      "h3": "Başlık 3",
+      "bullet": "Madde İşareti Listesi",
+      "number": "Numaralı Liste",
+      "check": "Kontrollü Liste",
+      "quote": "Alıntı",
+      "code": "Kod Bloğu"
+    },
+    "boldButton": {
+      "Title": "Kalın",
+      "Description": "Metni kalın biçimlendir. Kısayol:"
+    },
+    "codeFormatButton": {
+      "Description": "Kod bloğu ekle"
+    },
+    "insertLinkButton": {
+      "Description": "Bağlantı ekle"
+    },
+    "italicButton": {
+      "Title": "İtalik",
+      "Description": "Metni italik biçimlendir. Kısayol:"
+    },
+    "redoButton": {
+      "Title": "Yinele",
+      "Description": "Yinele"
+    },
+    "underlineButton": {
+      "Title": "Altı Çizili",
+      "Description": "Metni altı çizili biçimlendir. Kısayol:"
+    },
+    "undoButton": {
+      "Title": "Geri Al",
+      "Description": "Geri Al"
+    },
+    "textColorPicker": {
+      "Description": "Metin rengini biçimlendir"
+    },
+    "textFormatDropdown": {
+      "Description": "Ek metin stili biçimlendirme seçenekleri",
+      "Options": {
+        "Strikethrough": {
+          "Label": "Üstü Çizili",
+          "Description": "Metni üstü çizili biçimlendir"
+        },
+        "Subscript": {
+          "Label": "Alt Simge",
+          "Description": "Metni alt simge biçimlendir"
+        },
+        "Superscript": {
+          "Label": "Üst Simge",
+          "Description": "Metni üst simge biçimlendir"
+        }
+      }
+    },
+    "insertDropdown": {
+      "Title": "Ekle",
+      "Description": "Özel düzenleyici düğüm ekle",
+      "Mode": {
+        "Sample": "Örnek",
+        "URL": "URL",
+        "File": "Dosya"
+      },
+      "No_of_rows": "Satır Sayısı",
+      "No_of_columns": "Sütun Sayısı",
+      "Question": "Soru",
+      "Tweet_URL": "Tweet URL'si",
+      "Image_URL": "Resim URL'si",
+      "Image_URL_Alt_Text": "Alternatif Metin",
+      "Image_URL_Placeholder": "Rastgele unsplash resmi",
+      "Image_Upload": "Resim Yükle",
+      "Image_Upload_Alt_Text": "Alternatif Metin",
+      "Image_Upload_Placeholder": "Açıklayıcı alternatif metin",
+      "YouTube_URL": "YouTube URL'si",
+      "Horizontal_Rule": "Yatay Kural",
+      "Image": "Resim",
+      "Insert_Image": "Resim Ekle",
+      "Excalidraw": "Excalidraw",
+      "Table": "Tablo",
+      "Insert_Table": "Tablo Ekle",
+      "Poll": "Anket",
+      "Insert_Poll": "Anket Ekle",
+      "Tweet": "Tweet",
+      "Insert_Tweet": "Tweet Ekle",
+      "YouTube_Video": "YouTube Videosu",
+      "Insert_YouTube_Video": "YouTube Videosu Ekle",
+      "Equation": "Denklem",
+      "Insert_Equation": "Denklem Ekle",
+      "Sticky_Note": "Yapışkan Not"
+    },
+    "mentionsPlugin": {
+      "Suggested_mentions": "Önerilen bahsetmeler"
+    },
+    "characterStylesPopupPlugin": {
+      "Format_text_as_bold": "Metni kalın biçimlendir",
+      "Format_text_as_italics": "Metni italik biçimlendir",
+      "Format_text_to_underlined": "Metni altı çizili biçimlendir",
+      "Format_text_with_a_strikethrough": "Metni üstü çizili biçimlendir",
+      "Format_Subscript": "Alt Simge Biçimlendir",
+      "Format_Superscript": "Üst Simge Biçimlendir",
+      "Insert_code_block": "Kod bloğu ekle",
+      "Insert_link": "Bağlantı ekle",
+      "Add_comment": "Yorum ekle"
+    },
+    "commentPlugin": {
+      "Hide_Comments": "Yorumları Gizle",
+      "Show_Comments": "Yorumları Göster",
+      "Comments": "Yorumlar",
+      "No_Comments": "Yorum Yok",
+      "Reply_to_comment": "Yoruma yanıtla...",
+      "Delete_Thread": "Konuyu Sil",
+      "Delete_Comment": "Yorumu Sil",
+      "Delete_Comment_Description": "Bu öğeyi silmek istediğinizden emin misiniz",
+      "Type_a_comment": "Bir yorum yazın..."
+    },
+    "testRecorderPlugin": {
+      "Disable_test_recorder": "Test kaydediciyi devre dışı bırak",
+      "Enable_test_recorder": "Test kaydediciyi etkinleştir",
+      "Insert_snapshot": "Anlık ekle",
+      "Copy_to_clipboard": "Panoya kopyala",
+      "Download_as_a_file": "Dosya olarak indir"
+    },
+    "tableActionMenuPlugin": {
+      "column_header": "sütun başlığı",
+      "row_header": "satır başlığı",
+      "Insert": "Ekle",
+      "above": "üst",
+      "below": "alt",
+      "left": "sol",
+      "right": "sağ",
+      "Delete_column": "Sütun sil",
+      "Delete_row": "Satır sil",
+      "Delete_table": "Tabloyu sil",
+      "column": "sütun",
+      "row": "satır",
+      "columns": "sütunlar",
+      "rows": "satırlar"
+    }
+  },
+  "action": {
+    "Confirm": "Onayla",
+    "Cancel": "İptal",
+    "Discard": "At",
+    "Save": "Kaydet",
+    "Add": "Ekle",
+    "Remove": "Kaldır",
+    "Delete": "Sil",
+    "Enable": "Etkinleştir",
+    "Disable": "Devre Dışı Bırak",
+    "Import": "İçe Aktar",
+    "Speech_To_Text": "Konuşmadan Metne",
+    "speech_To_Text": "konuşmadan metne",
+    "Import_Description": "JSON'dan düzenleyici durumunu içe aktar",
+    "Export": "Dışa Aktar",
+    "Export_Description": "JSON olarak düzenleyici durumunu dışa aktar",
+    "Clear": "Temizle",
+    "Clear_Editor": "Editörü Temizle",
+    "Clear_Description": "Editör içeriğini temizle",
+    "Read-Only_Mode": "Salt Okunur Mod",
+    "Unlock": "Kilidi Aç",
+    "Lock": "Kilitle",
+    "read-Only_Mode": "salt-okunur mod",
+    "Confirm_Clear": "Editörü temizlemek istediğinizden emin misiniz?",
+    "Confirm_Discard": "Değişiklikleri atmak istediğinizden emin misiniz?",
+    "Convert_From_Markdown": "Markdown'dan Dönüştür",
+    "Convert_From_Markdown_Description": "Markdown'dan dönüştür",
+    "Disconnect": "Bağlantıyı Kes",
+    "Connect": "Bağlan",
+    "Collaborative": "İşbirlikçi Düzenleme",
+    "disconnect": "bağlantıyı kes",
+    "connect": "bağlan",
+    "Disconnect_From": "Şuradan Bağlantıyı Kes",
+    "Connect_To": "Şuraya Bağlan",
+    "Server": "bir işbirlikçi düzenleme sunucusu"
+  }
+}

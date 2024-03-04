@@ -840,6 +840,10 @@ select.font-family {
   cursor: nw-resize;
 }
 
+.emoji-menu {
+  width: 200px;
+}
+
 .emoji {
   color: transparent;
   caret-color: rgb(5, 5, 5);
