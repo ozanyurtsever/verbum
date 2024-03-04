@@ -51,7 +51,7 @@ interface IEditorProps {
   placeholder?: string;
   listMaxIndent?: number;
   isEditable?: boolean;
-  locale?: 'en' | 'fr' | 'ptBr' | 'ru' | null;
+  locale?: 'en' | 'fr' | 'ptBr' | 'ru' | 'tr' | null;
   onChange?: (editorState: string, editorInstance?: LexicalEditor) => void;
 }
 
@@ -65,7 +65,7 @@ const Editor = ({
   listMaxIndent = 7,
   placeholder = '',
   isEditable = true,
-  locale = null,
+  locale = 'tr',
   onChange,
 }: IEditorProps) => {
   const [editor] = useLexicalComposerContext();
