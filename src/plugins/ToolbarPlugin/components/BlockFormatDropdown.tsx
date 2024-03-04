@@ -19,7 +19,11 @@ import DropDown from '../../../ui/DropDown';
 import ToolbarContext from '../../../context/ToolbarContext';
 import { useTranslation } from 'react-i18next';
 
-const BlockFormatDropdown = () => {
+interface IBlockFormatDropdownProps {
+  supportedBlockTypes?: Set<string> /** The supported block types in the toolbar */;
+}
+
+const BlockFormatDropdown = (props: IBlockFormatDropdownProps) => {
   const { initialEditor } = useContext(EditorContext);
   const { blockType } = useContext(ToolbarContext);
   const { t } = useTranslation('toolbar');
@@ -103,6 +107,8 @@ const BlockFormatDropdown = () => {
     }
   };
 
+  const blockTypes = props.supportedBlockTypes;
+
   return (
     <DropDown
       buttonLabel={t(`blockFormatDropdown.${blockType}`)}
@@ -110,77 +116,121 @@ const BlockFormatDropdown = () => {
       buttonClassName="toolbar-item block-controls"
       buttonIconClassName={'icon block-type ' + blockType}
     >
-      <button className="item" onClick={formatParagraph} type="button">
-        <span className="icon paragraph" />
-        <span className="text">{t('toolbar:blockFormatDropdown.paragraph')}</span>
-        {blockType === 'paragraph' && <span className="active" />}
-      </button>
-      <button
-        className="item"
-        onClick={() => formatHeading('h1')}
-        type="button"
-      >
-        <span className="icon h1" />
-        <span className="text">
-          {t('toolbar:blockFormatDropdown.h1')}
-        </span>
-        {blockType === 'h1' && <span className="active" />}
-      </button>
-      <button
-        className="item"
-        onClick={() => formatHeading('h2')}
-        type="button"
-      >
-        <span className="icon h2" />
-        <span className="text">
-          {t('toolbar:blockFormatDropdown.h2')}
-        </span>
-        {blockType === 'h2' && <span className="active" />}
-      </button>
-      <button
-        className="item"
-        onClick={() => formatHeading('h3')}
-        type="button"
-      >
-        <span className="icon h3" />
-        <span className="text">
-          {t('toolbar:blockFormatDropdown.h3')}
-        </span>
-        {blockType === 'h3' && <span className="active" />}
-      </button>
-      <button className="item" onClick={formatBulletList} type="button">
-        <span className="icon bullet-list" />
-        <span className="text">
-          {t('toolbar:blockFormatDropdown.bullet')}
-        </span>
-        {blockType === 'bullet' && <span className="active" />}
-      </button>
-      <button className="item" onClick={formatNumberedList} type="button">
-        <span className="icon numbered-list" />
-        <span className="text">
-          {t('toolbar:blockFormatDropdown.number')}
-        </span>
-        {blockType === 'number' && <span className="active" />}
-      </button>
-      <button className="item" onClick={formatCheckList} type="button">
-        <span className="icon check-list" />
-        <span className="text">
-          {t('toolbar:blockFormatDropdown.check')}
-        </span>
-        {blockType === 'check' && <span className="active" />}
-      </button>
-      <button className="item" onClick={formatQuote} type="button">
-        <span className="icon quote" />
-        <span className="text">{t('toolbar:blockFormatDropdown.quote')}</span>
-        {blockType === 'quote' && <span className="active" />}
-      </button>
-      <button className="item" onClick={formatCode} type="button">
-        <span className="icon code" />
-        <span className="text">
-          {t('toolbar:blockFormatDropdown.code')}
-        </span>
-        {blockType === 'code' && <span className="active" />}
-      </button>
+      {blockTypes && blockTypes.has('paragraph') && (
+        <button className="item" onClick={formatParagraph} type="button">
+          <span className="icon paragraph" />
+          <span className="text">{t('toolbar:blockFormatDropdown.paragraph')}</span>
+          {blockType === 'paragraph' && <span className="active" />}
+        </button>
+      )}
+      {blockTypes && blockTypes.has('h1') && (
+        <button
+          className="item"
+          onClick={() => formatHeading('h1')}
+          type="button"
+        >
+          <span className="icon h1" />
+          <span className="text">
+            {t('toolbar:blockFormatDropdown.h1')}
+          </span>
+          {blockType === 'h1' && <span className="active" />}
+        </button>
+      )}
+      {blockTypes && blockTypes.has('h2') && (
+        <button
+          className="item"
+          onClick={() => formatHeading('h2')}
+          type="button"
+        >
+          <span className="icon h2" />
+          <span className="text">
+            {t('toolbar:blockFormatDropdown.h2')}
+          </span>
+          {blockType === 'h2' && <span className="active" />}
+        </button>
+      )}
+      {blockTypes && blockTypes.has('h3') && (
+        <button
+          className="item"
+          onClick={() => formatHeading('h3')}
+          type="button"
+        >
+          <span className="icon h3" />
+          <span className="text">
+            {t('toolbar:blockFormatDropdown.h3')}
+          </span>
+          {blockType === 'h3' && <span className="active" />}
+        </button>
+      )}
+      {blockTypes && blockTypes.has('h4') && (
+        <button
+          className="item"
+          onClick={() => formatHeading('h4')}
+          type="button"
+        >
+          <span className="icon h4" />
+          <span className="text">
+            {t('toolbar:blockFormatDropdown.h4')}
+          </span>
+          {blockType === 'h4' && <span className="active" />}
+        </button>
+      )}
+      {blockTypes && blockTypes.has('h5') && (
+        <button
+          className="item"
+          onClick={() => formatHeading('h5')}
+          type="button"
+        >
+          <span className="icon h5" />
+          <span className="text">
+            {t('toolbar:blockFormatDropdown.h5')}
+          </span>
+          {blockType === 'h5' && <span className="active" />}
+        </button>
+      )}
+      {blockTypes && blockTypes.has('bullet') && (
+        <button className="item" onClick={formatBulletList} type="button">
+          <span className="icon bullet-list" />
+          <span className="text">
+            {t('toolbar:blockFormatDropdown.bullet')}
+          </span>
+          {blockType === 'bullet' && <span className="active" />}
+        </button>
+      )}
+      {blockTypes && blockTypes.has('number') && (
+        <button className="item" onClick={formatNumberedList} type="button">
+          <span className="icon numbered-list" />
+          <span className="text">
+            {t('toolbar:blockFormatDropdown.number')}
+          </span>
+          {blockType === 'number' && <span className="active" />}
+        </button>
+      )}
+      {blockTypes && blockTypes.has('check') && (
+        <button className="item" onClick={formatCheckList} type="button">
+          <span className="icon check-list" />
+          <span className="text">
+            {t('toolbar:blockFormatDropdown.check')}
+          </span>
+          {blockType === 'check' && <span className="active" />}
+        </button>
+      )}
+      {blockTypes && blockTypes.has('quote') && (
+        <button className="item" onClick={formatQuote} type="button">
+          <span className="icon quote" />
+          <span className="text">{t('toolbar:blockFormatDropdown.quote')}</span>
+          {blockType === 'quote' && <span className="active" />}
+        </button>
+      )}
+      {blockTypes && blockTypes.has('code') && (
+        <button className="item" onClick={formatCode} type="button">
+          <span className="icon code" />
+          <span className="text">
+            {t('toolbar:blockFormatDropdown.code')}
+          </span>
+          {blockType === 'code' && <span className="active" />}
+        </button>
+      )}
     </DropDown>
   );
 };

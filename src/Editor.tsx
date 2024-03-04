@@ -43,11 +43,7 @@ import EmojiPickerPlugin from './plugins/EmojiPickerPlugin';
 
 interface IEditorProps {
   children?: ReactNode;
-  hashtagsEnabled?: boolean;
-  autoLinkEnabled?: boolean;
-  emojisEnabled?: boolean;
-  emojiPickerEnabled?: boolean;
-  actionsEnabled?: boolean;
+  plugins?: IEnabledEditorPlugins;
   placeholder?: string;
   listMaxIndent?: number;
   isEditable?: boolean;
@@ -55,19 +51,63 @@ interface IEditorProps {
   onChange?: (editorState: string, editorInstance?: LexicalEditor) => void;
 }
 
+interface IEnabledEditorPlugins {
+  hashtags?: boolean;
+  autoLink?: boolean;
+  emojis?: boolean;
+  emojiPicker?: boolean;
+  actions?: boolean;
+  autofocus?: boolean;
+  clearEditor?: boolean;
+  keywords?: boolean;
+  speechToText?: boolean;
+  dragDropPaste?: boolean;
+  markdownShortcut?: boolean;
+  codeHighlight?: boolean;
+  list?: boolean;
+  checkList?: boolean;
+  listMaxIndent?: boolean;
+  link?: boolean;
+  clickableLink?: boolean;
+  characterStylesPopup?: boolean;
+  tabFocus?: boolean;
+  history?: boolean;
+}
+
+const DEFAULT_EDITOR_PLUGINS: IEnabledEditorPlugins = {
+  hashtags: false,
+  autoLink: false,
+  emojis: false,
+  emojiPicker: false,
+  actions: false,
+  autofocus: true,
+  clearEditor: true,
+  keywords: true,
+  speechToText: true,
+  dragDropPaste: true,
+  markdownShortcut: true,
+  codeHighlight: true,
+  list: true,
+  checkList: true,
+  listMaxIndent: true,
+  link: true,
+  clickableLink: true,
+  characterStylesPopup: true,
+  tabFocus: true,
+  history: true,
+};
+
 const Editor = ({
   children,
-  hashtagsEnabled = false,
-  autoLinkEnabled = false,
-  emojisEnabled = false,
-  emojiPickerEnabled = false,
-  actionsEnabled = false,
+  plugins = {},
   listMaxIndent = 7,
   placeholder = '',
   isEditable = true,
   locale = null,
   onChange,
 }: IEditorProps) => {
+  const enabledPlugins = { ...DEFAULT_EDITOR_PLUGINS, ...plugins };
+
   const [editor] = useLexicalComposerContext();
   const [activeEditor, setActiveEditor] = useState(editor);
 
@@ -92,15 +132,15 @@ const Editor = ({
     >
       {children}
       <div className={`editor-container`}>
-        <AutoFocusPlugin />
-        <ClearEditorPlugin />
-        {hashtagsEnabled && <HashtagPlugin />}
-        {emojisEnabled && <EmojisPlugin />}
-        {emojiPickerEnabled && <EmojiPickerPlugin />}
-        <KeywordsPlugin />
-        <SpeechToTextPlugin />
-        <DragDropPaste />
-        {autoLinkEnabled && <AutoLinkPlugin />}
+        {enabledPlugins.autofocus && <AutoFocusPlugin />}
+        {enabledPlugins.clearEditor && <ClearEditorPlugin />}
+        {enabledPlugins.hashtags && <HashtagPlugin />}
+        {enabledPlugins.emojis && <EmojisPlugin />}
+        {enabledPlugins.emojiPicker && <EmojiPickerPlugin />}
+        {enabledPlugins.keywords && <KeywordsPlugin />}
+        {enabledPlugins.speechToText && <SpeechToTextPlugin />}
+        {enabledPlugins.dragDropPaste && <DragDropPaste />}
+        {enabledPlugins.autoLink && <AutoLinkPlugin />}
 
         <>
           <RichTextPlugin
@@ -114,19 +154,19 @@ const Editor = ({
               return (editorStateRef.current = editorState);
             }}
           />
-          <MarkdownShortcutPlugin />
-          <CodeHighlightPlugin />
-          <ListPlugin />
-          <CheckListPlugin />
-          <ListMaxIndentLevelPlugin maxDepth={listMaxIndent} />
-          <LinkPlugin />
-          <ClickableLinkPlugin />
-          <CharacterStylesPopupPlugin />
-          <TabFocusPlugin />
+          {enabledPlugins.markdownShortcut && <MarkdownShortcutPlugin />}
+          {enabledPlugins.codeHighlight && <CodeHighlightPlugin />}
+          {enabledPlugins.list && <ListPlugin />}
+          {enabledPlugins.checkList && <CheckListPlugin />}
+          {enabledPlugins.listMaxIndent && <ListMaxIndentLevelPlugin maxDepth={listMaxIndent} />}
+          {enabledPlugins.link && <LinkPlugin />}
+          {enabledPlugins.clickableLink && <ClickableLinkPlugin />}
+          {enabledPlugins.characterStylesPopup && <CharacterStylesPopupPlugin />}
+          {enabledPlugins.tabFocus && <TabFocusPlugin />}
         </>
 
-        <HistoryPlugin externalHistoryState={historyState} />
-        {actionsEnabled && <ActionsPlugin isRichText={isRichText} />}
+        {enabledPlugins.history && <HistoryPlugin externalHistoryState={historyState} />}
+        {enabledPlugins.actions && <ActionsPlugin isRichText={isRichText} />}
       </div>
     </EditorContext.Provider>
   );
