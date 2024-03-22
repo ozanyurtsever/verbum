@@ -26,6 +26,8 @@ import {
 import * as ToolbarTypes from './types';
 import Divider from './ui/Divider';
 
+type SetSrc = React.Dispatch<React.SetStateAction<string>>
+
 export {
   EditorComposer,
   Editor,
@@ -46,4 +48,5 @@ export {
   ToolbarTypes,
   Divider,
   MentionsPlugin,
+  SetSrc
 };

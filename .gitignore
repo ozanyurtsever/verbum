@@ -5,3 +5,4 @@ node_modules
 dist
 src/App.tsx
 TSDX_GUIDE.md
+storybook-static
