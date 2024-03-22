@@ -31,6 +31,12 @@ const initialState = () => {
   root.selectEnd();
 };
 
+const uploadImage = () => {
+  return {
+    url: "https://www.w3schools.com/images/w3schools_green.jpg"
+  };
+}
+
 export const FullEditor = () => (
   <EditorComposer initialEditorState={initialState}>
     <Editor>
@@ -47,7 +53,7 @@ export const FullEditor = () => (
         <BackgroundColorPicker />
         <TextFormatDropdown />
         <Divider />
-        <InsertDropdown/>
+        <InsertDropdown uploadImage={uploadImage}/>
         <Divider />
         <AlignDropdown />
       </ToolbarPlugin>

@@ -1,5 +1,5 @@
-import React, { useState, useCallback, useContext, createContext } from 'react';
-import { $getRoot, LexicalEditor, RangeSelection } from 'lexical';
+import React, { useState, useContext } from 'react';
+import { $getRoot, LexicalEditor } from 'lexical';
 import DropDown from '../../../ui/DropDown';
 import Button from '../../../ui/Button';
 import TextInput from '../../../ui/TextInput';
@@ -20,22 +20,18 @@ import { TablePlugin } from '@lexical/react/LexicalTablePlugin';
 import TableCellActionMenuPlugin from '../../TableActionMenuPlugin';
 import HorizontalRulePlugin from '../../HorizontalRulePlugin';
 import EditorContext from '../../../context/EditorContext';
-import { File } from 'buffer';
 
 // Taken from https://stackoverflow.com/a/9102270
 const YOUTUBE_ID_PARSER =
   /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
 
-export type SetSrc = React.Dispatch<React.SetStateAction<string>>;
-export type UploadImage = (file: any, setSrc: any) => void;
+export type UploadImageHandler = (file: any) => Promise<{ url: string }> | { url: string };
 
 const parseYouTubeVideoID = (url: string) => {
   const urlMatches = url.match(YOUTUBE_ID_PARSER);
 
   return urlMatches?.[2].length === 11 ? urlMatches[2] : null;
 };
-
-const DropDownContext = createContext({ uploadImage: undefined });
 
 //#region Inserting different modules
 function InsertImageDialog({
@@ -45,7 +41,7 @@ function InsertImageDialog({
 }: {
   activeEditor: LexicalEditor;
   onClose: () => void;
-  uploadImage: UploadImage;
+  uploadImage: UploadImageHandler;
 }): JSX.Element {
   const [mode, setMode] = useState<null | 'url' | 'file'>(null);
 
@@ -218,17 +214,18 @@ function InsertImageUploadedDialogBody({
   uploadImage,
 }: {
   onClick: (payload: InsertImagePayload) => void;
-  uploadImage: UploadImage;
+  uploadImage: UploadImageHandler;
 }) {
   const [src, setSrc] = useState('');
   const [altText, setAltText] = useState('');
   const isDisabled = src === '';
 
-  const loadImage = (files: FileList) => {
+  const loadImage = async (files: FileList) => {
     const reader = new FileReader();
     if (uploadImage) {
       if (files) {
-        uploadImage(files[0], setSrc);
+        const result = await uploadImage(files[0]);
+        setSrc(result.url);
       }
       return;
     } else {
@@ -323,7 +320,7 @@ export interface IInsertDropdownProps {
   enableExcalidraw?: boolean;
   enableHorizontalRule?: boolean;
   enableStickyNote?: boolean;
-  uploadImage?: UploadImage;
+  uploadImage?: UploadImageHandler;
 }
 
 const InsertDropdown: React.FC<IInsertDropdownProps> = ({
@@ -340,7 +337,6 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
   const [modal, showModal] = useModal();
 
   return (
-    <DropDownContext.Provider value={{ uploadImage }}>
       <div>
         {enableTable && (
           <>
@@ -483,7 +479,6 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
         </DropDown>
         {modal}
       </div>
-    </DropDownContext.Provider>
   );
 };
 

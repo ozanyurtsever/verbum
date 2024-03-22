@@ -6,27 +6,21 @@ import MentionsPlugin from './plugins/MentionsPlugin';
 import {
   AlignDropdown,
   BackgroundColorPicker,
-  BlockFormatDropdown,
   BoldButton,
   CodeFormatButton,
-  CodeLanguageDropdown,
   FloatingLinkEditor,
   FontFamilyDropdown,
   FontSizeDropdown,
   InsertDropdown,
   InsertLinkButton,
   ItalicButton,
-  RedoButton,
   TextColorPicker,
   TextFormatDropdown,
   UnderlineButton,
-  UndoButton,
 } from './plugins/ToolbarPlugin/components';
 
 import * as ToolbarTypes from './types';
 import Divider from './ui/Divider';
-
-type SetSrc = React.Dispatch<React.SetStateAction<string>>
 
 export {
   EditorComposer,
@@ -48,5 +42,4 @@ export {
   ToolbarTypes,
   Divider,
   MentionsPlugin,
-  SetSrc
 };
