@@ -9,7 +9,7 @@ Verbum - Flexible Text Editor for React
 ## Installation
 
 ```
-npm install verbum --save
+npm install @iserp/verbum --save
 ```
 
 ## Demo
