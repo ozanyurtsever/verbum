@@ -5,21 +5,16 @@ import ToolbarPlugin from '../src/plugins/ToolbarPlugin/ToolbarPlugin';
 import {
   AlignDropdown,
   BackgroundColorPicker,
-  BlockFormatDropdown,
   BoldButton,
   CodeFormatButton,
-  CodeLanguageDropdown,
-  FloatingLinkEditor,
   FontFamilyDropdown,
   FontSizeDropdown,
   InsertDropdown,
   InsertLinkButton,
   ItalicButton,
-  RedoButton,
   TextColorPicker,
   TextFormatDropdown,
   UnderlineButton,
-  UndoButton,
 } from '../src/plugins/ToolbarPlugin/components';
 import { $createParagraphNode, $createTextNode, $getRoot } from 'lexical';
 
@@ -35,6 +30,12 @@ const initialState = () => {
   root.append(paragraph);
   root.selectEnd();
 };
+
+const uploadImage = () => {
+  return {
+    url: "https://www.w3schools.com/images/w3schools_green.jpg"
+  };
+}
 
 export const FullEditor = () => (
   <EditorComposer initialEditorState={initialState}>
@@ -52,7 +53,7 @@ export const FullEditor = () => (
         <BackgroundColorPicker />
         <TextFormatDropdown />
         <Divider />
-        <InsertDropdown />
+        <InsertDropdown uploadImage={uploadImage}/>
         <Divider />
         <AlignDropdown />
       </ToolbarPlugin>
