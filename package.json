@@ -1,5 +1,5 @@
 {
-  "version": "0.6.2",
+  "version": "0.6.3",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -43,8 +43,8 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "verbum",
-  "author": "Ozan Yurtsever",
+  "name": "@iserp/verbum",
+  "author": "Sokna Ly",
   "module": "dist/verbum.esm.js",
   "size-limit": [
     {
@@ -115,6 +115,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ozanyurtsever/verbum"
+    "url": "https://github.com/iserp-cloud/verbum"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
