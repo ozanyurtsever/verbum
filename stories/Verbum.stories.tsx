@@ -53,7 +53,7 @@ export const FullEditor = () => (
         <BackgroundColorPicker />
         <TextFormatDropdown />
         <Divider />
-        <InsertDropdown uploadImage={uploadImage}/>
+        <InsertDropdown uploadImage={uploadImage} supportType={'image/jpeg'}/>
         <Divider />
         <AlignDropdown />
       </ToolbarPlugin>

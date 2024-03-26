@@ -25,7 +25,9 @@ import EditorContext from '../../../context/EditorContext';
 const YOUTUBE_ID_PARSER =
   /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
 
-export type UploadImageHandler = (file: any) => Promise<{ url: string }> | { url: string };
+export type UploadImageHandler = (
+  file: any
+) => Promise<{ url: string }> | { url: string };
 
 const parseYouTubeVideoID = (url: string) => {
   const urlMatches = url.match(YOUTUBE_ID_PARSER);
@@ -38,10 +40,12 @@ function InsertImageDialog({
   activeEditor,
   onClose,
   uploadImage,
+  supportType,
 }: {
   activeEditor: LexicalEditor;
   onClose: () => void;
   uploadImage: UploadImageHandler;
+  supportType?: string;
 }): JSX.Element {
   const [mode, setMode] = useState<null | 'url' | 'file'>(null);
 
@@ -71,6 +75,7 @@ function InsertImageDialog({
       {mode === 'url' && <InsertImageUriDialogBody onClick={onClick} />}
       {mode === 'file' && (
         <InsertImageUploadedDialogBody
+          supportType={supportType}
           uploadImage={uploadImage}
           onClick={onClick}
         />
@@ -212,9 +217,11 @@ function InsertImageUriDialogBody({
 function InsertImageUploadedDialogBody({
   onClick,
   uploadImage,
+  supportType,
 }: {
   onClick: (payload: InsertImagePayload) => void;
   uploadImage: UploadImageHandler;
+  supportType: string;
 }) {
   const [src, setSrc] = useState('');
   const [altText, setAltText] = useState('');
@@ -244,7 +251,7 @@ function InsertImageUploadedDialogBody({
       <FileInput
         label="Image Upload"
         onChange={loadImage}
-        accept="image/*"
+        accept={supportType ? supportType : 'image/*'}
         data-test-id="image-modal-file-upload"
       />
       <TextInput
@@ -320,6 +327,7 @@ export interface IInsertDropdownProps {
   enableExcalidraw?: boolean;
   enableHorizontalRule?: boolean;
   enableStickyNote?: boolean;
+  supportType?: string;
   uploadImage?: UploadImageHandler;
 }
 
@@ -331,53 +339,73 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
   enablePoll = false,
   enableHorizontalRule = false,
   enableStickyNote = false,
+  supportType,
   uploadImage,
 }: IInsertDropdownProps) => {
   const { initialEditor, activeEditor } = useContext(EditorContext);
   const [modal, showModal] = useModal();
 
   return (
-      <div>
-        {enableTable && (
-          <>
-            <TablePlugin />
-            <TableCellActionMenuPlugin />
-            <TableCellResizer />
-          </>
-        )}
-        {enableYoutube && <YouTubePlugin />}
-        {enableTwitter && <TwitterPlugin />}
-        {enablePoll && <PollPlugin />}
-        {enableImage.enable && <ImagesPlugin maxWidth={enableImage.maxWidth} />}
-        {enableHorizontalRule && <HorizontalRulePlugin />}
+    <div>
+      {enableTable && (
+        <>
+          <TablePlugin />
+          <TableCellActionMenuPlugin />
+          <TableCellResizer />
+        </>
+      )}
+      {enableYoutube && <YouTubePlugin />}
+      {enableTwitter && <TwitterPlugin />}
+      {enablePoll && <PollPlugin />}
+      {enableImage.enable && <ImagesPlugin maxWidth={enableImage.maxWidth} />}
+      {enableHorizontalRule && <HorizontalRulePlugin />}
 
-        <DropDown
-          buttonClassName="toolbar-item spaced"
-          buttonLabel="Insert"
-          buttonAriaLabel="Insert specialized editor node"
-          buttonIconClassName="icon plus"
-        >
-          {enableHorizontalRule && (
+      <DropDown
+        buttonClassName="toolbar-item spaced"
+        buttonLabel="Insert"
+        buttonAriaLabel="Insert specialized editor node"
+        buttonIconClassName="icon plus"
+      >
+        {enableHorizontalRule && (
+          <button
+            onClick={() => {
+              activeEditor.dispatchCommand(
+                INSERT_HORIZONTAL_RULE_COMMAND,
+                undefined
+              );
+            }}
+            className="item"
+            type="button"
+          >
+            <i className="icon horizontal-rule" />
+            <span className="text">Horizontal Rule</span>
+          </button>
+        )}
+        {enableImage.enable && (
+          <button
+            onClick={() => {
+              showModal('Insert Image', (onClose) => (
+                <InsertImageDialog
+                  supportType={supportType}
+                  uploadImage={uploadImage}
+                  activeEditor={activeEditor}
+                  onClose={onClose}
+                />
+              ));
+            }}
+            className="item"
+            type="button"
+          >
+            <i className="icon image" />
+            <span className="text">Image</span>
+          </button>
+        )}
+        {enableTable && (
+          <div>
             <button
               onClick={() => {
-                activeEditor.dispatchCommand(
-                  INSERT_HORIZONTAL_RULE_COMMAND,
-                  undefined
-                );
-              }}
-              className="item"
-              type="button"
-            >
-              <i className="icon horizontal-rule" />
-              <span className="text">Horizontal Rule</span>
-            </button>
-          )}
-          {enableImage.enable && (
-            <button
-              onClick={() => {
-                showModal('Insert Image', (onClose) => (
-                  <InsertImageDialog
-                    uploadImage={uploadImage}
+                showModal('Insert Table', (onClose) => (
+                  <InsertTableDialog
                     activeEditor={activeEditor}
                     onClose={onClose}
                   />
@@ -386,99 +414,81 @@ const InsertDropdown: React.FC<IInsertDropdownProps> = ({
               className="item"
               type="button"
             >
-              <i className="icon image" />
-              <span className="text">Image</span>
+              <i className="icon table" />
+              <span className="text">Table</span>
             </button>
-          )}
-          {enableTable && (
-            <div>
-              <button
-                onClick={() => {
-                  showModal('Insert Table', (onClose) => (
-                    <InsertTableDialog
-                      activeEditor={activeEditor}
-                      onClose={onClose}
-                    />
-                  ));
-                }}
-                className="item"
-                type="button"
-              >
-                <i className="icon table" />
-                <span className="text">Table</span>
-              </button>
-            </div>
-          )}
-          {enablePoll && (
-            <button
-              onClick={() => {
-                showModal('Insert Poll', (onClose) => (
-                  <InsertPollDialog
-                    activeEditor={activeEditor}
-                    onClose={onClose}
-                  />
-                ));
-              }}
-              className="item"
-              type="button"
-            >
-              <i className="icon poll" />
-              <span className="text">Poll</span>
-            </button>
-          )}
-          {enableTwitter && (
-            <button
-              onClick={() => {
-                showModal('Insert Tweet', (onClose) => (
-                  <InsertTweetDialog
-                    activeEditor={activeEditor}
-                    onClose={onClose}
-                  />
-                ));
-              }}
-              className="item"
-              type="button"
-            >
-              <i className="icon tweet" />
-              <span className="text">Tweet</span>
-            </button>
-          )}
-          {enableYoutube && (
-            <button
-              onClick={() => {
-                showModal('Insert YouTube Video', (onClose) => (
-                  <InsertYouTubeDialog
-                    activeEditor={activeEditor}
-                    onClose={onClose}
-                  />
-                ));
-              }}
-              className="item"
-              type="button"
-            >
-              <i className="icon youtube" />
-              <span className="text">YouTube Video</span>
-            </button>
-          )}
-          {enableStickyNote && (
-            <button
-              onClick={() => {
-                initialEditor.update(() => {
-                  const root = $getRoot();
-                  const stickyNode = $createStickyNode(0, 0);
-                  root.append(stickyNode);
-                });
-              }}
-              className="item"
-              type="button"
-            >
-              <i className="icon sticky" />
-              <span className="text">Sticky Note</span>
-            </button>
-          )}
-        </DropDown>
-        {modal}
-      </div>
+          </div>
+        )}
+        {enablePoll && (
+          <button
+            onClick={() => {
+              showModal('Insert Poll', (onClose) => (
+                <InsertPollDialog
+                  activeEditor={activeEditor}
+                  onClose={onClose}
+                />
+              ));
+            }}
+            className="item"
+            type="button"
+          >
+            <i className="icon poll" />
+            <span className="text">Poll</span>
+          </button>
+        )}
+        {enableTwitter && (
+          <button
+            onClick={() => {
+              showModal('Insert Tweet', (onClose) => (
+                <InsertTweetDialog
+                  activeEditor={activeEditor}
+                  onClose={onClose}
+                />
+              ));
+            }}
+            className="item"
+            type="button"
+          >
+            <i className="icon tweet" />
+            <span className="text">Tweet</span>
+          </button>
+        )}
+        {enableYoutube && (
+          <button
+            onClick={() => {
+              showModal('Insert YouTube Video', (onClose) => (
+                <InsertYouTubeDialog
+                  activeEditor={activeEditor}
+                  onClose={onClose}
+                />
+              ));
+            }}
+            className="item"
+            type="button"
+          >
+            <i className="icon youtube" />
+            <span className="text">YouTube Video</span>
+          </button>
+        )}
+        {enableStickyNote && (
+          <button
+            onClick={() => {
+              initialEditor.update(() => {
+                const root = $getRoot();
+                const stickyNode = $createStickyNode(0, 0);
+                root.append(stickyNode);
+              });
+            }}
+            className="item"
+            type="button"
+          >
+            <i className="icon sticky" />
+            <span className="text">Sticky Note</span>
+          </button>
+        )}
+      </DropDown>
+      {modal}
+    </div>
   );
 };
 
