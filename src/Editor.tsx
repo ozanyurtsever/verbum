@@ -70,7 +70,7 @@ const Editor = ({
 }: IEditorProps) => {
   const [editor] = useLexicalComposerContext();
   const [activeEditor, setActiveEditor] = useState(editor);
-
+  const [_isEditable, setIsEditable] = useState(isEditable);
   const editorStateRef = useRef(null);
   const { historyState } = useSharedHistoryContext();
   const {
@@ -83,8 +83,10 @@ const Editor = ({
   useEffect(() => {
     editor.setEditable(isEditable);
 
+    setIsEditable(isEditable);
+
     if (locale) i18n.changeLanguage(locale);
-  }, []);
+  }, [isEditable]);
 
   return (
     <EditorContext.Provider
@@ -121,7 +123,7 @@ const Editor = ({
           <ListMaxIndentLevelPlugin maxDepth={listMaxIndent} />
           <LinkPlugin />
           <ClickableLinkPlugin />
-          <CharacterStylesPopupPlugin />
+          {_isEditable && <CharacterStylesPopupPlugin />}
           <TabFocusPlugin />
         </>
 
